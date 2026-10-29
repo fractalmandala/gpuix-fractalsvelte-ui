@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, click_test_id, press, focus, find_test_id, find_text, all_text, screenshot, check, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './RadioGroup.harness.svelte';
 

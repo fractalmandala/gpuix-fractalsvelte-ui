@@ -29,22 +29,22 @@
 			value={range}
 			onchange={(v: Range) => (range = v)}
 		/>
-		<div style="color: var(--ui-ink-muted)">range: {range}</div>
+		<div style="color: var(--text-secondary)">range: {range}</div>
 	</div>
 	<div style="display: flex; flex-direction: row; gap: 12px; align-items: center">
-		<ButtonGroup options={views} value={view} onchange={(v) => (view = v)} tone="neutral" size="sm" />
-		<ButtonGroup options={views} value={view} onchange={(v) => (view = v)} tone="success" size="lg" />
+		<ButtonGroup options={views} value={view} onchange={(v) => (view = v)} variant="secondary" size="h-md" />
+		<ButtonGroup options={views} value={view} onchange={(v) => (view = v)} variant="success" size="h-lg" />
 	</div>
 	<div style="display: flex; flex-direction: row; gap: 12px; align-items: center">
-		<ButtonGroup options={aligns} value={align} onchange={(v) => (align = v)} tone="warn" />
-		<ButtonGroup options={aligns} value={align} onchange={(v) => (align = v)} tone="danger" />
+		<ButtonGroup options={aligns} value={align} onchange={(v) => (align = v)} variant="warning" />
+		<ButtonGroup options={aligns} value={align} onchange={(v) => (align = v)} variant="danger" />
 	</div>
 	<div style="display: flex; flex-direction: row; gap: 0">
 		<ButtonGroup>
 			{#snippet children()}
-				<Button variant="outline" tone="neutral" size="sm" label="Undo" />
-				<Button variant="outline" tone="neutral" size="sm" label="Redo" />
-				<Button variant="outline" tone="neutral" size="sm" label="Reset" />
+				<Button variant="outline" size="h-md" label="Undo" />
+				<Button variant="outline" size="h-md" label="Redo" />
+				<Button variant="outline" size="h-md" label="Reset" />
 			{/snippet}
 		</ButtonGroup>
 	</div>

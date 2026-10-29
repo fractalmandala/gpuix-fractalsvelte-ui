@@ -13,27 +13,25 @@ category: inputs
 </script>
 
 <Slider value={volume} onchange={(v) => (volume = v)} />
-<Slider value={level} min={0} max={10} step={2} size="sm" onchange={(v) => (level = v)} />
+<Slider value={level} min={0} max={10} step={2} size="h-sm" onchange={(v) => (level = v)} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `value` | `number` | — | The current value. |
-| `onchange` | `(value: number) => void` | — | Called with the new value, only when it changes. |
-| `min` | `number` | `0` | The value at the track's start. |
-| `max` | `number` | `100` | The value at the track's end. |
+| `value` | `number` | — |   |
+| `onchange` | `(value: number) => void` | — |   |
+| `min` | `number` | `0` |   |
+| `max` | `number` | `100` |   |
 | `step` | `number` | `1` | Values snap to `min + n * step`. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Thumb 12 / 16 / 20 px. Root height 18 / 22 / 26 px. |
-| `disabled` | `boolean` | `false` | Dims the slider and ignores input. |
-| `style` | `string` | — | Inline CSS on the root; wins over the component's rules. The default width is 240 px. |
-| `testid` | `string` | — | Test id on the root; the track gets `<testid>-track` and the thumb `<testid>-thumb`. |
-
+| `size` | `'h-sm' \| 'h-md' \| 'h-bs'` | `'h-md'` | Fractalstyler's height steps for the control. |
+| `disabled` | `boolean` | `false` |   |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`accent`, `accent-soft`, `raised`, `surface`, `ring`, `radius-full`.
-
+`bg-raised`, `bg-surface`, `height-bs`, `height-md`, `height-sm`, `radius-full`, `ring`, `theme-color`, `theme-color-sub`
 ## Keyboard
 
 | Key | Action |
@@ -42,6 +40,40 @@ category: inputs
 | Left, Down | Step down by `step` |
 | Home | Jump to `min` |
 | End | Jump to `max` |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Slider from 'gpuix-fractalsvelte-ui/Slider.svelte';
+	let volume = $state(40);
+	let brightness = $state(70);
+	let level = $state(4);
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 20px; padding: 8px; width: 360px">
+	<div style="display: flex; flex-direction: column; gap: 8px">
+		<div style="display: flex; flex-direction: row; justify-content: space-between; color: var(--text-secondary); font-size: var(--text-sm)">
+			<div>Volume</div><div>{volume}</div>
+		</div>
+		<Slider value={volume} onchange={(v) => (volume = v)} />
+	</div>
+	<div style="display: flex; flex-direction: column; gap: 8px">
+		<div style="color: var(--text-secondary); font-size: var(--text-sm)">Step 2 of 0–10 · sm</div>
+		<Slider value={level} min={0} max={10} step={2} size="h-sm" onchange={(v) => (level = v)} />
+	</div>
+	<div style="display: flex; flex-direction: column; gap: 8px">
+		<div style="color: var(--text-secondary); font-size: var(--text-sm)">Large</div>
+		<Slider value={brightness} size="h-bs" onchange={(v) => (brightness = v)} />
+	</div>
+	<div style="display: flex; flex-direction: column; gap: 8px">
+		<div style="color: var(--text-secondary); font-size: var(--text-sm)">Disabled</div>
+		<Slider value={30} disabled />
+	</div>
+</div>
+```
 
 ## GPUI notes
 

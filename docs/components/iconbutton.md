@@ -1,6 +1,6 @@
 ---
 title: IconButton
-description: Square icon-only action with a hover tooltip, sharing Button's variants, tones and sizes.
+description: Square icon-only action with a hover tooltip, sharing Button's variants and sizes.
 category: actions
 ---
 
@@ -12,36 +12,73 @@ category: actions
 </script>
 
 <IconButton glyph="+" label="Add" onclick={add} />
-<IconButton variant="soft" tone="danger" label="Delete">
+<IconButton variant="danger" label="Delete">
   {#snippet children()}🗑{/snippet}
 </IconButton>
-<IconButton glyph="✕" size="sm" disabled />
+<IconButton glyph="✕" size="h-md" disabled />
 ```
 
 ## Props
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `glyph` | `string` | `''` | Plain-text icon. Ignored when `children` is given. |
-| `children` | `Snippet` | — | Rich icon content. |
-| `label` | `string` | `''` | Tooltip text, shown after a short hover. |
-| `variant` | `'solid' \| 'soft' \| 'outline' \| 'ghost'` | `'ghost'` | Visual weight. |
-| `tone` | `'accent' \| 'neutral' \| 'success' \| 'warn' \| 'danger'` | `'neutral'` | Colour role. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Squares of 26 / 32 / 40 px. |
-| `disabled` | `boolean` | `false` | Dims, drops hover, leaves the tab order, ignores clicks. |
-| `onclick` | `(e) => void` | — | Also fires on Enter and Space while focused. |
-| `style` | `string` | — | Inline CSS; wins over the component's rules. |
-| `testid` | `string` | — | Test id on the button. |
-
+| `children` | `Snippet` | — | The icon; `glyph` is the plain-text shorthand. |
+| `glyph` | `string` | `''` |   |
+| `label` | `string` | `''` | Tooltip text shown after a short hover. |
+| `variant` | `'primary' \| 'secondary' \| 'themed' \| 'outline' \| 'ghost' \| 'link' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'ghost'` | Fractalstyler's variant axis. |
+| `size` | `'h-sm' \| 'h-md' \| 'h-bs' \| 'h-lg' \| 'h-xl'` | `'h-bs'` | Fractalstyler's size axis; the button is a square of that height. |
+| `shape` | `'square' \| 'min' \| 'modern' \| 'curved' \| 'round'` | `'min'` |   |
+| `disabled` | `boolean` | `false` |   |
+| `onclick` | `(e: GpuixEvent) => void` | — |   |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-The same colour roles as `Button` (`accent*`, `danger*`, `success*`, `warn*`, `raised`, `border`, `border-strong`, `ink`, `ink-muted`, `ring`), plus `radius-sm/md/lg`, `text-sm/md/lg`.
-
+None; the component takes its colours from the element it sits in.
 ## Keyboard
 
 | Key | Action |
 | --- | --- |
 | Enter, Space | Activate while focused |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import IconButton from 'gpuix-fractalsvelte-ui/IconButton.svelte';
+	let added = $state(0);
+	const variants = ['primary', 'secondary', 'themed', 'outline', 'ghost', 'link', 'info', 'success', 'warning', 'danger'] as const;
+	const sizes = ['h-sm', 'h-md', 'h-bs', 'h-lg', 'h-xl'] as const;
+	const shapes = ['square', 'min', 'modern', 'curved', 'round'] as const;
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+	<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px">
+		{#each variants as v}
+			<IconButton variant={v} glyph="+" label={v} onclick={() => added++} />
+		{/each}
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		{#each shapes as s}
+			<IconButton shape={s} variant="outline" glyph="+" label={s} />
+		{/each}
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		{#each sizes as z}
+			<IconButton size={z} glyph="✕" label={z} />
+		{/each}
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		<IconButton glyph="−" label="Disabled" disabled />
+		<IconButton variant="themed" label="Star">
+			{#snippet children()}★{/snippet}
+		</IconButton>
+	</div>
+	<div>added: {added}</div>
+</div>
+```
 
 ## GPUI notes
 

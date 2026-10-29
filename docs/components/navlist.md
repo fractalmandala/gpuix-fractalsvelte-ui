@@ -28,23 +28,57 @@ category: navigation
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `sections` | `{ title?: string; items: Item[] }[]` | — | `Item` is `{ id; label; icon?: Snippet; badge?: string; disabled?: boolean }`. |
-| `value` | `string` | — | The active item's `id`. |
-| `onchange` | `(id: string) => void` | — | Called with the new id, on click, Enter, Space or an arrow key. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Row heights 26 / 32 / 40 px. |
-| `style` | `string` | — | Inline CSS on the root. |
-| `testid` | `string` | — | Test id on the root. Each item gets `<testid>-<id>`. |
-
+| `sections` | `{ title?: string; items: Item[] }[]` | — |   |
+| `value` | `string` | — | The active item's id. |
+| `onchange` | `(id: string) => void` | — |   |
+| `size` | `'h-md' \| 'h-lg' \| 'h-xl'` | `'h-lg'` | Fractalstyler's height steps for each item. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`accent`, `accent-soft`, `ink`, `ink-muted`, `ink-faint`, `raised`, `ring`, `radius-md/full`, `text-xs/sm/md/lg`.
-
+`bg-raised`, `radius-full`, `radius-md`, `ring`, `text-muted`, `text-primary`, `text-secondary`, `text-xs`, `theme-color`, `theme-color-sub`
 ## Keyboard
 
 | Key | Action |
 | --- | --- |
 | Up, Down | Select and focus the previous or next enabled item; wraps at the ends |
 | Enter, Space | Select the focused item |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import NavList from 'gpuix-fractalsvelte-ui/NavList.svelte';
+	let value = $state('inbox');
+	const sections = [
+		{
+			title: 'Mail',
+			items: [
+				{ id: 'inbox', label: 'Inbox', badge: '12', icon: inbox },
+				{ id: 'drafts', label: 'Drafts', badge: '2' },
+				{ id: 'starred', label: 'Starred' }
+			]
+		},
+		{
+			title: 'Account',
+			items: [
+				{ id: 'general', label: 'General', icon: gear },
+				{ id: 'billing', label: 'Billing', disabled: true }
+			]
+		}
+	];
+</script>
+
+{#snippet inbox()}<text>✉</text>{/snippet}
+{#snippet gear()}<text>⚙</text>{/snippet}
+
+<div style="display: flex; flex-direction: row; gap: 32px">
+	<div style="width: 220px"><NavList {sections} {value} onchange={(id) => (value = id)} /></div>
+	<div style="width: 180px"><NavList {sections} value="general" size="h-md" /></div>
+</div>
+```
 
 ## GPUI notes
 

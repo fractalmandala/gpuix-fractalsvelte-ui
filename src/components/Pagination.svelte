@@ -1,13 +1,12 @@
 <script lang="ts">
 	import Button from './Button.svelte';
-	import type { Size } from '../types.ts';
 
 	let {
 		page,
 		total,
 		siblings = 1,
 		onchange = undefined,
-		size = 'md',
+		size = 'h-md',
 		style = null,
 		testid = null
 	}: {
@@ -17,12 +16,12 @@
 		/** Pages shown either side of the current one. */
 		siblings?: number;
 		onchange?: (page: number) => void;
-		size?: Size;
+		/** Fractalstyler's height steps for the buttons. */
+		size?: 'h-sm' | 'h-md' | 'h-bs' | 'h-lg' | 'h-xl';
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
 
-	const box = $derived({ sm: 26, md: 32, lg: 40 }[size]);
 
 	type Slot = number | 'gap';
 	const slots = $derived.by(() => {
@@ -42,27 +41,25 @@
 </script>
 
 <div class="pager" {style} testId={testid}>
-	<Button variant="ghost" tone="neutral" {size} label="Previous" disabled={page <= 1} onclick={() => go(page - 1)} testid={testid && `${testid}-prev`} />
+	<Button variant="ghost" {size} label="Previous" disabled={page <= 1} onclick={() => go(page - 1)} testid={testid && `${testid}-prev`} />
 	{#each slots as slot, i (i)}
 		{#if slot === 'gap'}
-			<div class="gap" style="height: {box}px">…</div>
+			<div class="gap">…</div>
 		{:else}
 			{@const current = slot === page}
 			<Button
-				variant={current ? 'solid' : 'ghost'}
-				tone={current ? 'accent' : 'neutral'}
+				variant={current ? 'primary' : 'ghost'}
 				{size}
 				label={String(slot)}
-				style="min-width: {box}px; padding: 0 6px"
 				onclick={() => go(slot)}
 				testid={testid && `${testid}-${slot}`}
 			/>
 		{/if}
 	{/each}
-	<Button variant="ghost" tone="neutral" {size} label="Next" disabled={page >= total} onclick={() => go(page + 1)} testid={testid && `${testid}-next`} />
+	<Button variant="ghost" {size} label="Next" disabled={page >= total} onclick={() => go(page + 1)} testid={testid && `${testid}-next`} />
 </div>
 
 <style>
 	.pager { display: flex; flex-direction: row; align-items: center; gap: 4px; }
-	.gap { display: flex; flex-direction: row; align-items: center; justify-content: center; width: 24px; color: var(--ui-ink-faint); }
+	.gap { display: flex; flex-direction: row; align-items: center; justify-content: center; width: 24px; color: var(--text-muted); }
 </style>

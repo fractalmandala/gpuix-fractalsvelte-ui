@@ -21,7 +21,7 @@
 		<Tabs {items} {value} testid="tabs" onchange={(id) => (value = id)}>
 			{#snippet children(id)}<div testId="panel">panel:{id}</div>{/snippet}
 		</Tabs>
-		<Tabs items={pills} value={pill} variant="pill" size="sm" testid="pills" onchange={(id) => (pill = id)} />
+		<Tabs items={pills} value={pill} variant="pill" size="h-md" testid="pills" onchange={(id) => (pill = id)} />
 		<div testId="state">{`value:${value} pill:${pill}`}</div>
 	</div>
 </ThemeProvider>

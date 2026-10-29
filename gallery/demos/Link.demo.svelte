@@ -5,15 +5,15 @@
 
 <div style="display: flex; flex-direction: column; gap: 14px">
 	<div style="display: flex; flex-direction: row; gap: 16px; align-items: center">
-		{#each ['accent', 'neutral', 'success', 'warn', 'danger'] as const as tone}
-			<Link {tone} label={tone} onclick={() => (last = tone)} />
+		{#each ['themed', 'secondary', 'info', 'success', 'warning', 'danger'] as const as variant}
+			<Link {variant} label={variant} onclick={() => (last = variant)} />
 		{/each}
 	</div>
 	<div style="display: flex; flex-direction: row; gap: 16px; align-items: center">
-		<Link size="sm" label="Small" onclick={() => (last = 'small')} />
-		<Link size="md" label="Medium" onclick={() => (last = 'medium')} />
-		<Link size="lg" label="Large" onclick={() => (last = 'large')} />
+		<Link size="h-sm" label="Small" onclick={() => (last = 'small')} />
+		<Link size="h-md" label="Medium" onclick={() => (last = 'medium')} />
+		<Link size="h-lg" label="Large" onclick={() => (last = 'large')} />
 		<Link label="Disabled" disabled />
 	</div>
-	<div style="color: var(--ui-ink-muted)">last clicked: {last}</div>
+	<div style="color: var(--text-secondary)">last clicked: {last}</div>
 </div>

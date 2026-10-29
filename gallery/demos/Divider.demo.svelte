@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Divider from '../../src/components/Divider.svelte';
-	const body = 'font-size: var(--ui-text-md); color: var(--ui-ink)';
-	const muted = 'font-size: var(--ui-text-sm); color: var(--ui-ink-muted)';
+	const body = 'font-size: var(--text-md); color: var(--text-primary)';
+	const muted = 'font-size: var(--text-sm); color: var(--text-secondary)';
 </script>
 
 <div style="display: flex; flex-direction: column; gap: 12px; width: 360px">

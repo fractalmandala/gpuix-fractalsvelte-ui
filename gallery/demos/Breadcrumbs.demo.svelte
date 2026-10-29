@@ -22,5 +22,5 @@
 		separator="→"
 		items={[{ label: 'Docs', onclick: go('Docs') }, { label: 'Components' }]}
 	/>
-	<div style="color: var(--ui-ink-muted)">last visited: {visited}</div>
+	<div style="color: var(--text-secondary)">last visited: {visited}</div>
 </div>

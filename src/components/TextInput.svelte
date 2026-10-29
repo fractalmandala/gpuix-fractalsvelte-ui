@@ -2,7 +2,6 @@
 	import type { Snippet } from 'svelte';
 	import type { GpuixEvent } from 'gpuix-fractalsvelte';
 	import { focus_element } from 'gpuix-fractalsvelte';
-	import type { Size } from '../types.ts';
 
 	let {
 		value = '',
@@ -13,7 +12,7 @@
 		hint = '',
 		error = '',
 		disabled = false,
-		size = 'md',
+		size = 'h-lg',
 		leading = undefined,
 		trailing = undefined,
 		style = null,
@@ -33,7 +32,8 @@
 		error?: string;
 		/** Greys the field and ignores edits. */
 		disabled?: boolean;
-		size?: Size;
+		/** Fractalstyler's height steps for the field. */
+		size?: 'h-md' | 'h-lg' | 'h-xl';
 		/** Snippet inside the field, before the text. */
 		leading?: Snippet;
 		/** Snippet inside the field, after the text. */
@@ -53,7 +53,7 @@
 <div class="root" {style} testId={testid}>
 	{#if label}<div class="label">{label}</div>{/if}
 	<div
-		class="field {size}"
+		class="field el-size {size}"
 		class:on={!disabled}
 		class:off={disabled}
 		class:focused
@@ -64,7 +64,7 @@
 	>
 		{#if leading}<div class="adorn">{@render leading()}</div>{/if}
 		<input
-			class="inner {size}"
+			class="inner"
 			{value}
 			{placeholder}
 			readOnly={disabled}
@@ -91,9 +91,9 @@
 		gap: 6px;
 	}
 	.label {
-		font-size: var(--ui-text-sm);
+		font-size: var(--text-sm);
 		font-weight: 500;
-		color: var(--ui-ink);
+		color: var(--text-primary);
 	}
 	.field {
 		display: flex;
@@ -101,18 +101,15 @@
 		align-items: center;
 		gap: 8px;
 		padding: 0 10px;
-		background-color: var(--ui-surface);
+		background-color: var(--bg-surface);
 		border-width: 1px;
-		border-color: var(--ui-border-strong);
-		border-radius: var(--ui-radius-md);
+		border-color: var(--border-strong);
+		border-radius: var(--radius-md);
 	}
-	.field.sm { height: 26px; border-radius: var(--ui-radius-sm); }
-	.field.md { height: 32px; }
-	.field.lg { height: 40px; border-radius: var(--ui-radius-lg); padding: 0 12px; }
 	.field.on { cursor: text; }
-	.field.off { background-color: var(--ui-raised); opacity: 0.5; cursor: not-allowed; }
-	.field.focused { border-color: var(--ui-ring); }
-	.field.error { border-color: var(--ui-danger); }
+	.field.off { background-color: var(--bg-raised); opacity: 0.5; cursor: not-allowed; }
+	.field.focused { border-color: var(--ring); }
+	.field.error { border-color: var(--danger); }
 	.inner {
 		flex-grow: 1;
 		min-width: 0;
@@ -120,22 +117,19 @@
 		padding: 0;
 		border-width: 0;
 		background-color: #00000000;
-		color: var(--ui-ink);
-		font-family: var(--ui-font);
-		font-size: var(--ui-text-md);
+		color: var(--text-primary);
+		font-family: var(--font-sans);
 	}
-	.inner.sm { height: 16px; font-size: var(--ui-text-sm); }
-	.inner.lg { height: 24px; font-size: var(--ui-text-lg); }
 	.adorn {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		color: var(--ui-ink-muted);
-		font-size: var(--ui-text-sm);
+		color: var(--text-secondary);
+		font-size: var(--text-sm);
 	}
 	.msg {
-		font-size: var(--ui-text-sm);
-		color: var(--ui-ink-muted);
+		font-size: var(--text-sm);
+		color: var(--text-secondary);
 	}
-	.msg.error { color: var(--ui-danger); }
+	.msg.error { color: var(--danger); }
 </style>

@@ -21,26 +21,52 @@ category: inputs
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `value` | `string` | `''` | Current text. |
+| `value` | `string` | `''` |   |
 | `onchange` | `(value: string) => void` | — | Called on every edit with the new text. |
-| `placeholder` | `string` | `''` | Shown while empty. |
+| `placeholder` | `string` | `''` |   |
 | `label` | `string` | `''` | Shown above the field. |
 | `hint` | `string` | `''` | Shown under the field, unless `error` is set. |
-| `error` | `string` | `''` | Shown under the field in the danger colour, in place of `hint`. Also turns the border red. |
-| `rows` | `number` | `3` | Visible height in lines, used as the minimum. |
+| `error` | `string` | `''` | Shown under the field in the danger colour, in place of `hint`. |
+| `rows` | `number` | `3` | Visible height in lines; the field grows with its text from here. |
 | `maxRows` | `number` | — | Stops growing at this many lines, then scrolls. Unset grows without limit. |
-| `disabled` | `boolean` | `false` | Greys the field, makes it read-only and removes it from the tab order. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Sets radius, padding and line height. |
-| `style` | `string \| null` | `null` | Inline CSS on the root. |
-| `testid` | `string \| null` | `null` | Test id on the root. The box gets `${testid}-box`, the textarea `${testid}-input`, and the message `${testid}-msg`. |
-
+| `disabled` | `boolean` | `false` | Greys the field and ignores edits. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Text size: fractalstyler's sm, md or lg. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`text-sm`, `text-md`, `text-lg`, `ink`, `ink-muted`, `surface`, `raised`, `border-strong`, `ring`, `danger`, `font`, `radius-sm`, `radius-md`, `radius-lg`.
-
+`bg-raised`, `bg-surface`, `border-strong`, `danger`, `font-sans`, `radius-lg`, `radius-md`, `radius-sm`, `ring`, `text-primary`, `text-secondary`, `text-sm`
 ## Keyboard
 
 None handled by the component. Enter inserts a line, as in any multi-line field.
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import TextArea from 'gpuix-fractalsvelte-ui/TextArea.svelte';
+	let notes = $state('');
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px; width: 360px">
+	<TextArea
+		label="Notes"
+		placeholder="Write freely. The field grows with the text."
+		hint="Enter adds a line"
+		value={notes}
+		onchange={(v) => (notes = v)}
+		maxRows={6}
+	/>
+	<div style="color: var(--text-secondary); font-size: var(--text-sm)">{notes.length} characters</div>
+
+	<TextArea size="sm" rows={2} placeholder="Small, two rows" />
+	<TextArea size="lg" rows={2} placeholder="Large, two rows" />
+	<TextArea label="Summary" value="This copy is too long for the field." error="Keep it under 120 characters" />
+	<TextArea label="Changelog" value="Locked for the release." rows={2} disabled />
+</div>
+```
 
 ## GPUI notes
 

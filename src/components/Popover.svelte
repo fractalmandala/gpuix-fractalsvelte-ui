@@ -30,7 +30,7 @@
 	} = $props();
 
 	const panel = $derived(
-		`background-color: var(--ui-overlay); color: var(--ui-ink); font-size: var(--ui-text-md); border-width: 1px; border-color: var(--ui-border); border-radius: var(--ui-radius-md); padding: 4px; min-width: 160px${style ? `; ${style}` : ''}`
+		`background-color: var(--bg-sunken); color: var(--text-primary); font-size: var(--text-md); border-width: 1px; border-color: var(--border); border-radius: var(--radius-md); padding: 4px; min-width: 160px${style ? `; ${style}` : ''}`
 	);
 </script>
 

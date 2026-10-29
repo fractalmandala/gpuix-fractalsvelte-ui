@@ -18,7 +18,7 @@
 	<div class="stack" {style} testId={testid}>
 		{#each toasts as t (t.id)}
 			<div class="toast" motion={FADE} testId={testid && `${testid}-${t.id}`}>
-				<div class="bar {t.tone}"></div>
+				<div class="bar {t.variant}"></div>
 				<div class="text">
 					{#if t.title}<div class="title">{t.title}</div>{/if}
 					<div class="message">{t.message}</div>
@@ -42,17 +42,19 @@
 	.toast {
 		display: flex;
 		flex-direction: row;
-		background-color: var(--ui-overlay);
-		color: var(--ui-ink);
+		background-color: var(--bg-sunken);
+		color: var(--text-primary);
 		border-width: 1px;
-		border-color: var(--ui-border);
-		border-radius: var(--ui-radius-md);
+		border-color: var(--border);
+		border-radius: var(--radius-md);
 	}
-	.bar { width: 4px; align-self: stretch; background-color: var(--ui-border-strong); }
-	.bar.accent { background-color: var(--ui-accent); }
-	.bar.success { background-color: var(--ui-success); }
-	.bar.warn { background-color: var(--ui-warn); }
-	.bar.danger { background-color: var(--ui-danger); }
+	.bar { width: 4px; align-self: stretch; background-color: var(--border-strong); }
+	.bar.secondary { background-color: var(--text-secondary); }
+	.bar.themed { background-color: var(--theme-color); }
+	.bar.info { background-color: var(--info); }
+	.bar.success { background-color: var(--success); }
+	.bar.warning { background-color: var(--warning); }
+	.bar.danger { background-color: var(--danger); }
 	.text {
 		display: flex;
 		flex-direction: column;
@@ -60,13 +62,13 @@
 		flex-grow: 1;
 		padding: 10px 12px;
 	}
-	.title { font-size: var(--ui-text-md); font-weight: 600; }
-	.message { font-size: var(--ui-text-sm); line-height: 18px; color: var(--ui-ink-muted); }
+	.title { font-size: var(--text-md); font-weight: 600; }
+	.message { font-size: var(--text-sm); line-height: 18px; color: var(--text-secondary); }
 	.close {
 		display: flex; align-items: center; justify-content: center;
 		width: 22px; height: 22px; margin: 8px 8px 0 0;
-		border-radius: var(--ui-radius-sm);
-		color: var(--ui-ink-muted); font-size: 11px; cursor: pointer;
+		border-radius: var(--radius-sm);
+		color: var(--text-secondary); font-size: 11px; cursor: pointer;
 	}
-	.close:hover { background-color: var(--ui-raised); color: var(--ui-ink); }
+	.close:hover { background-color: var(--bg-raised); color: var(--text-primary); }
 </style>

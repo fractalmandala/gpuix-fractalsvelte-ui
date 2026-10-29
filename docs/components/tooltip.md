@@ -20,7 +20,7 @@ category: overlays
 
 <Tooltip content="Delete" open={confirming}>
   {#snippet children(hover)}
-    <div {...hover}><Button label="Delete" tone="danger" /></div>
+    <div {...hover}><Button label="Delete" variant="danger" /></div>
   {/snippet}
 </Tooltip>
 ```
@@ -29,25 +29,59 @@ category: overlays
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `children` | `Snippet<[{ onmouseenter, onmouseleave }]>` | — | Required. The trigger. Spread the received handlers onto it. |
-| `content` | `string \| Snippet` | — | Required. Plain text or a snippet for the tip. |
-| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'` | Which edge of the trigger the tip sits on. |
-| `align` | `'start' \| 'center' \| 'end'` | `'center'` | Alignment along that edge. |
-| `gap` | `number` | `6` | Space between trigger and tip, in px. |
-| `delay` | `number` | `300` | Milliseconds of hover before the tip shows. |
-| `open` | `boolean \| null` | `null` | Forces the tip shown or hidden. `null` leaves it to hover. |
-| `style` | `string \| null` | `null` | Inline CSS appended to the tip box; wins over its rules. |
-| `testid` | `string \| null` | `null` | Test id on the wrapper. |
-
+| `children` | `Snippet<[{ onmouseenter: () => void; onmouseleave: () => void }]>` | — | The trigger; spread the handlers it receives onto it so hover still works. |
+| `content` | `string \| Snippet` | — |   |
+| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'` |   |
+| `align` | `'start' \| 'center' \| 'end'` | `'center'` |   |
+| `gap` | `number` | `6` |   |
+| `delay` | `number` | `300` | ms of hover before the tip shows. |
+| `open` | `boolean \| null` | — | Forces the tip shown or hidden; `null` leaves it to hover. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`ink`, `bg`, `text-sm`, `radius-sm`.
-
-The tip is inverted: the background is `ink` and the text is `bg`.
-
+None; the component takes its colours from the element it sits in.
 ## Keyboard
 
 None.
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Tooltip from 'gpuix-fractalsvelte-ui/Tooltip.svelte';
+	const trigger = 'padding: 6px 12px; border-radius: var(--radius-sm); background-color: var(--bg-raised); color: var(--text-primary); font-size: var(--text-md)';
+	const hover = 'background-color: var(--border)';
+	const caption = 'font-size: var(--text-sm); color: var(--text-secondary)';
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 24px; padding-top: 44px">
+	<div style="display: flex; flex-direction: row; gap: 16px; align-items: center; justify-content: center">
+		{#each ['top', 'right', 'bottom', 'left'] as const as side}
+			<Tooltip content={`Shown on the ${side}`} {side} delay={150}>
+				{#snippet children(h)}
+					<div {...h} style={trigger} {hover}>{side}</div>
+				{/snippet}
+			</Tooltip>
+		{/each}
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 16px; align-items: center">
+		<Tooltip content="Save (⌘S)" delay={150}>
+			{#snippet children(h)}
+				<div {...h} style={trigger} {hover}>Save</div>
+			{/snippet}
+		</Tooltip>
+		<Tooltip content="Forced open" open={true} side="bottom">
+			{#snippet children(h)}
+				<div {...h} style={trigger} {hover}>Pinned</div>
+			{/snippet}
+		</Tooltip>
+		<div style={caption}>Hover the buttons. "Pinned" is forced open.</div>
+	</div>
+</div>
+```
 
 ## GPUI notes
 

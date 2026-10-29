@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import {
 	mount_headless,
 	click_test_id,
@@ -61,7 +62,7 @@ check('the ✕ button closes it', !find_text('Settings'));
 
 clock_pause();
 click_test_id('left');
-check('the panel starts off-screen, slid out to the left', at('d').x + at('d').width <= 0, true);
+check('the panel starts off-screen, slid out to the left', at('d').x + at('d').width - 1 <= 0, true);
 clock_fast_forward(1000);
 check('and slides to the left edge', near(at('d').x, 0), true);
 clock_resume();

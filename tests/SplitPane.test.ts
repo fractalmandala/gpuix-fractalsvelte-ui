@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, find_test_id, bounds, center, drag, focus, press, all_text, check, screenshot, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './SplitPane.harness.svelte';
 

@@ -18,7 +18,7 @@
 				{ label: 'Duplicate', shortcut: '⌘D', onselect: () => (picked = 'duplicate') },
 				{ separator: true },
 				{ label: 'Archive', disabled: true, onselect: () => (picked = 'archive') },
-				{ label: 'Delete', tone: 'danger', onselect: () => (picked = 'delete') }
+				{ label: 'Delete', variant: 'danger', onselect: () => (picked = 'delete') }
 			]}
 		>
 			{#snippet trigger()}<div>Actions</div>{/snippet}
@@ -29,7 +29,7 @@
 			testid="more"
 			items={[{ label: 'Copy link', onselect: () => (picked = 'copy') }]}
 		>
-			{#snippet trigger()}<Button label="More" variant="outline" tone="neutral" size="sm" />{/snippet}
+			{#snippet trigger()}<Button label="More" variant="outline" size="h-md" />{/snippet}
 		</Menu>
 	</div>
 	<div testId="state">{`picked:${picked} open:${open}`}</div>

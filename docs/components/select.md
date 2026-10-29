@@ -28,21 +28,17 @@ category: inputs
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `options` | `{ value: string; label: string; disabled?: boolean }[]` | — | Options in display order. |
-| `value` | `string \| null` | `null` | The chosen option's value. `null` shows the placeholder. |
-| `onchange` | `(value: string) => void` | — | Called with the new value, after the list closes. |
-| `placeholder` | `string` | `'Select…'` | Shown when nothing is chosen. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Trigger heights 26 / 32 / 40 px. |
-| `disabled` | `boolean` | `false` | Dims the trigger and keeps the list shut. |
-| `style` | `string` | — | Inline CSS on the trigger; wins over the component's rules. The default width is 200 px. The list matches the trigger's width. |
-| `testid` | `string` | — | Test id on the root. The trigger gets `<testid>-trigger`, each option `<testid>-option-<value>`, and the list `<testid>-panel`. |
-
-Lists longer than eight options scroll inside the panel.
-
+| `options` | `Option[]` | — |   |
+| `value` | `string \| null` | — | The chosen option's value, or `null` to show the placeholder. |
+| `onchange` | `(value: string) => void` | — |   |
+| `placeholder` | `string` | `'Select…'` |   |
+| `size` | `'h-md' \| 'h-bs' \| 'h-lg' \| 'h-xl'` | `'h-lg'` | Fractalstyler's height steps for the trigger and rows. |
+| `disabled` | `boolean` | `false` |   |
+| `style` | `string \| null` | — | Inline CSS for the trigger; `width` defaults to 200px. |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`surface`, `overlay`, `border-strong`, `border`, `ink`, `ink-muted`, `ink-faint`, `raised`, `accent`, `ring`, `radius-sm/md/lg`, `text-xs/sm/md/lg`.
-
+`bg-raised`, `bg-surface`, `border-strong`, `radius-md`, `radius-sm`, `ring`, `text-muted`, `text-primary`, `text-secondary`, `theme-color`
 ## Keyboard
 
 | Key | Closed | Open |
@@ -55,8 +51,43 @@ Lists longer than eight options scroll inside the panel.
 
 Focus stays on the trigger while the list is open. The arrow keys move a highlight, not focus.
 
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Select from 'gpuix-fractalsvelte-ui/Select.svelte';
+
+	const fruits = [
+		{ value: 'apple', label: 'Apple' },
+		{ value: 'banana', label: 'Banana' },
+		{ value: 'cherry', label: 'Cherry' },
+		{ value: 'date', label: 'Date', disabled: true },
+		{ value: 'elder', label: 'Elderberry' }
+	];
+	const zones = Array.from({ length: 24 }, (_, i) => ({ value: `z${i + 1}`, label: `Zone ${i + 1}` }));
+
+	let fruit = $state<string | null>(null);
+	let zone = $state<string | null>('z3');
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 8px">
+	<div style="display: flex; flex-direction: row; gap: 12px; align-items: center">
+		<Select options={fruits} value={fruit} onchange={(v) => (fruit = v)} placeholder="Pick a fruit" size="h-md" />
+		<Select options={fruits} value={fruit} onchange={(v) => (fruit = v)} placeholder="Pick a fruit" />
+		<Select options={fruits} value={fruit} onchange={(v) => (fruit = v)} placeholder="Pick a fruit" size="h-xl" />
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 12px; align-items: center">
+		<Select options={fruits} value="banana" disabled />
+		<Select options={zones} value={zone} onchange={(v) => (zone = v)} placeholder="Long list" />
+	</div>
+	<div style="color: var(--text-secondary)">fruit: {fruit ?? 'none'} · zone: {zone ?? 'none'}</div>
+</div>
+```
+
 ## GPUI notes
 
-- The panel's colours come from inline `var(--ui-*)` in `style`, since `Popover`'s own fallbacks are dark and would show in the light theme.
+- The panel's colours come from the fractalstyler tokens in `style`, since `Popover`'s own fallbacks are dark and would show in the light theme.
 - Opening the list highlights the chosen option, or the first enabled one.
 - The highlighted row is scrolled into view with `get_native().scrollIntoView`, which the headless renderer does not implement, so that scroll is only verified in a window.

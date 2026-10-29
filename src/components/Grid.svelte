@@ -1,8 +1,5 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { Size } from '../types.ts';
-
-	const SPACE = { sm: 4, md: 8, lg: 16 } as const;
 
 	let {
 		children,
@@ -12,23 +9,15 @@
 		testid = null
 	}: {
 		children: Snippet;
-		/** Number of equal-width columns. */
-		columns?: number;
-		/** Spacing scale (sm 4, md 8, lg 16) or px, between rows and columns. */
-		gap?: Size | number;
+		/** Number of equal-width columns, 1 to 6 (fractalstyler's grid-N classes). */
+		columns?: 1 | 2 | 3 | 4 | 5 | 6;
+		/** Fractalstyler's gap steps, or px. */
+		gap?: 'xs' | 'sm' | 'md' | 'bs' | 'lg' | 'xl' | number;
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
-
-	const css = $derived(
-		`grid-template-columns: ${columns}; gap: ${typeof gap === 'number' ? gap : SPACE[gap]}px; ${style ?? ''}`
-	);
 </script>
 
-<div class="grid" style={css} testId={testid}>
+<div class="grid grid-fixed-{columns}" style="{typeof gap === 'number' ? `gap: ${gap}px; ` : ''}{style ?? ''}" testId={testid} class:gap-xs={gap === 'xs'} class:gap-sm={gap === 'sm'} class:gap-md={gap === 'md'} class:gap-bs={gap === 'bs'} class:gap-lg={gap === 'lg'} class:gap-xl={gap === 'xl'}>
 	{@render children()}
 </div>
-
-<style>
-	.grid { display: grid; }
-</style>

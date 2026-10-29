@@ -2,7 +2,6 @@
 	import type { Snippet } from 'svelte';
 	import { on_window_key } from 'gpuix-fractalsvelte';
 	import Portal from 'gpuix-fractalsvelte/components/Portal.svelte';
-	import type { Size } from '../types.ts';
 
 	let {
 		open = false,
@@ -20,7 +19,7 @@
 		onclose?: () => void;
 		title?: string;
 		/** Dialog width: sm 360, md 480, lg 640. */
-		size?: Size;
+		size?: 'sm' | 'md' | 'lg';
 		/** `false` ignores scrim clicks and Escape. */
 		dismissable?: boolean;
 		children: Snippet;
@@ -41,7 +40,7 @@
 {#if open}
 	<Portal>
 		<div class="scrim" onclick={() => dismissable && onclose?.()} testId={testid && `${testid}-scrim`}>
-			<div class="dialog {size}" onclick={() => {}} {style} testId={testid}>
+			<div class="dialog modal-w-{size}" onclick={() => {}} {style} testId={testid}>
 				{#if title}
 					<div class="head">
 						<div class="title">{title}</div>
@@ -64,30 +63,27 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-color: var(--ui-scrim);
+		background-color: var(--bg-extra);
 	}
 	.dialog {
 		display: flex;
 		flex-direction: column;
 		max-height: 90%;
-		background-color: var(--ui-overlay);
-		color: var(--ui-ink);
+		background-color: var(--bg-sunken);
+		color: var(--text-primary);
 		border-width: 1px;
-		border-color: var(--ui-border);
-		border-radius: var(--ui-radius-lg);
+		border-color: var(--border);
+		border-radius: var(--radius-lg);
 		overflow: hidden;
 	}
-	.dialog.sm { width: 360px; }
-	.dialog.md { width: 480px; }
-	.dialog.lg { width: 640px; }
 	.head { display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 16px 20px 0 20px; }
-	.title { font-size: var(--ui-text-lg); font-weight: 600; }
+	.title { font-size: var(--text-lg); font-weight: 600; }
 	.close {
 		display: flex; align-items: center; justify-content: center;
-		width: 24px; height: 24px; border-radius: var(--ui-radius-sm);
-		color: var(--ui-ink-muted); cursor: pointer; font-size: 12px;
+		width: 24px; height: 24px; border-radius: var(--radius-sm);
+		color: var(--text-secondary); cursor: pointer; font-size: 12px;
 	}
-	.close:hover { background-color: var(--ui-raised); color: var(--ui-ink); }
-	.body { display: flex; flex-direction: column; gap: 8px; padding: 12px 20px 20px 20px; color: var(--ui-ink-muted); line-height: 20px; }
-	.foot { display: flex; flex-direction: row; justify-content: end; gap: 8px; padding: 12px 20px; border-top-width: 1px; border-color: var(--ui-border); background-color: var(--ui-surface); border-bottom-left-radius: var(--ui-radius-lg); border-bottom-right-radius: var(--ui-radius-lg); }
+	.close:hover { background-color: var(--bg-raised); color: var(--text-primary); }
+	.body { display: flex; flex-direction: column; gap: 8px; padding: 12px 20px 20px 20px; color: var(--text-secondary); line-height: 20px; }
+	.foot { display: flex; flex-direction: row; justify-content: end; gap: 8px; padding: 12px 20px; border-top-width: 1px; border-color: var(--border); background-color: var(--bg-surface); border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); }
 </style>

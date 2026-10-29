@@ -1,6 +1,6 @@
 ---
 title: Badge
-description: Small pill label for counts, statuses and tags, in five tones and three variants.
+description: Small pill label for counts, statuses and tags, in five variants and three variants.
 category: feedback
 ---
 
@@ -11,28 +11,50 @@ category: feedback
   import Badge from 'gpuix-fractalsvelte-ui/Badge.svelte';
 </script>
 
-<Badge label="New" tone="accent" />
-<Badge label="3 errors" tone="danger" variant="solid" />
-<Badge label="Draft" tone="neutral" variant="outline" size="sm" />
+<Badge label="New" variant="themed" />
+<Badge label="3 errors" variant="danger" />
+<Badge label="Draft" size="h-sm" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `label` | `string` | `''` | Plain-text content. Ignored when `children` is given. |
-| `children` | `Snippet` | — | Rich content. |
-| `tone` | `'accent' \| 'neutral' \| 'success' \| 'warn' \| 'danger'` | `'neutral'` | Colour role. |
-| `variant` | `'solid' \| 'soft' \| 'outline'` | `'soft'` | `solid` fills, `soft` tints, `outline` draws a border. |
-| `size` | `'sm' \| 'md'` | `'md'` | Heights 18 / 22 px. |
-| `style` | `string \| null` | `null` | Inline CSS on the root. |
-| `testid` | `string \| null` | `null` | Test id on the root. |
-
+| `children` | `Snippet` | — | Content; `label` is the plain-text shorthand. |
+| `label` | `string` | `''` |   |
+| `variant` | `'secondary' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'secondary'` | Fractalstyler's status names, drawn as a tinted pill. |
+| `size` | `'sm' \| 'md'` | `'md'` |   |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`accent`, `accent-ink`, `accent-soft`, `bg`, `ink`, `ink-muted`, `raised`, `border-strong`, `success`, `success-ink`, `success-soft`, `warn`, `warn-ink`, `warn-soft`, `danger`, `danger-ink`, `danger-soft`, `radius-full`, `text-xs`, `text-sm`.
+`bg-raised`, `danger`, `danger-soft`, `info`, `info-soft`, `radius-full`, `success`, `success-soft`, `text-secondary`, `text-sm`, `text-xs`, `warning`, `warning-soft`
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Badge from 'gpuix-fractalsvelte-ui/Badge.svelte';
+	const VARIANTS = ['secondary', 'info', 'success', 'warning', 'danger'] as const;
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		{#each VARIANTS as variant}
+			<Badge {variant} label={variant} />
+		{/each}
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		<Badge size="sm" label="Small" />
+		<Badge size="md" label="Medium" />
+		<Badge variant="success" label="Live" />
+		<Badge variant="danger" label="3 errors" />
+	</div>
+</div>
+```
 
 ## GPUI notes
 
-- Each tone and variant pair is its own compound class (`.badge.solid.accent`), because GPUI has no nesting.
+- Each variant is its own class (`.badge.danger`), because GPUI has no nesting.
 - The base rule sets a transparent border, so only the `outline` variant shows a border.

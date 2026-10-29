@@ -1,5 +1,5 @@
 export * from './theme/index.ts';
-export type * from './types.ts';
+export { load_fonts } from './fonts.ts';
 export { default as ThemeProvider } from './theme/ThemeProvider.svelte';
 export { default as Alert } from './components/Alert.svelte';
 export { default as Avatar } from './components/Avatar.svelte';

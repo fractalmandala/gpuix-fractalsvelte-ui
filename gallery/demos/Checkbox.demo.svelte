@@ -9,9 +9,9 @@
 
 <div style="display: flex; flex-direction: row; gap: 48px">
 	<div style="display: flex; flex-direction: column; gap: 12px">
-		<Checkbox label="Small" size="sm" checked />
-		<Checkbox label="Medium" checked={terms} onchange={(v) => (terms = v)} />
-		<Checkbox label="Large" size="lg" checked />
+		<Checkbox label="Small" size="h-sm" checked />
+		<Checkbox label="Medium" size="h-md" checked={terms} onchange={(v) => (terms = v)} />
+		<Checkbox label="Large" size="h-bs" checked />
 		<Checkbox label="Indeterminate" indeterminate />
 		<Checkbox label="Disabled" disabled />
 		<Checkbox label="Disabled checked" disabled checked />

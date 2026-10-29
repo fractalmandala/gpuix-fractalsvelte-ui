@@ -7,7 +7,6 @@ writeFileSync(
 	'src/index.ts',
 	[
 		"export * from './theme/index.ts';",
-		"export type * from './types.ts';",
 		"export { default as ThemeProvider } from './theme/ThemeProvider.svelte';",
 		...names.map((n) => `export { default as ${n} } from './components/${n}.svelte';`),
 		''
@@ -22,7 +21,8 @@ const entries = names
 		const fm = existsSync(doc) ? readFileSync(doc, 'utf8') : '';
 		const category = /category:\s*(\w+)/.exec(fm)?.[1] ?? 'other';
 		const description = /description:\s*(.+)/.exec(fm)?.[1]?.trim() ?? '';
-		return { n, category, description };
+		const body = fm.replace(/^---[\s\S]*?---\n/, '').trim();
+		return { n, category, description, body };
 	})
 	.sort((a, b) => order.indexOf(a.category) - order.indexOf(b.category) || a.n.localeCompare(b.n));
 
@@ -32,7 +32,7 @@ writeFileSync(
 		...entries.map((e) => `import ${e.n} from './demos/${e.n}.demo.svelte';`),
 		'',
 		'export const demos = [',
-		...entries.map((e) => `\t{ name: '${e.n}', category: '${e.category}', description: ${JSON.stringify(e.description)}, demo: ${e.n} },`),
+		...entries.map((e) => `\t{ name: '${e.n}', category: '${e.category}', description: ${JSON.stringify(e.description)}, docs: ${JSON.stringify(e.body)}, demo: ${e.n} },`),
 		'];',
 		''
 	].join('\n')

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { GpuixEvent } from 'gpuix-fractalsvelte';
-	import type { Size } from '../types.ts';
 
 	let {
 		checked = false,
@@ -9,7 +8,6 @@
 		label = '',
 		children = undefined,
 		disabled = false,
-		size = 'md',
 		style = null,
 		testid = null
 	}: {
@@ -20,7 +18,6 @@
 		label?: string;
 		children?: Snippet;
 		disabled?: boolean;
-		size?: Size;
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
@@ -37,7 +34,7 @@
 </script>
 
 <div
-	class="row {size}"
+	class="row"
 	class:on={!disabled}
 	class:off={disabled}
 	tabindex={disabled ? -1 : 0}
@@ -51,13 +48,13 @@
 	{style}
 	testId={testid}
 >
-	<div class="track {size}" class:lit={checked} class:focused testId={testid && `${testid}-track`}>
-		<div class="thumb {size}" class:lit={checked} testId={testid && `${testid}-thumb`}></div>
+	<div class="track" class:lit={checked} class:focused testId={testid && `${testid}-track`}>
+		<div class="thumb" class:lit={checked} testId={testid && `${testid}-thumb`}></div>
 	</div>
 	{#if children}
-		<div class="text {size}">{@render children()}</div>
+		<div class="text">{@render children()}</div>
 	{:else if label}
-		<div class="text {size}">{label}</div>
+		<div class="text">{label}</div>
 	{/if}
 </div>
 
@@ -68,7 +65,6 @@
 		align-items: center;
 		gap: 8px;
 	}
-	.row.sm { gap: 6px; }
 	.row.on { cursor: pointer; }
 	.row.off { cursor: not-allowed; opacity: 0.5; }
 	.track {
@@ -80,20 +76,14 @@
 		padding: 1px;
 		border-width: 1px;
 		border-color: #00000000;
-		border-radius: var(--ui-radius-full);
-		background-color: var(--ui-border-strong);
+		border-radius: var(--radius-full);
+		background-color: var(--border-strong);
+		width: var(--switch-w);
+		height: var(--switch-h);
 	}
-	.track.sm { width: 28px; height: 16px; }
-	.track.md { width: 36px; height: 20px; }
-	.track.lg { width: 44px; height: 24px; }
-	.track.lit { background-color: var(--ui-accent); justify-content: end; }
-	.track.focused { border-color: var(--ui-ring); }
-	.thumb { border-radius: var(--ui-radius-full); background-color: var(--ui-surface); }
-	.thumb.sm { width: 12px; height: 12px; }
-	.thumb.md { width: 16px; height: 16px; }
-	.thumb.lg { width: 20px; height: 20px; }
-	.thumb.lit { background-color: var(--ui-accent-ink); }
-	.text { font-size: var(--ui-text-md); color: var(--ui-ink); }
-	.text.sm { font-size: var(--ui-text-sm); }
-	.text.lg { font-size: var(--ui-text-lg); }
+	.track.lit { background-color: var(--theme-color); justify-content: end; }
+	.track.focused { border-color: var(--ring); }
+	.thumb { width: var(--switch-thumb); height: var(--switch-thumb); border-radius: var(--radius-full); background-color: var(--bg-surface); }
+	.thumb.lit { background-color: var(--text-theme); }
+	.text { font-size: var(--text-md); color: var(--text-primary); }
 </style>

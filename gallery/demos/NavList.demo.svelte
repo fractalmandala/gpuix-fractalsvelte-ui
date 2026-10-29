@@ -25,5 +25,5 @@
 
 <div style="display: flex; flex-direction: row; gap: 32px">
 	<div style="width: 220px"><NavList {sections} {value} onchange={(id) => (value = id)} /></div>
-	<div style="width: 180px"><NavList {sections} value="general" size="sm" /></div>
+	<div style="width: 180px"><NavList {sections} value="general" size="h-md" /></div>
 </div>

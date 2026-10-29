@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { GpuixEvent } from 'gpuix-fractalsvelte';
 	import { focus_element } from 'gpuix-fractalsvelte';
-	import type { Size } from '../types.ts';
 
 	let {
 		value = '',
@@ -33,7 +32,8 @@
 		maxRows?: number;
 		/** Greys the field and ignores edits. */
 		disabled?: boolean;
-		size?: Size;
+		/** Text size: fractalstyler's sm, md or lg. */
+		size?: 'sm' | 'md' | 'lg';
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
@@ -54,7 +54,7 @@
 		testId={testid && `${testid}-box`}
 	>
 		<textarea
-			class="inner {size}"
+			class="inner text-{size}"
 			{value}
 			{placeholder}
 			minRows={rows}
@@ -81,39 +81,36 @@
 		gap: 6px;
 	}
 	.label {
-		font-size: var(--ui-text-sm);
+		font-size: var(--text-sm);
 		font-weight: 500;
-		color: var(--ui-ink);
+		color: var(--text-primary);
 	}
 	.box {
 		display: flex;
 		flex-direction: column;
 		padding: 8px 10px;
-		background-color: var(--ui-surface);
+		background-color: var(--bg-surface);
 		border-width: 1px;
-		border-color: var(--ui-border-strong);
-		border-radius: var(--ui-radius-md);
+		border-color: var(--border-strong);
+		border-radius: var(--radius-md);
 	}
-	.box.sm { border-radius: var(--ui-radius-sm); padding: 6px 8px; }
-	.box.lg { border-radius: var(--ui-radius-lg); padding: 10px 12px; }
+	.box.sm { border-radius: var(--radius-sm); padding: 6px 8px; }
+	.box.lg { border-radius: var(--radius-lg); padding: 10px 12px; }
 	.box.on { cursor: text; }
-	.box.off { background-color: var(--ui-raised); opacity: 0.5; cursor: not-allowed; }
-	.box.focused { border-color: var(--ui-ring); }
-	.box.error { border-color: var(--ui-danger); }
+	.box.off { background-color: var(--bg-raised); opacity: 0.5; cursor: not-allowed; }
+	.box.focused { border-color: var(--ring); }
+	.box.error { border-color: var(--danger); }
 	.inner {
 		padding: 0;
 		border-width: 0;
 		background-color: #00000000;
-		color: var(--ui-ink);
-		font-family: var(--ui-font);
-		font-size: var(--ui-text-md);
+		color: var(--text-primary);
+		font-family: var(--font-sans);
 		line-height: 20px;
 	}
-	.inner.sm { font-size: var(--ui-text-sm); line-height: 18px; }
-	.inner.lg { font-size: var(--ui-text-lg); line-height: 24px; }
 	.msg {
-		font-size: var(--ui-text-sm);
-		color: var(--ui-ink-muted);
+		font-size: var(--text-sm);
+		color: var(--text-secondary);
 	}
-	.msg.error { color: var(--ui-danger); }
+	.msg.error { color: var(--danger); }
 </style>

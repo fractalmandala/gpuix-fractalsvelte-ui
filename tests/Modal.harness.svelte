@@ -14,8 +14,8 @@
 	<Modal {open} onclose={() => (open = false)} title="Delete file?" size="sm" testid="m">
 		<div testId="inside">This cannot be undone.</div>
 		{#snippet footer()}
-			<Button label="Cancel" variant="ghost" tone="neutral" onclick={() => (open = false)} />
-			<Button label="Delete" tone="danger" testid="confirm" onclick={() => { confirmed++; open = false; }} />
+			<Button label="Cancel" variant="ghost" onclick={() => (open = false)} />
+			<Button label="Delete" variant="danger" testid="confirm" onclick={() => { confirmed++; open = false; }} />
 		{/snippet}
 	</Modal>
 </ThemeProvider>

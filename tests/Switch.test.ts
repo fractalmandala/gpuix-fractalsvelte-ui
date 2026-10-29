@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, click_text, click_test_id, press, focus, find_text, find_test_id, bounds, screenshot, all_text, check, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './Switch.harness.svelte';
 

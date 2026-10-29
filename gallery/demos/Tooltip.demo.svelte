@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Tooltip from '../../src/components/Tooltip.svelte';
-	const trigger = 'padding: 6px 12px; border-radius: var(--ui-radius-sm); background-color: var(--ui-raised); color: var(--ui-ink); font-size: var(--ui-text-md)';
-	const hover = 'background-color: var(--ui-border)';
-	const caption = 'font-size: var(--ui-text-sm); color: var(--ui-ink-muted)';
+	const trigger = 'padding: 6px 12px; border-radius: var(--radius-sm); background-color: var(--bg-raised); color: var(--text-primary); font-size: var(--text-md)';
+	const hover = 'background-color: var(--border)';
+	const caption = 'font-size: var(--text-sm); color: var(--text-secondary)';
 </script>
 
 <div style="display: flex; flex-direction: column; gap: 24px; padding-top: 44px">

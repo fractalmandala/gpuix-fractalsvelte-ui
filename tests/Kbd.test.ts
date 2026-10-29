@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, press, find_text, find_test_id, all_text, screenshot, check, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './Kbd.harness.svelte';
 

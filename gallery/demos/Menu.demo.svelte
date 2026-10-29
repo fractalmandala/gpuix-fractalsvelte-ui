@@ -18,11 +18,14 @@
 				{ label: 'Share…', onselect: pick('Share') },
 				{ separator: true },
 				{ label: 'Archive', disabled: true, onselect: pick('Archive') },
-				{ label: 'Delete', shortcut: '⌫', tone: 'danger', onselect: pick('Delete') }
+				{ label: 'Delete', shortcut: '⌫', variant: 'danger', onselect: pick('Delete') }
 			]}
 		>
-			{#snippet trigger()}<Button label="Actions" variant="outline" tone="neutral" />{/snippet}
+			{#snippet trigger()}<Button label="Actions" variant="outline" />{/snippet}
 		</Menu>
-		<div style="color: var(--ui-ink-muted); padding-top: 8px">picked: {picked}</div>
+		<Menu side="top" items={[{ label: 'Above the trigger', onselect: pick('Above') }]}>
+			{#snippet trigger()}<Button label="Open upward" variant="outline" />{/snippet}
+		</Menu>
+		<div style="color: var(--text-secondary); padding-top: 8px">picked: {picked}</div>
 	</div>
 </div>

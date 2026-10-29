@@ -1,20 +1,20 @@
 <script lang="ts">
-	import type { Size, Tone } from '../types.ts';
 
 	let {
-		size = 'md',
-		tone = 'accent',
+		size = 'h-bs',
+		variant = 'themed',
 		style = null,
 		testid = null
 	}: {
-		size?: Size;
-		/** Dot colour. */
-		tone?: Tone;
+		/** Fractalstyler's height steps; the ring fits that size. */
+		size?: 'h-sm' | 'h-md' | 'h-bs' | 'h-lg';
+		/** Dot colour, in fractalstyler's names. */
+		variant?: 'themed' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
 
-	const BOX = { sm: 16, md: 24, lg: 32 } as const;
+	const BOX = { 'h-sm': 16, 'h-md': 20, 'h-bs': 24, 'h-lg': 32 } as const;
 	const COUNT = 8;
 
 	// GPUI has no looping motion, so a timer steps the lead dot around the ring.
@@ -44,19 +44,21 @@
 
 <div class="spin {size}" {style} testId={testid}>
 	{#each dots as d (d.i)}
-		<div class="dot {tone}" style="left: {d.x}px; top: {d.y}px; width: {dot}px; height: {dot}px; opacity: {d.o}"></div>
+		<div class="dot {variant}" style="left: {d.x}px; top: {d.y}px; width: {dot}px; height: {dot}px; opacity: {d.o}"></div>
 	{/each}
 </div>
 
 <style>
 	.spin { position: relative; }
-	.spin.sm { width: 16px; height: 16px; }
-	.spin.md { width: 24px; height: 24px; }
-	.spin.lg { width: 32px; height: 32px; }
-	.dot { position: absolute; border-radius: var(--ui-radius-full); }
-	.dot.accent { background-color: var(--ui-accent); }
-	.dot.neutral { background-color: var(--ui-ink-muted); }
-	.dot.success { background-color: var(--ui-success); }
-	.dot.warn { background-color: var(--ui-warn); }
-	.dot.danger { background-color: var(--ui-danger); }
+	.spin.h-sm { width: var(--height-sm); height: var(--height-sm); }
+	.spin.h-md { width: var(--height-md); height: var(--height-md); }
+	.spin.h-bs { width: var(--height-bs); height: var(--height-bs); }
+	.spin.h-lg { width: var(--height-lg); height: var(--height-lg); }
+	.dot { position: absolute; border-radius: var(--radius-full); }
+	.dot.themed { background-color: var(--theme-color); }
+	.dot.secondary { background-color: var(--text-secondary); }
+	.dot.info { background-color: var(--info); }
+	.dot.success { background-color: var(--success); }
+	.dot.warning { background-color: var(--warning); }
+	.dot.danger { background-color: var(--danger); }
 </style>

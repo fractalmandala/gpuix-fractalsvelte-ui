@@ -10,7 +10,7 @@
 		<Switch label="Notifications" checked={notify} onchange={(v) => (notify = v)} testid="notify" />
 		<div testId="notify-state">notify:{notify}</div>
 		<Switch label="Locked" checked disabled testid="off" onchange={() => off_edits++} />
-		<Switch size="lg" testid="lg">
+		<Switch testid="lg">
 			{#snippet children()}Snippet label{/snippet}
 		</Switch>
 		<div testId="off-edits">edits:{off_edits}</div>

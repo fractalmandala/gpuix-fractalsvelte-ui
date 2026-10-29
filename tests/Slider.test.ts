@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, click_at, drag, focus, press, bounds, center, find_test_id, all_text, screenshot, check, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './Slider.harness.svelte';
 

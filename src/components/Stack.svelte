@@ -1,38 +1,41 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { Size } from '../types.ts';
-
-	const SPACE = { sm: 4, md: 8, lg: 16 } as const;
 
 	let {
 		children,
 		direction = 'column',
-		gap = 'md',
+		gap = 'sm',
 		align = 'stretch',
 		justify = 'start',
 		wrap = false,
-		padding = 0,
+		padding = undefined,
 		style = null,
 		testid = null
 	}: {
 		children: Snippet;
 		direction?: 'row' | 'column';
-		/** Spacing scale (sm 4, md 8, lg 16) or px. */
-		gap?: Size | number;
+		/** Fractalstyler's gap steps, or px. */
+		gap?: 'xs' | 'sm' | 'md' | 'bs' | 'lg' | 'xl' | number;
 		align?: 'start' | 'center' | 'end' | 'stretch';
 		justify?: 'start' | 'center' | 'end' | 'between' | 'around';
 		wrap?: boolean;
-		/** Spacing scale or px, on all four sides. */
-		padding?: Size | number;
+		/** Fractalstyler's padding steps, or px, on all four sides. */
+		padding?: 'sm' | 'md' | 'lg' | number;
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
 
-	const px = (v: Size | number) => (typeof v === 'number' ? v : SPACE[v]);
-	const css = $derived(`gap: ${px(gap)}px; padding: ${px(padding)}px; ${style ?? ''}`);
+	const css = $derived(
+		`${typeof gap === 'number' ? `gap: ${gap}px; ` : ''}${typeof padding === 'number' ? `padding: ${padding}px; ` : ''}${style ?? ''}`
+	);
 </script>
 
-<div class="stack {direction} al-{align} jc-{justify}" class:wrap style={css} testId={testid}>
+<div
+	class="stack {direction} al-{align} jc-{justify} {typeof gap === 'string' ? `gap-${gap}` : ''} {typeof padding === 'string' ? `pad-${padding}` : ''}"
+	class:wrap
+	style={css}
+	testId={testid}
+>
 	{@render children()}
 </div>
 

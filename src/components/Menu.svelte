@@ -2,10 +2,9 @@
 	import type { Snippet } from 'svelte';
 	import { on_window_key, type GpuixEvent } from 'gpuix-fractalsvelte';
 	import Popover from 'gpuix-fractalsvelte/components/Popover.svelte';
-	import type { Tone } from '../types.ts';
 
 	type Entry =
-		| { label: string; shortcut?: string; tone?: Tone; disabled?: boolean; onselect: () => void }
+		| { label: string; shortcut?: string; variant?: 'secondary' | 'themed' | 'info' | 'success' | 'warning' | 'danger'; disabled?: boolean; onselect: () => void }
 		| { separator: true };
 
 	let {
@@ -31,7 +30,7 @@
 	} = $props();
 
 	const panel = $derived(
-		`background-color: var(--ui-overlay); color: var(--ui-ink); border-color: var(--ui-border); border-radius: var(--ui-radius-md); padding: 4px; min-width: 200px; ${style ?? ''}`
+		`background-color: var(--bg-sunken); color: var(--text-primary); border-color: var(--border); border-radius: var(--radius-md); padding: 4px; min-width: 200px; ${style ?? ''}`
 	);
 
 	let active = $state(-1);
@@ -86,9 +85,9 @@
 				{#if 'separator' in entry}
 					<div class="sep"></div>
 				{:else}
-					{@const tone = entry.tone ?? 'neutral'}
+					{@const variant = entry.variant ?? 'secondary'}
 					<div
-						class="item {tone}"
+						class="item {variant}"
 						class:hl={i === active}
 						class:off={entry.disabled}
 						onmouseenter={() => { if (selectable(entry)) active = i; }}
@@ -104,8 +103,8 @@
 </Popover>
 
 <style>
-	.trigger { display: flex; border-width: 1px; border-color: #00000000; border-radius: var(--ui-radius-md); }
-	.trigger.focused { border-color: var(--ui-ring); }
+	.trigger { display: flex; border-width: 1px; border-color: #00000000; border-radius: var(--radius-md); }
+	.trigger.focused { border-color: var(--ring); }
 
 	.menu { display: flex; flex-direction: column; }
 	.item {
@@ -115,21 +114,22 @@
 		gap: 16px;
 		height: 28px;
 		padding: 0 10px;
-		border-radius: var(--ui-radius-sm);
-		font-size: var(--ui-text-md);
+		border-radius: var(--radius-sm);
+		font-size: var(--text-md);
 		white-space: nowrap;
 		user-select: none;
 		cursor: pointer;
 	}
-	.item.neutral { color: var(--ui-ink); }
-	.item.accent { color: var(--ui-accent); }
-	.item.success { color: var(--ui-success); }
-	.item.warn { color: var(--ui-warn); }
-	.item.danger { color: var(--ui-danger); }
-	.item.hl { background-color: var(--ui-raised); }
-	.item.danger.hl { background-color: var(--ui-danger-soft); }
+	.item.secondary { color: var(--text-primary); }
+	.item.themed { color: var(--theme-color); }
+	.item.info { color: var(--info); }
+	.item.success { color: var(--success); }
+	.item.warning { color: var(--warning); }
+	.item.danger { color: var(--danger); }
+	.item.hl { background-color: var(--bg-raised); }
+	.item.danger.hl { background-color: var(--danger-soft); }
 	.item.off { opacity: 0.5; cursor: not-allowed; }
 	.label { display: flex; flex-grow: 1; }
-	.shortcut { color: var(--ui-ink-faint); font-size: var(--ui-text-xs); font-family: var(--ui-font-mono); }
-	.sep { height: 1px; margin: 4px 6px; background-color: var(--ui-border); }
+	.shortcut { color: var(--text-muted); font-size: var(--text-xs); font-family: var(--font-mono); }
+	.sep { height: 1px; margin: 4px 6px; background-color: var(--border); }
 </style>

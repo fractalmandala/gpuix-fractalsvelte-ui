@@ -11,7 +11,7 @@
 	<div style="display: flex; flex-direction: column; gap: 20px; padding: 16px">
 		<Slider value={volume} onchange={(v) => (volume = v)} testid="vol" />
 		<Slider value={stepped} min={0} max={10} step={2} onchange={(v) => (stepped = v)} testid="stepped" />
-		<Slider value={70} size="sm" disabled testid="off" onchange={() => offHits++} />
+		<Slider value={70} size="h-sm" disabled testid="off" onchange={() => offHits++} />
 		<div>vol:{volume}</div>
 		<div>stepped:{stepped}</div>
 		<div>off:{offHits}</div>

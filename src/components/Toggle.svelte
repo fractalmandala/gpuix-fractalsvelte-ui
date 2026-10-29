@@ -2,7 +2,6 @@
 	import type { Snippet } from 'svelte';
 	import type { GpuixEvent } from 'gpuix-fractalsvelte';
 	import { use_join } from '../group.svelte.ts';
-	import type { Size, Tone } from '../types.ts';
 
 	let {
 		children = undefined,
@@ -10,8 +9,8 @@
 		pressed = false,
 		onchange = undefined,
 		variant = 'outline',
-		tone = 'accent',
-		size = 'md',
+		pressedVariant = 'themed',
+		size = 'h-bs',
 		disabled = false,
 		style = null,
 		testid = null
@@ -23,9 +22,10 @@
 		/** Called with the next pressed state. */
 		onchange?: (pressed: boolean) => void;
 		variant?: 'outline' | 'ghost';
-		/** Colour of the pressed state. */
-		tone?: Tone;
-		size?: Size;
+		/** Colour of the pressed state, in fractalstyler's names. */
+		pressedVariant?: 'themed' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+		/** Fractalstyler's height steps. */
+		size?: 'h-sm' | 'h-md' | 'h-bs' | 'h-lg' | 'h-xl';
 		disabled?: boolean;
 		style?: string | null;
 		testid?: string | null;
@@ -45,7 +45,7 @@
 </script>
 
 <div
-	class="toggle {join() ? `j-${join()}` : ''} {variant} {size} {tone}"
+	class="toggle el-size {size} {join() ? `j-${join()}` : ''} {variant} {pressed ? `pressed-${pressedVariant}` : ''}"
 	class:pressed
 	class:idle={!pressed}
 	class:on={live}
@@ -71,29 +71,27 @@
 		gap: 6px;
 		border-width: 1px;
 		border-color: #00000000;
-		border-radius: var(--ui-radius-md);
+		border-radius: var(--radius-md);
 		font-weight: 500;
 		white-space: nowrap;
 		user-select: none;
 		cursor: pointer;
-		color: var(--ui-ink-muted);
+		color: var(--text-secondary);
 	}
-	.toggle.sm { height: 26px; padding: 0 10px; font-size: var(--ui-text-sm); border-radius: var(--ui-radius-sm); }
-	.toggle.md { height: 32px; padding: 0 14px; font-size: var(--ui-text-md); }
-	.toggle.lg { height: 40px; padding: 0 18px; font-size: var(--ui-text-lg); border-radius: var(--ui-radius-lg); }
 	.toggle.off { opacity: 0.5; cursor: not-allowed; }
 
-	.toggle.outline { background-color: #00000000; border-color: var(--ui-border-strong); }
+	.toggle.outline { background-color: #00000000; border-color: var(--border-strong); }
 	.toggle.ghost { background-color: #00000000; }
-	.toggle.on.idle:hover { background-color: var(--ui-raised); color: var(--ui-ink); }
+	.toggle.on.idle:hover { background-color: var(--bg-raised); color: var(--text-primary); }
 
-	.toggle.pressed.accent { background-color: var(--ui-accent-soft); color: var(--ui-accent); }
-	.toggle.pressed.danger { background-color: var(--ui-danger-soft); color: var(--ui-danger); }
-	.toggle.pressed.success { background-color: var(--ui-success-soft); color: var(--ui-success); }
-	.toggle.pressed.warn { background-color: var(--ui-warn-soft); color: var(--ui-warn); }
-	.toggle.pressed.neutral { background-color: var(--ui-raised); color: var(--ui-ink); }
+	.toggle.pressed-themed { background-color: var(--theme-color-sub); color: var(--theme-color); }
+	.toggle.pressed-secondary { background-color: var(--bg-raised); color: var(--text-primary); }
+	.toggle.pressed-info { background-color: var(--info-soft); color: var(--info); }
+	.toggle.pressed-success { background-color: var(--success-soft); color: var(--success); }
+	.toggle.pressed-warning { background-color: var(--warning-soft); color: var(--warning); }
+	.toggle.pressed-danger { background-color: var(--danger-soft); color: var(--danger); }
 
-	.toggle.focused { border-color: var(--ui-ring); }
+	.toggle.focused { border-color: var(--ring); }
 	.toggle.j-first { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 	.toggle.j-middle { border-radius: 0; margin-left: -1px; }
 	.toggle.j-last { border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: -1px; }

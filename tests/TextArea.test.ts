@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, click_test_id, click_at, press, type, find_text, find_test_id, bounds, screenshot, all_text, check, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './TextArea.harness.svelte';
 

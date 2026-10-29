@@ -1,6 +1,6 @@
 ---
 title: Menu
-description: Dropdown of actions anchored to a trigger, with shortcuts, tones, disabled items and separators.
+description: Dropdown of actions anchored to a trigger, with shortcuts, variants, disabled items and separators.
 category: navigation
 ---
 
@@ -21,10 +21,10 @@ category: navigation
     { label: 'Duplicate', shortcut: '⌘D', onselect: duplicate },
     { separator: true },
     { label: 'Archive', disabled: true, onselect: archive },
-    { label: 'Delete', tone: 'danger', onselect: remove }
+    { label: 'Delete', variant: 'danger', onselect: remove }
   ]}
 >
-  {#snippet trigger()}<Button label="Actions" variant="outline" tone="neutral" size="sm" />{/snippet}
+  {#snippet trigger()}<Button label="Actions" size="h-sm" />{/snippet}
 </Menu>
 ```
 
@@ -32,21 +32,17 @@ category: navigation
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `items` | `Entry[]` | — | An entry is `{ label; shortcut?; tone?; disabled?; onselect }` or `{ separator: true }`. |
-| `trigger` | `Snippet` | — | The content that opens the menu. |
-| `open` | `boolean` | `false` | Whether the panel is shown. |
-| `onopenchange` | `(open: boolean) => void` | — | Called on trigger click, item pick, Escape or an outside press. |
-| `side` | `'top' \| 'bottom'` | `'bottom'` | Which trigger edge the panel hangs from. |
-| `align` | `'start' \| 'center' \| 'end'` | `'start'` | Alignment along that edge. |
-| `style` | `string` | — | Inline CSS on the panel, such as `min-width: 220px`. |
-| `testid` | `string` | — | Test id on the trigger (`<testid>-trigger`) and the panel (`<testid>-panel`). |
-
-`tone` takes `neutral` (default), `accent`, `success`, `warn` or `danger`.
-
+| `items` | `Entry[]` | — |   |
+| `trigger` | `Snippet` | — | The trigger's content. Keep it free of its own `onclick`, or the trigger's click never reaches the menu. |
+| `open` | `boolean` | `false` |   |
+| `onopenchange` | `(open: boolean) => void` | — |   |
+| `side` | `'top' \| 'bottom'` | `'bottom'` |   |
+| `align` | `'start' \| 'center' \| 'end'` | `'start'` |   |
+| `style` | `string \| null` | — | Inline CSS for the panel, e.g. `min-width: 220px`. |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`overlay`, `ink`, `ink-faint`, `border`, `raised`, `danger`, `danger-soft`, `accent`, `success`, `warn`, `ring`, `radius-sm/md`, `font-mono`, `text-xs/md`.
-
+`bg-raised`, `border`, `danger`, `danger-soft`, `font-mono`, `info`, `radius-md`, `radius-sm`, `ring`, `success`, `text-md`, `text-muted`, `text-primary`, `text-xs`, `theme-color`, `warning`
 ## Keyboard
 
 | Key | Action |
@@ -55,6 +51,44 @@ category: navigation
 | Down, Up | Move the highlight; skips separators and disabled items, and wraps |
 | Enter | Pick the highlighted item |
 | Escape | Close without picking |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Menu from 'gpuix-fractalsvelte-ui/Menu.svelte';
+	import Button from 'gpuix-fractalsvelte-ui/Button.svelte';
+	let open = $state(false);
+	let picked = $state('nothing');
+	const pick = (name: string) => () => (picked = name);
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+	<div style="display: flex; flex-direction: row; gap: 24px; align-items: start">
+		<Menu
+			{open}
+			onopenchange={(o) => (open = o)}
+			style="min-width: 220px"
+			items={[
+				{ label: 'Rename', shortcut: '⌘R', onselect: pick('Rename') },
+				{ label: 'Duplicate', shortcut: '⌘D', onselect: pick('Duplicate') },
+				{ label: 'Share…', onselect: pick('Share') },
+				{ separator: true },
+				{ label: 'Archive', disabled: true, onselect: pick('Archive') },
+				{ label: 'Delete', shortcut: '⌫', variant: 'danger', onselect: pick('Delete') }
+			]}
+		>
+			{#snippet trigger()}<Button label="Actions" variant="outline" />{/snippet}
+		</Menu>
+		<Menu side="top" items={[{ label: 'Above the trigger', onselect: pick('Above') }]}>
+			{#snippet trigger()}<Button label="Open upward" variant="outline" />{/snippet}
+		</Menu>
+		<div style="color: var(--text-secondary); padding-top: 8px">picked: {picked}</div>
+	</div>
+</div>
+```
 
 ## GPUI notes
 

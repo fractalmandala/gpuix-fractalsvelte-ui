@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { get_native, type GpuixEvent, type ShadowNode } from 'gpuix-fractalsvelte';
-	import type { Size } from '../types.ts';
 
 	type Option = { value: string; label: string; disabled?: boolean };
 
@@ -9,7 +8,7 @@
 		value = null,
 		onchange = undefined,
 		direction = 'column',
-		size = 'md',
+		size = 'h-sm',
 		disabled = false,
 		style = null,
 		testid = null
@@ -19,7 +18,8 @@
 		value?: string | null;
 		onchange?: (value: string) => void;
 		direction?: 'row' | 'column';
-		size?: Size;
+		/** Fractalstyler's height steps; each circle is that height square. */
+		size?: 'h-sm' | 'h-md' | 'h-bs';
 		disabled?: boolean;
 		style?: string | null;
 		testid?: string | null;
@@ -63,7 +63,7 @@
 <div class="group {direction}" {style} testId={testid}>
 	{#each options as opt, i (opt.value)}
 		<div
-			class="opt {size}"
+			class="opt"
 			class:on={enabled(i)}
 			class:off={!enabled(i)}
 			tabindex={enabled(i) ? 0 : -1}
@@ -74,10 +74,10 @@
 			{@attach (node: ShadowNode) => (nodes[i] = node)}
 			testId={testid && `${testid}-${opt.value}`}
 		>
-			<div class="circle {size}" class:checked={i === checked} class:focused={focused === i}>
-				{#if i === checked}<div class="dot {size}"></div>{/if}
+			<div class="circle box-{size}" class:checked={i === checked} class:focused={focused === i}>
+				{#if i === checked}<div class="dot"></div>{/if}
 			</div>
-			<div class="label {size}">{opt.label}</div>
+			<div class="label">{opt.label}</div>
 		</div>
 	{/each}
 </div>
@@ -96,32 +96,20 @@
 	}
 	.opt.on { cursor: pointer; }
 	.opt.off { opacity: 0.5; cursor: not-allowed; }
-	.opt.sm { height: 22px; }
-	.opt.md { height: 28px; }
-	.opt.lg { height: 34px; }
 
 	.circle {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		border-width: 1px;
-		border-color: var(--ui-border-strong);
-		border-radius: var(--ui-radius-full);
-		background-color: var(--ui-surface);
+		border-color: var(--border-strong);
+		border-radius: var(--radius-full);
+		background-color: var(--bg-surface);
 	}
-	.circle.sm { width: 14px; height: 14px; }
-	.circle.md { width: 16px; height: 16px; }
-	.circle.lg { width: 18px; height: 18px; }
-	.circle.checked { border-color: var(--ui-accent); }
-	.circle.focused { border-color: var(--ui-ring); }
+	.circle.checked { border-color: var(--theme-color); }
+	.circle.focused { border-color: var(--ring); }
 
-	.dot { border-radius: var(--ui-radius-full); background-color: var(--ui-accent); }
-	.dot.sm { width: 6px; height: 6px; }
-	.dot.md { width: 8px; height: 8px; }
-	.dot.lg { width: 10px; height: 10px; }
+	.dot { width: 40%; height: 40%; border-radius: var(--radius-full); background-color: var(--theme-color); }
 
-	.label { color: var(--ui-ink); }
-	.label.sm { font-size: var(--ui-text-sm); }
-	.label.md { font-size: var(--ui-text-md); }
-	.label.lg { font-size: var(--ui-text-lg); }
+	.label { color: var(--text-primary); font-size: var(--text-md); }
 </style>

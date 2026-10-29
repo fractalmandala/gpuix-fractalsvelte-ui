@@ -16,7 +16,7 @@ category: inputs
 
 <TextInput label="Email" value={email} error="Enter a valid email" onchange={(v) => (email = v)} />
 
-<TextInput size="lg" placeholder="Search" onsubmit={(q) => search(q)}>
+<TextInput size="h-xl" placeholder="Search" onsubmit={(q) => search(q)}>
   {#snippet leading()}⌕{/snippet}
 </TextInput>
 ```
@@ -25,29 +25,74 @@ category: inputs
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `value` | `string` | `''` | Current text. |
+| `value` | `string` | `''` |   |
 | `onchange` | `(value: string) => void` | — | Called on every edit with the new text. |
 | `onsubmit` | `(value: string) => void` | — | Called on Enter with the current text. |
-| `placeholder` | `string` | `''` | Shown while empty. |
+| `placeholder` | `string` | `''` |   |
 | `label` | `string` | `''` | Shown above the field. |
 | `hint` | `string` | `''` | Shown under the field, unless `error` is set. |
-| `error` | `string` | `''` | Shown under the field in the danger colour, in place of `hint`. Also turns the border red. |
-| `disabled` | `boolean` | `false` | Greys the field, makes it read-only and removes it from the tab order. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Field heights 26 / 32 / 40 px. |
-| `leading` | `Snippet` | — | Inside the field, before the text. |
-| `trailing` | `Snippet` | — | Inside the field, after the text. |
-| `style` | `string \| null` | `null` | Inline CSS on the root. |
-| `testid` | `string \| null` | `null` | Test id on the root. The field gets `${testid}-field`, the input `${testid}-input`, and the message `${testid}-msg`. |
-
+| `error` | `string` | `''` | Shown under the field in the danger colour, in place of `hint`. |
+| `disabled` | `boolean` | `false` | Greys the field and ignores edits. |
+| `size` | `'h-md' \| 'h-lg' \| 'h-xl'` | `'h-lg'` | Fractalstyler's height steps for the field. |
+| `leading` | `Snippet` | — | Snippet inside the field, before the text. |
+| `trailing` | `Snippet` | — | Snippet inside the field, after the text. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`text-sm`, `text-md`, `text-lg`, `ink`, `ink-muted`, `surface`, `raised`, `border-strong`, `ring`, `danger`, `font`, `radius-sm`, `radius-md`, `radius-lg`.
-
+`bg-raised`, `bg-surface`, `border-strong`, `danger`, `font-sans`, `radius-md`, `ring`, `text-primary`, `text-secondary`, `text-sm`
 ## Keyboard
 
 | Key | Action |
 | --- | --- |
 | Enter | Calls `onsubmit` with the current text |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import TextInput from 'gpuix-fractalsvelte-ui/TextInput.svelte';
+	let name = $state('');
+	let site = $state('');
+	let submitted = $state('');
+	let query = $state('');
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px; width: 360px">
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: flex-end">
+		<TextInput size="h-md" placeholder="Small" style="flex-grow: 1; flex-basis: 0; min-width: 0" />
+		<TextInput size="h-lg" placeholder="Medium" style="flex-grow: 1; flex-basis: 0; min-width: 0" />
+		<TextInput size="h-xl" placeholder="Large" style="flex-grow: 1; flex-basis: 0; min-width: 0" />
+	</div>
+
+	<TextInput
+		label="Name"
+		placeholder="Ada Lovelace"
+		hint="Shown on your profile"
+		value={name}
+		onchange={(v) => (name = v)}
+		onsubmit={(v) => (submitted = v)}
+	/>
+	<div style="color: var(--text-secondary); font-size: var(--text-sm)">submitted: {submitted || '—'}</div>
+
+	<TextInput label="Website" placeholder="example.com" value={site} onchange={(v) => (site = v)}>
+		{#snippet leading()}<div>https://</div>{/snippet}
+	</TextInput>
+
+	<TextInput
+		placeholder="Search notes"
+		value={query}
+		onchange={(v) => (query = v)}
+	>
+		{#snippet trailing()}<div style="font-size: var(--text-xs)">esc</div>{/snippet}
+	</TextInput>
+
+	<TextInput label="Email" value="ada@" error="Enter a valid email address" />
+	<TextInput label="Organisation" value="Analytical Engine Ltd" disabled hint="Managed by your admin" />
+</div>
+```
 
 ## GPUI notes
 

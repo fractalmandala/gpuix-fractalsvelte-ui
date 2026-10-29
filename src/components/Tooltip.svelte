@@ -28,7 +28,7 @@
 	} = $props();
 
 	const tip = $derived(
-		`background-color: var(--ui-ink); color: var(--ui-bg); font-size: var(--ui-text-sm); border-radius: var(--ui-radius-sm); padding: 4px 8px${style ? `; ${style}` : ''}`
+		`background-color: var(--text-primary); color: var(--bg); font-size: var(--text-sm); border-radius: var(--radius-sm); padding: 4px 8px${style ? `; ${style}` : ''}`
 	);
 </script>
 

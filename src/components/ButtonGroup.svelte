@@ -2,7 +2,6 @@
 	import type { Snippet } from 'svelte';
 	import type { GpuixEvent } from 'gpuix-fractalsvelte';
 	import { provide_group } from '../group.svelte.ts';
-	import type { Size, Tone } from '../types.ts';
 
 	type Option = { value: T; label: string; disabled?: boolean };
 
@@ -11,8 +10,8 @@
 		options = undefined,
 		value = null,
 		onchange = undefined,
-		tone = 'accent',
-		size = 'md',
+		variant = 'primary',
+		size = 'h-bs',
 		style = null,
 		testid = null
 	}: {
@@ -22,9 +21,10 @@
 		options?: Option[];
 		value?: T | null;
 		onchange?: (value: T) => void;
-		/** Colour of the selected segment. */
-		tone?: Tone;
-		size?: Size;
+		/** Fractalstyler's variant for the selected segment. */
+		variant?: 'primary' | 'secondary' | 'themed' | 'outline' | 'ghost' | 'link' | 'info' | 'success' | 'warning' | 'danger';
+		/** Fractalstyler's size axis. */
+		size?: 'h-sm' | 'h-md' | 'h-bs' | 'h-lg' | 'h-xl';
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
@@ -52,7 +52,7 @@
 
 {#if options}
 	<div
-		class="track {size}"
+		class="track"
 		class:focused
 		tabindex={0}
 		onkeydown={key}
@@ -64,8 +64,7 @@
 		{#each options as option (option.value)}
 			{@const selected = option.value === value}
 			<div
-				class="seg {size} {tone}"
-				class:sel={selected}
+				class="seg el-size {size} {selected ? `el-variant ${variant}` : ''}"
 				class:on={!option.disabled}
 				class:off={option.disabled}
 				onclick={() => pick(option)}
@@ -90,35 +89,22 @@
 		gap: 2px;
 		padding: 2px;
 		border-width: 1px;
-		border-color: var(--ui-border);
-		border-radius: var(--ui-radius-md);
-		background-color: var(--ui-raised);
+		border-color: var(--border);
+		border-radius: var(--radius-md);
+		background-color: var(--bg-raised);
 	}
-	.track.sm { border-radius: var(--ui-radius-sm); }
-	.track.focused { border-color: var(--ui-ring); }
-
+	.track.focused { border-color: var(--ring); }
 	.seg {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: var(--ui-radius-sm);
+		border-radius: var(--radius-sm);
 		font-weight: 500;
-		color: var(--ui-ink-muted);
+		color: var(--text-secondary);
 		user-select: none;
 		white-space: nowrap;
 	}
-	.seg.sm { height: 20px; padding: 0 10px; font-size: var(--ui-text-sm); }
-	.seg.md { height: 26px; padding: 0 14px; font-size: var(--ui-text-md); }
-	.seg.lg { height: 34px; padding: 0 18px; font-size: var(--ui-text-lg); border-radius: var(--ui-radius-md); }
 	.seg.on { cursor: pointer; }
-	.seg.on:hover { color: var(--ui-ink); }
 	.seg.off { opacity: 0.5; cursor: not-allowed; }
-
-	.seg.sel.accent { background-color: var(--ui-accent); color: var(--ui-accent-ink); }
-	.seg.sel.neutral { background-color: var(--ui-surface); color: var(--ui-ink); }
-	.seg.sel.success { background-color: var(--ui-success); color: var(--ui-success-ink); }
-	.seg.sel.warn { background-color: var(--ui-warn); color: var(--ui-warn-ink); }
-	.seg.sel.danger { background-color: var(--ui-danger); color: var(--ui-danger-ink); }
-
 	.joined { display: flex; flex-direction: row; align-items: center; align-self: flex-start; gap: 0; }
 </style>

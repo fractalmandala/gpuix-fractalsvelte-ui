@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { focus_element, type GpuixEvent, type ShadowNode } from 'gpuix-fractalsvelte';
-	import type { Size } from '../types.ts';
 
 	let {
 		items,
@@ -12,7 +11,8 @@
 		/** Ancestors with an `onclick` are links; the last item is the current page. */
 		items: { label: string; onclick?: () => void }[];
 		separator?: string;
-		size?: Size;
+		/** Fractalstyler's text sizes. */
+		size?: 'sm' | 'md' | 'lg';
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
@@ -45,20 +45,20 @@
 
 <style>
 	.crumbs { display: flex; flex-direction: row; align-items: center; gap: 2px; white-space: nowrap; }
-	.crumbs.sm { font-size: var(--ui-text-sm); line-height: 22px; }
-	.crumbs.md { font-size: var(--ui-text-md); line-height: 26px; }
-	.crumbs.lg { font-size: var(--ui-text-lg); line-height: 32px; }
+	.crumbs.sm { font-size: var(--text-sm); line-height: 22px; }
+	.crumbs.md { font-size: var(--text-md); line-height: 26px; }
+	.crumbs.lg { font-size: var(--text-lg); line-height: 32px; }
 	.crumb {
 		padding: 0 6px;
 		border-width: 1px;
 		border-color: #00000000;
-		border-radius: var(--ui-radius-sm);
-		color: var(--ui-ink-muted);
+		border-radius: var(--radius-sm);
+		color: var(--text-secondary);
 		user-select: none;
 	}
 	.crumb.clickable { cursor: pointer; }
-	.crumb.clickable:hover { background-color: var(--ui-raised); color: var(--ui-ink); }
-	.crumb.current { color: var(--ui-ink); font-weight: 600; }
-	.crumb.focused { border-color: var(--ui-ring); }
-	.sep { padding: 0 2px; color: var(--ui-ink-faint); }
+	.crumb.clickable:hover { background-color: var(--bg-raised); color: var(--text-primary); }
+	.crumb.current { color: var(--text-primary); font-weight: 600; }
+	.crumb.focused { border-color: var(--ring); }
+	.sep { padding: 0 2px; color: var(--text-muted); }
 </style>

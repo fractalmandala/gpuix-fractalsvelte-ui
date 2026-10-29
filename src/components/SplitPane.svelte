@@ -105,9 +105,9 @@
 	.pane.rest { flex-grow: 1; }
 	.grip { display: flex; flex-direction: row; align-self: stretch; flex-shrink: 0; padding: 0 4px; cursor: col-resize; }
 	.grip.column { flex-direction: column; padding: 4px 0; cursor: row-resize; }
-	.line { background-color: var(--ui-border); }
+	.line { background-color: var(--border); }
 	.line.row { width: 1px; align-self: stretch; }
 	.line.column { height: 1px; align-self: stretch; }
-	.line.focused { background-color: var(--ui-ring); }
+	.line.focused { background-color: var(--ring); }
 	.overlay { position: absolute; inset: 0; }
 </style>

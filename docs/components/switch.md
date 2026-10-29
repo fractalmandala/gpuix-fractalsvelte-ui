@@ -14,7 +14,7 @@ category: inputs
 
 <Switch label="Notifications" checked={notify} onchange={(v) => (notify = v)} />
 
-<Switch size="lg" checked disabled>
+<Switch checked disabled>
   {#snippet children()}Locked on{/snippet}
 </Switch>
 ```
@@ -23,21 +23,16 @@ category: inputs
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `checked` | `boolean` | `false` | Current state. |
-| `onchange` | `(checked: boolean) => void` | — | Called with the next state. Not called when disabled. |
-| `label` | `string` | `''` | Plain-text label. Ignored when `children` is given. |
-| `children` | `Snippet` | — | Rich label. |
-| `disabled` | `boolean` | `false` | Dims the control, leaves the tab order and ignores clicks. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Track sizes 28×16, 36×20 and 44×24 px. |
-| `style` | `string \| null` | `null` | Inline CSS on the root row. |
-| `testid` | `string \| null` | `null` | Test id on the root. The track gets `${testid}-track` and the thumb `${testid}-thumb`. |
-
-The root carries `role="switch"` and uses `label` as its accessible name.
-
+| `checked` | `boolean` | `false` |   |
+| `onchange` | `(checked: boolean) => void` | — | Called with the next state when the track or label is clicked, or Space is pressed. |
+| `label` | `string` | `''` | Plain-text label, ignored when `children` is given. |
+| `children` | `Snippet` | — |   |
+| `disabled` | `boolean` | `false` |   |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`border-strong`, `surface`, `accent`, `accent-ink`, `ring`, `ink`, `radius-full`, `text-sm`, `text-md`, `text-lg`.
-
+`bg-surface`, `border-strong`, `radius-full`, `ring`, `switch-h`, `switch-thumb`, `switch-w`, `text-md`, `text-primary`, `text-theme`, `theme-color`
 ## Keyboard
 
 | Key | Action |
@@ -45,6 +40,38 @@ The root carries `role="switch"` and uses `label` as its accessible name.
 | Space | Toggle while focused |
 
 Enter does not toggle. A disabled switch is removed from the tab order (`tabindex -1`).
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Switch from 'gpuix-fractalsvelte-ui/Switch.svelte';
+
+	let wifi = $state(true);
+	let sync = $state(false);
+	let beta = $state(false);
+</script>
+
+<div style="display: flex; flex-direction: row; gap: 48px">
+	<div style="display: flex; flex-direction: column; gap: 12px">
+		<Switch label="Small" checked />
+		<Switch label="Medium" checked={wifi} onchange={(v) => (wifi = v)} />
+		<Switch label="Large" checked />
+		<Switch label="Disabled" disabled />
+		<Switch label="Disabled on" disabled checked />
+	</div>
+
+	<div style="display: flex; flex-direction: column; gap: 12px">
+		<Switch label="Sync across devices" checked={sync} onchange={(v) => (sync = v)} />
+		<Switch label="Join the beta" checked={beta} onchange={(v) => (beta = v)} />
+		<div style="color: var(--text-secondary); font-size: var(--text-sm)">
+			sync {sync ? 'on' : 'off'} · beta {beta ? 'on' : 'off'}
+		</div>
+	</div>
+</div>
+```
 
 ## GPUI notes
 

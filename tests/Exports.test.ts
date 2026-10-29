@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, find_text, check, finish } from 'gpuix-fractalsvelte/test';
 import * as ui from 'gpuix-fractalsvelte-ui';
 import Harness from './Exports.harness.svelte';

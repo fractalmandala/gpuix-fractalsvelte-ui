@@ -12,21 +12,50 @@ category: feedback
 </script>
 
 <Kbd keys="cmd+k" />
-<Kbd keys="shift+enter" size="sm" />
+<Kbd keys="shift+enter" size="h-sm" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `keys` | `string` | — | A chord joined by `+`, e.g. `cmd+k`. Each part becomes one cap. Known names map to glyphs (`cmd` → ⌘, `shift` → ⇧, `enter` → ↵, `esc` → ⎋, `space` → Space, and so on); others are upper-cased. |
-| `size` | `'sm' \| 'md'` | `'md'` | Caps 18 / 22 px high. |
-| `style` | `string \| null` | `null` | Inline CSS on the root. |
-| `testid` | `string \| null` | `null` | Test id on the root. |
-
+| `keys` | `string` | `''` | A chord such as `cmd+k` or `shift+enter`; each part becomes one cap. |
+| `size` | `'h-sm' \| 'h-md'` | `'h-md'` | Fractalstyler's height steps. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`border-strong`, `raised`, `radius-sm`, `ink-muted`, `text-xs`, `text-sm`.
+`bg-raised`, `border-strong`, `height-md`, `radius-sm`, `text-secondary`
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Kbd from 'gpuix-fractalsvelte-ui/Kbd.svelte';
+	const SHORTCUTS = [
+		['Command palette', 'cmd+k'],
+		['Save', 'cmd+s'],
+		['Find in page', 'cmd+shift+f'],
+		['Send message', 'shift+enter'],
+		['Close dialog', 'esc']
+	];
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+	{#each SHORTCUTS as [action, keys]}
+		<div style="display: flex; flex-direction: row; gap: 16px; align-items: center; justify-content: space-between">
+			<div style="color: var(--text-secondary)">{action}</div>
+			<Kbd {keys} />
+		</div>
+	{/each}
+	<div style="display: flex; flex-direction: row; gap: 16px; align-items: center">
+		<Kbd keys="cmd+k" size="h-sm" />
+		<Kbd keys="up" size="h-sm" />
+		<Kbd keys="down" size="h-sm" />
+	</div>
+</div>
+```
 
 ## GPUI notes
 

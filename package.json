@@ -12,13 +12,18 @@
 	},
 	"files": [
 		"src",
-		"docs"
+		"docs",
+		"styles",
+		"static"
 	],
 	"scripts": {
-		"gallery": "gpuix-fractalsvelte gallery/app.ts",
-		"test": "bun scripts/test-all.ts",
+		"gallery": "FRACTALSTYLER_STYLES=./styles gpuix-fractalsvelte gallery/app.ts",
+		"sovereign": "FRACTALSTYLER_STYLES=./styles gpuix-fractalsvelte sovereign/app.ts",
+		"test": "FRACTALSTYLER_STYLES=./styles bun scripts/test-all.ts",
 		"test:one": "gpuix-fractalsvelte",
-		"typecheck": "tsc --noEmit && svelte-check --diagnostic-sources js,svelte --fail-on-warnings"
+		"typecheck": "tsc --noEmit && svelte-check --diagnostic-sources js,svelte --fail-on-warnings",
+		"docs": "bun scripts/docs.ts",
+		"gallery:web": "bun scripts/web.ts"
 	},
 	"devDependencies": {
 		"@types/bun": "^1.4.3",
@@ -26,7 +31,8 @@
 		"gpuix-fractalsvelte": "file:../gpuix-fractalsvelte",
 		"svelte": "file:../gpuix-fractalsvelte/vendor/svelte-5.57.2-694f791.tgz",
 		"svelte-check": "^4.7.6",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"sass": "^1.106.1"
 	},
 	"overrides": {
 		"svelte": "file:../gpuix-fractalsvelte/vendor/svelte-5.57.2-694f791.tgz"

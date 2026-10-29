@@ -9,10 +9,10 @@
 	<div style="display: flex; flex-direction: column; gap: 12px; padding: 16px">
 		<div style="display: flex; flex-direction: row; gap: 16px; align-items: center">
 			<Link label="Docs" testid="docs" onclick={() => { clicks++; last = 'docs'; }} />
-			<Link tone="danger" label="Delete" testid="del" onclick={() => { clicks++; last = 'del'; }} />
-			<Link tone="neutral" label="Off" disabled testid="off" onclick={() => { clicks++; last = 'off'; }} />
+			<Link variant="danger" label="Delete" testid="del" onclick={() => { clicks++; last = 'del'; }} />
+			<Link variant="secondary" label="Off" disabled testid="off" onclick={() => { clicks++; last = 'off'; }} />
 		</div>
-		<Link size="sm" testid="more" onclick={() => { clicks++; last = 'more'; }}>
+		<Link size="h-sm" testid="more" onclick={() => { clicks++; last = 'more'; }}>
 			{#snippet children()}Read more →{/snippet}
 		</Link>
 	</div>

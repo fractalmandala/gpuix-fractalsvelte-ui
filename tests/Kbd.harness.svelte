@@ -19,7 +19,7 @@
 		</div>
 		<div style="display: flex; flex-direction: row; gap: 12px; align-items: center">
 			<div>Send message</div>
-			<Kbd keys="shift+enter" size="sm" />
+			<Kbd keys="shift+enter" size="h-sm" />
 		</div>
 		<div testId="saved">saved:{saved}</div>
 	</div>

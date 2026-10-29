@@ -16,15 +16,15 @@
 
 <ThemeProvider>
 	<div style="display: flex; flex-direction: row; gap: 8px; padding: 16px">
-		<Button label="Left" variant="outline" tone="neutral" testid="left" onclick={() => show('left')} />
+		<Button label="Left" variant="outline" testid="left" onclick={() => show('left')} />
 		<Button label="Right" testid="right" onclick={() => show('right')} />
-		<Button label="Bottom" variant="outline" tone="neutral" testid="bottom" onclick={() => show('bottom')} />
+		<Button label="Bottom" variant="outline" testid="bottom" onclick={() => show('bottom')} />
 	</div>
 	<div testId="count">applied:{applied}</div>
 	<Drawer {open} {side} size="sm" title="Settings" testid="d" onclose={() => (open = false)}>
 		<div testId="inside">Drawer body text</div>
 		{#snippet footer()}
-			<Button label="Cancel" variant="ghost" tone="neutral" onclick={() => (open = false)} />
+			<Button label="Cancel" variant="ghost" onclick={() => (open = false)} />
 			<Button label="Apply" testid="apply" onclick={() => { applied++; open = false; }} />
 		{/snippet}
 	</Drawer>

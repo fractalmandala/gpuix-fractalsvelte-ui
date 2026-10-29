@@ -1,6 +1,6 @@
 ---
 title: Button
-description: Clickable action with variants, tones, sizes, shapes, loading and icon slots.
+description: Clickable action with variants, sizes, shapes, loading and icon slots.
 category: actions
 ---
 
@@ -12,37 +12,81 @@ category: actions
 </script>
 
 <Button label="Save" onclick={save} />
-<Button variant="outline" tone="danger" size="sm" shape="rect">Delete</Button>
-<Button variant="ghost" tone="neutral" loading={busy} shape="modern" label="Sync" />
+<Button variant="danger" size="h-md" shape="square">Delete</Button>
+<Button variant="ghost" loading={busy} shape="modern" label="Sync" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `label` | `string` | `''` | Plain-text content. Ignored when `children` is given. |
-| `children` | `Snippet` | — | Rich content. |
-| `variant` | `'solid' \| 'soft' \| 'outline' \| 'ghost'` | `'solid'` | Visual weight. |
-| `tone` | `'accent' \| 'neutral' \| 'success' \| 'warn' \| 'danger'` | `'accent'` | Colour role. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Heights 26 / 32 / 40 px. |
-| `shape` | `'rect' \| 'min' \| 'modern' \| 'curved' \| 'round'` | `'rect'` | Border-radius 0 / 4 / 8 / 14 / 9999px. |
-| `disabled` | `boolean` | `false` | Dims, drops hover, leaves the tab order, ignores clicks. |
-| `loading` | `boolean` | `false` | Shows `…` and ignores clicks. |
-| `full` | `boolean` | `false` | Full width of the parent. |
-| `leading` / `trailing` | `Snippet` | — | Icons or badges either side of the content. |
-| `onclick` | `(e) => void` | — | Also fires on Enter and Space while focused. |
-| `style` | `string` | — | Inline CSS; wins over the component's rules. |
-| `testid` | `string` | — | Test id on the root. |
-
+| `children` | `Snippet` | — | Content; `label` is the plain-text shorthand. |
+| `label` | `string` | `''` |   |
+| `variant` | `'primary' \| 'secondary' \| 'themed' \| 'outline' \| 'ghost' \| 'link' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'primary'` | Fractalstyler's variant axis. |
+| `size` | `'h-sm' \| 'h-md' \| 'h-bs' \| 'h-lg' \| 'h-xl'` | `'h-bs'` | Fractalstyler's size axis. |
+| `shape` | `'square' \| 'min' \| 'modern' \| 'curved' \| 'round'` | `'min'` |   |
+| `disabled` | `boolean` | `false` |   |
+| `loading` | `boolean` | `false` | Shows `…` in place of the content and swallows clicks. |
+| `full` | `boolean` | `false` | Stretches to the parent's width. |
+| `leading` | `Snippet` | — | Snippet before the content, usually an icon. |
+| `trailing` | `Snippet` | — |   |
+| `onclick` | `(e: GpuixEvent) => void` | — |   |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`accent`, `accent-hover`, `accent-ink`, `accent-soft`, the same four for `danger`, `success-*`, `warn-*`, `raised`, `border`, `border-strong`, `ink`, `ink-muted`, `ring`, `radius-0/sm/bs/lg/full`, `text-sm/md/lg`.
-
+None; the component takes its colours from the element it sits in.
 ## Keyboard
 
 | Key | Action |
 | --- | --- |
 | Enter, Space | Activate while focused |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Button from 'gpuix-fractalsvelte-ui/Button.svelte';
+	let clicks = $state(0);
+	const variants = ['primary', 'secondary', 'themed', 'outline', 'ghost', 'link', 'info', 'success', 'warning', 'danger'] as const;
+	const shapes = ['square', 'min', 'modern', 'curved', 'round'] as const;
+	const sizes = ['h-sm', 'h-md', 'h-bs', 'h-lg', 'h-xl'] as const;
+
+</script>
+
+{#snippet plus()}<div>+</div>{/snippet}
+{#snippet arrow()}<div>→</div>{/snippet}
+
+<div style="display: flex; flex-direction: column; gap: 20px">
+	<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px">
+		{#each variants as v}
+			<Button variant={v} label={v} onclick={() => clicks++} />
+		{/each}
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		{#each shapes as s}
+			<Button shape={s} label={s} />
+		{/each}
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		{#each sizes as z}
+			<Button size={z} label={z} />
+		{/each}
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		<Button label="Save" leading={plus} />
+		<Button label="Next" trailing={arrow} />
+		<Button label="Full width" full />
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		<Button label="Disabled" disabled />
+		<Button label="Loading" loading />
+	</div>
+	<div>clicks: {clicks}</div>
+</div>
+```
 
 ## GPUI notes
 

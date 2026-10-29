@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, click_text, click_test_id, press, focus, find_text, find_test_id, screenshot, all_text, check, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './Checkbox.harness.svelte';
 

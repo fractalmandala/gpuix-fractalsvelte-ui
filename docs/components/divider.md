@@ -20,14 +20,40 @@ category: layout
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Vertical is 1px wide and stretches to the row height. |
-| `label` | `string` | `''` | Centred in a horizontal divider. Ignored when vertical. |
-| `style` | `string \| null` | `null` | Inline CSS on the root. |
-| `testid` | `string \| null` | `null` | Test id on the root. |
-
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |   |
+| `label` | `string` | `''` | Shown centred in a horizontal divider. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`border`, `ink-faint`, `text-sm`.
+`border`, `text-muted`, `text-sm`
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Divider from 'gpuix-fractalsvelte-ui/Divider.svelte';
+	const body = 'font-size: var(--text-md); color: var(--text-primary)';
+	const muted = 'font-size: var(--text-sm); color: var(--text-secondary)';
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 12px; width: 360px">
+	<div style={body}>Profile</div>
+	<Divider />
+	<div style={muted}>Name, email and avatar.</div>
+	<Divider label="Advanced" />
+	<div style="display: flex; flex-direction: row; gap: 12px; align-items: center; height: 32px">
+		<div style={body}>Left</div>
+		<Divider orientation="vertical" />
+		<div style={body}>Centre</div>
+		<Divider orientation="vertical" />
+		<div style={body}>Right</div>
+	</div>
+	<Divider label="Danger zone" />
+	<div style={muted}>Deleting a workspace cannot be undone.</div>
+</div>
+```
 
 ## GPUI notes
 

@@ -13,24 +13,48 @@ category: feedback
 </script>
 
 <Progress {value} />
-<Progress {value} tone="success" size="sm" />
-<Progress indeterminate tone="neutral" />
+<Progress {value} variant="success" size="h-md" />
+<Progress indeterminate />
 ```
 
 ## Props
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `value` | `number` | `0` | 0 to 100. Out-of-range values are clamped. |
+| `value` | `number` | `0` | 0 to 100; out-of-range values are clamped. |
 | `indeterminate` | `boolean` | `false` | Ignores `value` and sweeps a segment back and forth. |
-| `tone` | `'accent' \| 'neutral' \| 'success' \| 'warn' \| 'danger'` | `'accent'` | Fill colour. `neutral` uses the muted ink colour. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Track heights 4 / 6 / 8 px. |
-| `style` | `string \| null` | `null` | Inline CSS on the track. |
-| `testid` | `string \| null` | `null` | Test id on the track; the fill gets `${testid}-fill`. |
-
+| `variant` | `'themed' \| 'secondary' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'themed'` | Fractalstyler's colour names. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Bar thickness: 4, 6 or 8 px. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`raised`, `radius-full`, `ink-muted`, `accent`, `success`, `warn`, `danger`.
+`bg-raised`, `danger`, `info`, `radius-full`, `success`, `text-secondary`, `theme-color`, `warning`
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Progress from 'gpuix-fractalsvelte-ui/Progress.svelte';
+	import Button from 'gpuix-fractalsvelte-ui/Button.svelte';
+	let value = $state(35);
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 14px; width: 420px">
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		<Button label="-10" size="h-md" variant="outline" onclick={() => (value = Math.max(0, value - 10))} />
+		<Button label="+10" size="h-md" variant="outline" onclick={() => (value = Math.min(100, value + 10))} />
+		<div style="color: var(--text-secondary)">{value}%</div>
+	</div>
+	<Progress {value} size="sm" />
+	<Progress {value} />
+	<Progress {value} size="lg" variant="success" />
+	<Progress {value} variant="warning" />
+	<Progress {value} variant="danger" />
+	<Progress indeterminate />
+</div>
+```
 
 ## GPUI notes
 

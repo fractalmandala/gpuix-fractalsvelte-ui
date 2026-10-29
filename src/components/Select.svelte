@@ -2,7 +2,6 @@
 	import { get_native, type GpuixEvent, type ShadowNode } from 'gpuix-fractalsvelte';
 	import Popover from 'gpuix-fractalsvelte/components/Popover.svelte';
 	import Scroller from 'gpuix-fractalsvelte/components/Scroller.svelte';
-	import type { Size } from '../types.ts';
 
 	type Option = { value: string; label: string; disabled?: boolean };
 
@@ -11,7 +10,7 @@
 		value = null,
 		onchange = undefined,
 		placeholder = 'Select…',
-		size = 'md',
+		size = 'h-lg',
 		disabled = false,
 		style = null,
 		testid = null
@@ -21,14 +20,15 @@
 		value?: string | null;
 		onchange?: (value: string) => void;
 		placeholder?: string;
-		size?: Size;
+		/** Fractalstyler's height steps for the trigger and rows. */
+		size?: 'h-md' | 'h-bs' | 'h-lg' | 'h-xl';
 		disabled?: boolean;
 		/** Inline CSS for the trigger; `width` defaults to 200px. */
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
 
-	const ITEM = { sm: 24, md: 30, lg: 36 } as const;
+	const ITEM = { 'h-md': 20, 'h-bs': 24, 'h-lg': 32, 'h-xl': 40 } as const;
 	const MAX_ROWS = 8;
 
 	let open = $state(false);
@@ -85,7 +85,7 @@
 {#snippet list()}
 	{#each options as opt, i (opt.value)}
 		<div
-			class="item {size}"
+			class="item el-size {size}"
 			class:on={enabled(i)}
 			class:off={!enabled(i)}
 			class:hl={i === active}
@@ -94,8 +94,8 @@
 			onclick={() => pick(i)}
 			testId={testid && `${testid}-option-${opt.value}`}
 		>
-			<div class="check {size}">{i === selected ? '✓' : ''}</div>
-			<div class="name {size}">{opt.label}</div>
+			<div class="check">{i === selected ? '✓' : ''}</div>
+			<div class="name">{opt.label}</div>
 		</div>
 	{/each}
 {/snippet}
@@ -104,11 +104,11 @@
 	{open}
 	onclose={() => (open = false)}
 	gap={4}
-	style="width: {width}px; padding: 4px; border-radius: var(--ui-radius-md); border-color: var(--ui-border); background-color: var(--ui-overlay); color: var(--ui-ink)"
+	style="width: {width}px; padding: 4px; border-radius: var(--radius-md); border-color: var(--border); background-color: var(--bg-sunken); color: var(--text-primary)"
 	{testid}
 >
 	<div
-		class="trigger {size}"
+		class="trigger el-size {size}"
 		class:on={!disabled}
 		class:off={disabled}
 		class:focused
@@ -121,8 +121,8 @@
 		{style}
 		testId={testid && `${testid}-trigger`}
 	>
-		<div class="value {size}" class:placeholder={selected < 0}>{selected >= 0 ? options[selected].label : placeholder}</div>
-		<div class="chevron {size}">▾</div>
+		<div class="value" class:placeholder={selected < 0}>{selected >= 0 ? options[selected].label : placeholder}</div>
+		<div class="chevron">▾</div>
 	</div>
 
 	{#snippet content()}
@@ -145,25 +145,19 @@
 		width: 200px;
 		padding: 0 10px;
 		border-width: 1px;
-		border-color: var(--ui-border-strong);
-		border-radius: var(--ui-radius-md);
-		background-color: var(--ui-surface);
-		color: var(--ui-ink);
+		border-color: var(--border-strong);
+		border-radius: var(--radius-md);
+		background-color: var(--bg-surface);
+		color: var(--text-primary);
 		user-select: none;
 	}
-	.trigger.sm { height: 26px; font-size: var(--ui-text-sm); border-radius: var(--ui-radius-sm); }
-	.trigger.md { height: 32px; font-size: var(--ui-text-md); }
-	.trigger.lg { height: 40px; font-size: var(--ui-text-lg); border-radius: var(--ui-radius-lg); }
 	.trigger.on { cursor: pointer; }
 	.trigger.off { opacity: 0.5; cursor: not-allowed; }
-	.trigger.focused { border-color: var(--ui-ring); }
+	.trigger.focused { border-color: var(--ring); }
 
 	.value { flex-grow: 1; }
-	.value.placeholder { color: var(--ui-ink-faint); }
-	.chevron { color: var(--ui-ink-muted); }
-	.chevron.sm { font-size: var(--ui-text-xs); }
-	.chevron.md { font-size: var(--ui-text-sm); }
-	.chevron.lg { font-size: var(--ui-text-md); }
+	.value.placeholder { color: var(--text-muted); }
+	.chevron { color: var(--text-secondary); }
 
 	.item {
 		display: flex;
@@ -171,20 +165,14 @@
 		align-items: center;
 		gap: 6px;
 		padding: 0 8px;
-		border-radius: var(--ui-radius-sm);
-		color: var(--ui-ink);
+		border-radius: var(--radius-sm);
+		color: var(--text-primary);
 		user-select: none;
 	}
-	.item.sm { height: 24px; font-size: var(--ui-text-sm); }
-	.item.md { height: 30px; font-size: var(--ui-text-md); }
-	.item.lg { height: 36px; font-size: var(--ui-text-lg); }
 	.item.on { cursor: pointer; }
-	.item.off { color: var(--ui-ink-faint); cursor: not-allowed; }
-	.item.hl { background-color: var(--ui-raised); }
+	.item.off { color: var(--text-muted); cursor: not-allowed; }
+	.item.hl { background-color: var(--bg-raised); }
 
-	.check { width: 12px; color: var(--ui-accent); }
-	.check.sm { font-size: var(--ui-text-xs); }
-	.check.md { font-size: var(--ui-text-sm); }
-	.check.lg { font-size: var(--ui-text-md); }
+	.check { width: 12px; color: var(--theme-color); }
 	.name { flex-grow: 1; }
 </style>

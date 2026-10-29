@@ -1,14 +1,13 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { focus_element, type GpuixEvent, type ShadowNode } from 'gpuix-fractalsvelte';
-	import type { Size } from '../types.ts';
 
 	let {
 		items,
 		value,
 		onchange = undefined,
 		variant = 'line',
-		size = 'md',
+		size = 'h-bs',
 		children = undefined,
 		style = null,
 		testid = null
@@ -19,7 +18,8 @@
 		onchange?: (id: string) => void;
 		/** `line` underlines the active tab; `pill` is a segmented control. */
 		variant?: 'line' | 'pill';
-		size?: Size;
+		/** Fractalstyler's height steps for each tab. */
+		size?: 'h-sm' | 'h-md' | 'h-bs' | 'h-lg' | 'h-xl';
 		/** The panel under the tabs, given the active id. */
 		children?: Snippet<[string]>;
 		style?: string | null;
@@ -59,7 +59,7 @@
 		{#each items as item (item.id)}
 			{@const active = item.id === value}
 			<div
-				class="tab {variant} {size}"
+				class="tab el-size {size} {variant}"
 				class:active
 				class:off={item.disabled}
 				class:rest={!active && !item.disabled}
@@ -83,8 +83,8 @@
 <style>
 	.tabs { display: flex; flex-direction: column; gap: 12px; }
 	.list { display: flex; flex-direction: row; }
-	.list.line { border-bottom-width: 1px; border-color: var(--ui-border); }
-	.list.pill { align-self: start; gap: 2px; padding: 3px; border-radius: var(--ui-radius-md); background-color: var(--ui-raised); }
+	.list.line { border-bottom-width: 1px; border-color: var(--border); }
+	.list.pill { align-self: start; gap: 2px; padding: 3px; border-radius: var(--radius-md); background-color: var(--bg-raised); }
 
 	.tab {
 		display: flex;
@@ -92,24 +92,21 @@
 		border-width: 1px;
 		border-color: #00000000;
 		background-color: #00000000;
-		color: var(--ui-ink-muted);
+		color: var(--text-secondary);
 		font-weight: 500;
 		white-space: nowrap;
 		user-select: none;
 		cursor: pointer;
 	}
-	.tab.sm { height: 26px; font-size: var(--ui-text-sm); border-radius: var(--ui-radius-sm); }
-	.tab.md { height: 32px; font-size: var(--ui-text-md); border-radius: var(--ui-radius-sm); }
-	.tab.lg { height: 40px; font-size: var(--ui-text-lg); border-radius: var(--ui-radius-md); }
-	.tab.active { color: var(--ui-ink); }
-	.tab.rest:hover { color: var(--ui-ink); }
-	.tab.pill.active { background-color: var(--ui-surface); }
+	.tab.active { color: var(--text-primary); }
+	.tab.rest:hover { color: var(--text-primary); }
+	.tab.pill.active { background-color: var(--bg-surface); }
 	.tab.off { opacity: 0.5; cursor: not-allowed; }
-	.tab.focused { border-color: var(--ui-ring); }
+	.tab.focused { border-color: var(--ring); }
 
 	.label { display: flex; flex-direction: row; flex-grow: 1; align-items: center; justify-content: center; padding: 0 12px; }
 	.bar { height: 2px; background-color: #00000000; }
-	.bar.lit { background-color: var(--ui-accent); }
+	.bar.lit { background-color: var(--theme-color); }
 
 	.panel { display: flex; flex-direction: column; }
 </style>

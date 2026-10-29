@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, click_test_id, find_test_id, bounds, check, screenshot, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './Box.harness.svelte';
 
@@ -9,9 +10,9 @@ const box = (id: string) => {
 };
 
 const frame = box('frame');
-check('padding md insets children by 8px', box('inner').x - frame.x === 8);
+check('padding md insets children by 12px', box('inner').x - frame.x === 12);
 check('an inline style overrides the padding prop', box('flat').x === frame.x);
 click_test_id('toggle');
-check('border adds 1px inside the edge', box('inner').x - frame.x === 9);
+check('border adds 1px inside the edge', box('inner').x - frame.x === 13);
 screenshot('/tmp/gpuix-ui-box.png');
 finish('Box', 3);

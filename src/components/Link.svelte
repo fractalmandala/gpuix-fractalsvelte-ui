@@ -1,13 +1,12 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { GpuixEvent } from 'gpuix-fractalsvelte';
-	import type { Size, Tone } from '../types.ts';
 
 	let {
 		children = undefined,
 		label = '',
-		tone = 'accent',
-		size = 'md',
+		variant = 'themed',
+		size = 'h-bs',
 		disabled = false,
 		onclick = undefined,
 		style = null,
@@ -15,9 +14,9 @@
 	}: {
 		children?: Snippet;
 		label?: string;
-		/** Text colour role; `neutral` is plain ink. */
-		tone?: Tone;
-		size?: Size;
+		/** Text colour, in fractalstyler's names; `secondary` is plain ink. */
+		variant?: 'themed' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+		size?: 'h-sm' | 'h-md' | 'h-bs' | 'h-lg' | 'h-xl';
 		disabled?: boolean;
 		onclick?: (e: GpuixEvent) => void;
 		style?: string | null;
@@ -37,7 +36,7 @@
 </script>
 
 <div
-	class="link {tone} {size}"
+	class="link el-size {variant} {size}"
 	class:on={live}
 	class:off={!live}
 	class:focused
@@ -57,27 +56,25 @@
 		align-self: flex-start;
 		border-width: 1px;
 		border-color: #00000000;
-		border-radius: var(--ui-radius-sm);
+		border-radius: var(--radius-sm);
 		padding: 0 2px;
 		font-weight: 500;
 		text-decoration: none;
 		user-select: none;
 		cursor: pointer;
 	}
-	.link.sm { font-size: var(--ui-text-sm); }
-	.link.md { font-size: var(--ui-text-md); }
-	.link.lg { font-size: var(--ui-text-lg); }
 	.link.off { opacity: 0.5; cursor: not-allowed; }
 
-	.link.accent { color: var(--ui-accent); }
-	.link.danger { color: var(--ui-danger); }
-	.link.success { color: var(--ui-success); }
-	.link.warn { color: var(--ui-warn); }
-	.link.neutral { color: var(--ui-ink); }
+	.link.themed { color: var(--theme-color); }
+	.link.danger { color: var(--danger); }
+	.link.success { color: var(--success); }
+	.link.warning { color: var(--warning); }
+	.link.info { color: var(--info); }
+	.link.secondary { color: var(--text-primary); }
 
 	.link.on:hover { text-decoration: underline; }
-	.link.on.accent:hover { color: var(--ui-accent-hover); }
-	.link.on.danger:hover { color: var(--ui-danger-hover); }
+	.link.on.themed:hover { color: var(--theme-color-alt); }
+	.link.on.danger:hover { color: var(--danger-hover); }
 
-	.link.focused { border-color: var(--ui-ring); }
+	.link.focused { border-color: var(--ring); }
 </style>

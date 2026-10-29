@@ -1,0 +1,182 @@
+// ============================================================================
+// shells — L4. Canonical markups are canon: every class here implements the
+// markup registered in the registry. Overlay mechanics, the docs-frame roles
+// and the mobile TOC disclosure are authored to the registered behaviors.
+// Motion reads the motion tokens — presets reach everything.
+// ============================================================================
+
+@use 'sass:string'
+@use 'sass:list'
+@use 'sass:map'
+@use '00_config' as *
+@use '00_tokens' as *
+
+$md: map.get($breakpoints, md)
+$bs: map.get($breakpoints, bs)
+$lg: map.get($breakpoints, lg)
+
+// --- The app-shell canon ------------------------------------------------------
+.app-shell
+	display: flex
+	flex-direction: column
+	position: relative
+	min-height: 100vh
+
+.app-header
+	display: flex
+	flex-direction: row
+	align-items: center
+	position: sticky
+	top: 0
+	z-index: var(--z-sticky)
+	height: var(--header-height)
+	padding-inline: var(--app-inline)
+	&.clamped
+		width: var(--content-clamp)
+		margin-inline: auto
+
+.app-main
+	flex: 1 1 0%
+	min-width: 0
+	min-height: calc(100dvh - var(--fit-height))
+	display: flex
+	flex-direction: row
+	&.clamped
+		width: var(--content-clamp)
+		margin-inline: auto
+
+.main-section
+	flex: 1 1 0%
+	min-width: 0
+	&.solo
+		padding-inline: var(--app-inline)
+
+// --- Role-bound rails (Amendment A1) -------------------------------------------
+// Left = nav: visible ≥ lg; below, .open on .app-shell resurrects it as an
+// off-canvas drawer (the header menu button toggles it). Right = TOC: visible
+// ≥ xl; below, its content surfaces in .mobile-toc at the top of the page.
+.sidebar-left,
+.sidebar-right
+	display: none
+	flex-shrink: 0
+	position: sticky
+	top: 0
+	height: 100%
+	overflow-y: auto
+	ul, ol
+		margin-left: 0
+		padding-left: 0
+
+.sidebar-left
+	width: var(--sidebar-width-left)
+
+.sidebar-right
+	width: var(--sidebar-width-right)
+
+@media (max-width: #{$bs})
+	.app-shell.open .sidebar-left
+		display: block
+		position: fixed
+		left: 0
+		z-index: var(--z-modal)
+		height: var(--fit-height)
+
+@media (min-width: 1025px)
+	.sidebar-left
+		display: flex
+		flex-direction: column
+
+@media (min-width: 1281px)
+	.sidebar-right
+		display: flex
+		flex-direction: column
+
+.app-footer
+	display: flex
+	flex-direction: row
+	align-items: center
+	padding-inline: var(--app-inline)
+	min-height: var(--footer-height)
+
+.content-section
+	width: 100%
+	&.null
+		padding-inline: 0 var(--space-bs)
+	@media (min-width: 769px)
+		padding-inline: var(--space-bs)
+		&.narrow-half
+			width: 640px
+			margin-inline: auto
+		&.narrow-wide
+			width: 720px
+			margin-inline: auto
+	@media (min-width: 1025px)
+		&.narrow-full
+			width: 640px
+			margin-inline: auto
+		&.narrow-half
+			width: 750px
+			padding-right: 25px
+		&.narrow-wide
+			width: 750px
+	@media (min-width: 1281px)
+		&.narrow-full
+			width: 680px
+		&.narrow-half
+			width: 800px
+			padding-right: 120px
+		&.narrow-wide
+			width: 1024px
+	@media (min-width: 1441px)
+		&.narrow-wide
+			width: 1280px
+		&.narrow-half
+			width: 1024px
+
+.sitedocs
+	display: flex
+	flex-direction: column
+	color: var(--text-primary)
+	gap: 0
+	blockquote
+		border-left: 4px solid var(--theme-color)
+		padding-left: 0.5rem
+		font-size: var(--text-bs)
+	p, ul, ol
+		margin-bottom: 1.5rem
+		margin-top: 0
+		line-height: 1.6
+		font-weight: 400
+		letter-spacing: 0
+		font-size: clamp(1rem, 0.9489rem + 0.2273vw, 1.125rem)
+		color: var(--text-primary)
+	blockquote 
+		padding-left: 1rem
+		margin-bottom: 1.5rem
+		margin-top: 1rem
+		p
+			margin-bottom: 0
+	li
+		margin-bottom: 0.5rem
+	h2
+		margin-top: 2rem
+		margin-bottom: 1rem
+		text-transform: capitalize
+		font-weight: 600
+	h3
+		margin-top: 1rem
+		margin-bottom: 1rem
+		font-weight: 800
+		text-transform: capitalize
+		font-size: var(--text-bs)
+	p em, li em
+		background-color: var(--bg-panel)
+		border: 1px solid var(--border-strong)
+		font-size: 1rem
+		padding-inline: 4px
+		border-radius: 2px
+	.doc-element, figure, div.scroll-x
+		margin-bottom: 1.5rem
+	a
+		text-decoration: underline
+		text-decoration-color: var(--theme-color)

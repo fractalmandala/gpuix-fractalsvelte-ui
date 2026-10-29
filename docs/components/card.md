@@ -15,10 +15,10 @@ category: layout
 <Card title="Project" description="Last edited 2h ago">
   Body copy for the card.
   {#snippet actions()}
-    <Button label="Star" variant="ghost" tone="neutral" size="sm" onclick={star} />
+    <Button label="Star" variant="ghost" size="h-md" onclick={star} />
   {/snippet}
   {#snippet footer()}
-    <Button label="Open" size="sm" onclick={open} />
+    <Button label="Open" size="h-md" onclick={open} />
   {/snippet}
 </Card>
 
@@ -29,26 +29,63 @@ category: layout
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `children` | `Snippet` | — | Body content. |
-| `title` | `string` | `''` | Header title. |
-| `description` | `string` | `''` | Muted line under the title. |
+| `children` | `Snippet` | — |   |
+| `title` | `string` | `''` |   |
+| `description` | `string` | `''` |   |
 | `actions` | `Snippet` | — | Right side of the header, e.g. icon buttons. |
-| `footer` | `Snippet` | — | Row under the body with a top border, right-aligned. |
-| `padding` | `'sm' \| 'md' \| 'lg' \| number` | `'lg'` | Scale is 4 / 8 / 16 px; a number is px. |
+| `footer` | `Snippet` | — |   |
+| `padding` | `'sm' \| 'md' \| 'lg' \| number` | `'lg'` | Spacing scale or px, on all four sides. |
 | `clickable` | `boolean` | `false` | Hover highlight, focus ring, and `onclick` on click, Enter or Space. |
-| `onclick` | `(e: GpuixEvent) => void` | — | Only wired when `clickable`. |
-| `style` | `string \| null` | `null` | Inline CSS on the root, appended after `padding`. |
-| `testid` | `string \| null` | `null` | Test id on the root. |
-
+| `onclick` | `(e: GpuixEvent) => void` | — |   |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`surface`, `raised`, `ink`, `ink-muted`, `border`, `ring`, `radius-lg`, `text-sm`, `text-lg`.
-
+`bg-raised`, `bg-surface`, `border`, `radius-lg`, `ring`, `text-lg`, `text-primary`, `text-secondary`, `text-sm`
 ## Keyboard
 
 | Key | Action |
 | --- | --- |
 | Enter, Space | Run `onclick` while focused (only when `clickable`) |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Card from 'gpuix-fractalsvelte-ui/Card.svelte';
+	import Button from 'gpuix-fractalsvelte-ui/Button.svelte';
+	let opened = $state(0);
+	let starred = $state(false);
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+	<div style="display: flex; flex-direction: row; gap: 16px; align-items: start">
+		<div style="flex-grow: 1; flex-basis: 0; min-width: 0">
+			<Card title="Project Atlas" description="Edited 2 hours ago">
+				Shared with 4 people. Last build passed on main.
+				{#snippet footer()}
+					<Button label="Cancel" variant="ghost" size="h-md" />
+					<Button label="Open" size="h-md" />
+				{/snippet}
+			</Card>
+		</div>
+		<div style="flex-grow: 1; flex-basis: 0; min-width: 0">
+			<Card title="Quarterly report" description="Draft · 12 pages">
+				{#snippet actions()}
+					<Button label={starred ? 'Starred' : 'Star'} variant={starred ? 'themed' : 'ghost'} size="h-md" onclick={() => (starred = !starred)} />
+				{/snippet}
+				Finance numbers are final. Review the summary before sending.
+			</Card>
+		</div>
+	</div>
+	<Card title="Compact" description="padding sm" padding="sm">Tight padding.</Card>
+	<Card title="Open a workspace" description="Click the card to open it" clickable onclick={() => opened++}>
+		<div style="color: var(--text-secondary)">Opened {opened} times.</div>
+	</Card>
+</div>
+```
 
 ## GPUI notes
 

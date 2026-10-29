@@ -1,13 +1,14 @@
 <script lang="ts">
 	let {
 		keys = '',
-		size = 'md',
+		size = 'h-md',
 		style = null,
 		testid = null
 	}: {
 		/** A chord such as `cmd+k` or `shift+enter`; each part becomes one cap. */
 		keys: string;
-		size?: 'sm' | 'md';
+		/** Fractalstyler's height steps. */
+		size?: 'h-sm' | 'h-md';
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
@@ -43,7 +44,7 @@
 
 <div class="kbd {size}" {style} testId={testid}>
 	{#each caps as cap, i (i)}
-		<div class="cap {size}">{cap}</div>
+		<div class="cap el-size {size}">{cap}</div>
 	{/each}
 </div>
 
@@ -55,14 +56,13 @@
 		justify-content: center;
 		border-width: 1px;
 		border-bottom-width: 2px;
-		border-color: var(--ui-border-strong);
-		border-radius: var(--ui-radius-sm);
-		background-color: var(--ui-raised);
-		color: var(--ui-ink-muted);
+		border-color: var(--border-strong);
+		border-radius: var(--radius-sm);
+		background-color: var(--bg-raised);
+		color: var(--text-secondary);
 		font-weight: 500;
 		white-space: nowrap;
 		user-select: none;
 	}
-	.cap.sm { min-width: 18px; height: 18px; padding: 0 4px; font-size: var(--ui-text-xs); }
-	.cap.md { min-width: 22px; height: 22px; padding: 0 6px; font-size: var(--ui-text-sm); }
+	.cap { min-width: var(--height-md); padding: 0 6px; }
 </style>

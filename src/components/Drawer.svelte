@@ -3,7 +3,6 @@
 	import { on_window_key } from 'gpuix-fractalsvelte';
 	import Portal from 'gpuix-fractalsvelte/components/Portal.svelte';
 	import Scroller from 'gpuix-fractalsvelte/components/Scroller.svelte';
-	import type { Size } from '../types.ts';
 
 	const WIDTH = { sm: 320, md: 420, lg: 560 };
 	const HEIGHT = { sm: 240, md: 320, lg: 440 };
@@ -27,7 +26,7 @@
 		/** The edge the panel slides in from. */
 		side?: 'left' | 'right' | 'bottom';
 		/** Width for `left` and `right`, height for `bottom`. */
-		size?: Size;
+		size?: 'sm' | 'md' | 'lg';
 		title?: string;
 		/** `false` ignores scrim clicks and Escape. */
 		dismissable?: boolean;
@@ -39,8 +38,6 @@
 	} = $props();
 
 	const extent = $derived(side === 'bottom' ? HEIGHT[size] : WIDTH[size]);
-	const box = $derived(side === 'bottom' ? `height: ${HEIGHT[size]}px` : `width: ${WIDTH[size]}px`);
-	const panel_style = $derived(style ? `${box}; ${style}` : box);
 	const slide = (offset: number) => (side === 'left' ? { left: offset } : side === 'right' ? { right: offset } : { bottom: offset });
 
 	$effect(() => {
@@ -55,8 +52,8 @@
 	<Portal>
 		<div class="scrim" onclick={() => dismissable && onclose?.()} motion={FADE} testId={testid && `${testid}-scrim`}>
 			<div
-				class="panel {side}"
-				style={panel_style}
+				class="panel {side} {side === 'bottom' ? `drawer-h-${size}` : `drawer-w-${size}`}"
+				{style}
 				onclick={() => {}}
 				motion={{ initial: slide(-extent), animate: slide(0), transition: { duration: 0.2, ease: 'easeOut' } }}
 				testId={testid}
@@ -82,15 +79,15 @@
 	.scrim {
 		position: absolute;
 		inset: 0;
-		background-color: var(--ui-scrim);
+		background-color: var(--bg-extra);
 	}
 	.panel {
 		position: absolute;
 		display: flex;
 		flex-direction: column;
-		background-color: var(--ui-overlay);
-		color: var(--ui-ink);
-		border-color: var(--ui-border);
+		background-color: var(--bg-sunken);
+		color: var(--text-primary);
+		border-color: var(--border);
 	}
 	.panel.left { top: 0; bottom: 0; left: 0; border-right-width: 1px; }
 	.panel.right { top: 0; bottom: 0; right: 0; border-left-width: 1px; }
@@ -102,21 +99,21 @@
 		justify-content: space-between;
 		padding: 16px 20px;
 		border-bottom-width: 1px;
-		border-color: var(--ui-border);
+		border-color: var(--border);
 	}
-	.title { font-size: var(--ui-text-lg); font-weight: 600; }
+	.title { font-size: var(--text-lg); font-weight: 600; }
 	.close {
 		display: flex; align-items: center; justify-content: center;
-		width: 24px; height: 24px; border-radius: var(--ui-radius-sm);
-		color: var(--ui-ink-muted); cursor: pointer; font-size: 12px;
+		width: 24px; height: 24px; border-radius: var(--radius-sm);
+		color: var(--text-secondary); cursor: pointer; font-size: 12px;
 	}
-	.close:hover { background-color: var(--ui-raised); color: var(--ui-ink); }
+	.close:hover { background-color: var(--bg-raised); color: var(--text-primary); }
 	.body {
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
 		min-height: 0;
-		color: var(--ui-ink-muted);
+		color: var(--text-secondary);
 		line-height: 20px;
 	}
 	.foot {
@@ -126,7 +123,7 @@
 		gap: 8px;
 		padding: 12px 20px;
 		border-top-width: 1px;
-		border-color: var(--ui-border);
-		background-color: var(--ui-surface);
+		border-color: var(--border);
+		background-color: var(--bg-surface);
 	}
 </style>

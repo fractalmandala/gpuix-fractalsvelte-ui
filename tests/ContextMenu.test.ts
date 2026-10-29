@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import {
 	mount_headless,
 	click_test_id,

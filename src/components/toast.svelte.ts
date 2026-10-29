@@ -1,6 +1,6 @@
-import type { Tone } from '../types.ts';
+export type ToastVariant = 'secondary' | 'themed' | 'info' | 'success' | 'warning' | 'danger';
 
-export type ToastItem = { id: number; message: string; title: string; tone: Tone };
+export type ToastItem = { id: number; message: string; title: string; variant: ToastVariant };
 
 export const toasts = $state<ToastItem[]>([]);
 
@@ -10,10 +10,10 @@ let next = 1;
 /** Shows a toast and returns its id. `duration` is in ms; `0` keeps it until dismissed. */
 export function toast(
 	message: string,
-	{ title = '', tone = 'neutral', duration = 4000 }: { title?: string; tone?: Tone; duration?: number } = {}
+	{ title = '', variant = 'secondary', duration = 4000 }: { title?: string; variant?: ToastVariant; duration?: number } = {}
 ): number {
 	const id = next++;
-	toasts.push({ id, message, title, tone });
+	toasts.push({ id, message, title, variant });
 	if (duration > 0) timers.set(id, setTimeout(() => dismiss(id), duration));
 	return id;
 }

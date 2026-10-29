@@ -17,10 +17,10 @@
 		<div testId="email-echo">email:{email}</div>
 		<TextInput value="locked" disabled testid="locked" onchange={() => locked_edits++} />
 		<div style="display: flex; flex-direction: row; gap: 8px">
-			<TextInput value="" size="sm" placeholder="sm" style="flex-grow: 1" testid="sm" />
-			<TextInput value="" size="lg" placeholder="lg" style="flex-grow: 1" testid="lg" />
+			<TextInput value="" size="h-md" placeholder="sm" style="flex-grow: 1" testid="sm" />
+			<TextInput value="" size="h-xl" placeholder="lg" style="flex-grow: 1" testid="lg" />
 		</div>
 		<div testId="locked-edits">edits:{locked_edits}</div>
-		<Button label="Clear" size="sm" variant="ghost" testid="clear" onclick={() => (name = '')} />
+		<Button label="Clear" size="h-md" variant="ghost" testid="clear" onclick={() => (name = '')} />
 	</div>
 </ThemeProvider>

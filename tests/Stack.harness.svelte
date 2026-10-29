@@ -11,9 +11,9 @@
 <ThemeProvider>
 	<div testId="frame" style="display: flex; flex-direction: column; gap: 12px">
 		<div testId="row" style="display: flex; flex-direction: row; gap: 8px">
-			<Button label="Flip" variant="outline" size="sm" testid="flip" onclick={() => (direction = direction === 'row' ? 'column' : 'row')} />
-			<Button label="Center" variant="outline" size="sm" testid="center" onclick={() => (justify = justify === 'start' ? 'center' : 'start')} />
-			<Button label="Wrap" variant="outline" size="sm" testid="wrap" onclick={() => (wrap = !wrap)} />
+			<Button label="Flip" variant="outline" size="h-md" testid="flip" onclick={() => (direction = direction === 'row' ? 'column' : 'row')} />
+			<Button label="Center" variant="outline" size="h-md" testid="center" onclick={() => (justify = justify === 'start' ? 'center' : 'start')} />
+			<Button label="Wrap" variant="outline" size="h-md" testid="wrap" onclick={() => (wrap = !wrap)} />
 		</div>
 		<Stack {direction} {justify} padding="md" gap="md" testid="stack">
 			<Box bg="raised" radius="sm" testid="a" style="width: 60px; height: 24px" />

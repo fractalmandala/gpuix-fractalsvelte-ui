@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, find_test_id, bounds, center, wheel, wait, check, screenshot, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './ScrollArea.harness.svelte';
 

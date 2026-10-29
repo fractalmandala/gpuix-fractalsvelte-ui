@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { focus_element, type GpuixEvent, type ShadowNode } from 'gpuix-fractalsvelte';
-	import type { Size } from '../types.ts';
 
 	type Item = { id: string; label: string; icon?: Snippet; badge?: string; disabled?: boolean };
 
@@ -9,7 +8,7 @@
 		sections,
 		value,
 		onchange = undefined,
-		size = 'md',
+		size = 'h-lg',
 		style = null,
 		testid = null
 	}: {
@@ -17,7 +16,8 @@
 		/** The active item's id. */
 		value: string;
 		onchange?: (id: string) => void;
-		size?: Size;
+		/** Fractalstyler's height steps for each item. */
+		size?: 'h-md' | 'h-lg' | 'h-xl';
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
@@ -47,14 +47,14 @@
 	}
 </script>
 
-<div class="nav {size}" {style} testId={testid}>
+<div class="nav" {style} testId={testid}>
 	{#each sections as section, i (i)}
 		<div class="section">
 			{#if section.title}<div class="heading">{section.title}</div>{/if}
 			{#each section.items as item (item.id)}
 				{@const active = item.id === value}
 				<div
-					class="item {size}"
+					class="item el-size {size}"
 					class:active
 					class:off={item.disabled}
 					class:rest={!active && !item.disabled}
@@ -79,7 +79,7 @@
 <style>
 	.nav { display: flex; flex-direction: column; gap: 12px; }
 	.section { display: flex; flex-direction: column; gap: 2px; }
-	.heading { padding: 0 10px 4px 10px; font-size: var(--ui-text-xs); font-weight: 600; color: var(--ui-ink-faint); white-space: nowrap; }
+	.heading { padding: 0 10px 4px 10px; font-size: var(--text-xs); font-weight: 600; color: var(--text-muted); white-space: nowrap; }
 
 	.item {
 		display: flex;
@@ -89,31 +89,28 @@
 		padding: 0 10px;
 		border-width: 1px;
 		border-color: #00000000;
-		border-radius: var(--ui-radius-md);
+		border-radius: var(--radius-md);
 		background-color: #00000000;
-		color: var(--ui-ink-muted);
+		color: var(--text-secondary);
 		font-weight: 500;
 		white-space: nowrap;
 		user-select: none;
 		cursor: pointer;
 	}
-	.item.sm { height: 26px; font-size: var(--ui-text-sm); }
-	.item.md { height: 32px; font-size: var(--ui-text-md); }
-	.item.lg { height: 40px; font-size: var(--ui-text-lg); }
-	.item.active { background-color: var(--ui-accent-soft); color: var(--ui-accent); }
-	.item.rest:hover { background-color: var(--ui-raised); color: var(--ui-ink); }
+	.item.active { background-color: var(--theme-color-sub); color: var(--theme-color); }
+	.item.rest:hover { background-color: var(--bg-raised); color: var(--text-primary); }
 	.item.off { opacity: 0.5; cursor: not-allowed; }
-	.item.focused { border-color: var(--ui-ring); }
+	.item.focused { border-color: var(--ring); }
 
 	.icon { display: flex; flex-direction: row; align-items: center; justify-content: center; width: 16px; }
 	.label { display: flex; flex-grow: 1; }
 	.badge {
 		height: 16px;
 		padding: 0 6px;
-		border-radius: var(--ui-radius-full);
-		background-color: var(--ui-raised);
-		color: var(--ui-ink-muted);
-		font-size: var(--ui-text-xs);
+		border-radius: var(--radius-full);
+		background-color: var(--bg-raised);
+		color: var(--text-secondary);
+		font-size: var(--text-xs);
 		line-height: 16px;
 	}
 </style>

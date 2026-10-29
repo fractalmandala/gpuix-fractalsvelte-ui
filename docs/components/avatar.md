@@ -20,16 +20,40 @@ category: feedback
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `name` | `string` | `''` | Initials come from the first and last word; one word gives its first letter. Used as `alt` for the image. |
-| `src` | `string \| null` | `null` | Image path or URL. Initials show while it is unset. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Diameters 24 / 32 / 40 px. |
-| `shape` | `'circle' \| 'square'` | `'circle'` | Full radius or `radius-md`. |
-| `style` | `string \| null` | `null` | Inline CSS on the root. |
-| `testid` | `string \| null` | `null` | Test id on the root; the image gets `${testid}-img`. |
-
+| `name` | `string` | `''` | Initials come from the first and last word. |
+| `src` | `string \| null` | — | Image path or URL; the initials show while it is unset. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` |   |
+| `shape` | `'circle' \| 'square'` | `'circle'` |   |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`accent`, `accent-soft`, `radius-md`, `radius-full`, `text-xs`, `text-sm`, `text-md`.
+`theme-color`, `theme-color-sub`
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Avatar from 'gpuix-fractalsvelte-ui/Avatar.svelte';
+	const PEOPLE = ['Ada Lovelace', 'Grace Hopper', 'Alan Turing'];
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+	<div style="display: flex; flex-direction: row; gap: 12px; align-items: center">
+		<Avatar name="Ada Lovelace" size="sm" />
+		<Avatar name="Ada Lovelace" />
+		<Avatar name="Ada Lovelace" size="lg" />
+		<Avatar name="Ada Lovelace" size="lg" shape="square" />
+		<Avatar name="Grace Hopper" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAgElEQVR4nA3JIQFFMQhA0R/n1VgNGqAxa4CZXgMaoDGEwNwwf8ee3ycsQQQTjhBCCSP8PmUpophylFBKGX2xWRvZ2OZsYlOb2S+c5YhjznHCKWf8xWVd5GKXc4lLXea+CFYggQUniKCCiRfJSiSx5CSRVDL5olmNNNacJppqpvkDd6t6gRN3ZoUAAAAASUVORK5CYII=" size="lg" />
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		{#each PEOPLE as person}
+			<Avatar name={person} />
+		{/each}
+	</div>
+</div>
+```
 
 ## GPUI notes
 

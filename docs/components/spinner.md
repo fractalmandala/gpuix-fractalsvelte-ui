@@ -12,26 +12,48 @@ category: feedback
 </script>
 
 <Spinner />
-<Spinner size="sm" tone="neutral" />
-<Spinner size="lg" tone="success" testid="saving" />
+<Spinner size="h-sm" />
+<Spinner size="h-lg" variant="success" testid="saving" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Boxes of 16 / 24 / 32 px. |
-| `tone` | `'accent' \| 'neutral' \| 'success' \| 'warn' \| 'danger'` | `'accent'` | Dot colour. `neutral` uses the muted ink. |
-| `style` | `string \| null` | `null` | Inline CSS on the root box. |
-| `testid` | `string \| null` | `null` | Test id on the root. |
-
+| `size` | `'h-sm' \| 'h-md' \| 'h-bs' \| 'h-lg'` | `'h-bs'` | Fractalstyler's height steps; the ring fits that size. |
+| `variant` | `'themed' \| 'secondary' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'themed'` | Dot colour, in fractalstyler's names. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`accent`, `ink-muted`, `success`, `warn`, `danger`, `radius-full`.
-
+`danger`, `height-bs`, `height-lg`, `height-md`, `height-sm`, `info`, `radius-full`, `success`, `text-secondary`, `theme-color`, `warning`
 ## Keyboard
 
 None.
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Spinner from 'gpuix-fractalsvelte-ui/Spinner.svelte';
+	const VARIANTS = ['themed', 'secondary', 'success', 'warning', 'danger'] as const;
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+	<div style="display: flex; flex-direction: row; gap: 20px; align-items: center">
+		<Spinner size="h-sm" />
+		<Spinner size="h-md" />
+		<Spinner size="h-lg" />
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 20px; align-items: center">
+		{#each VARIANTS as variant}
+			<Spinner {variant} size="h-lg" />
+		{/each}
+	</div>
+</div>
+```
 
 ## GPUI notes
 

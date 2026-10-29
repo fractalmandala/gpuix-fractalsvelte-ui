@@ -12,7 +12,7 @@
 		onchange={(v) => (notes = v)}
 		maxRows={6}
 	/>
-	<div style="color: var(--ui-ink-muted); font-size: var(--ui-text-sm)">{notes.length} characters</div>
+	<div style="color: var(--text-secondary); font-size: var(--text-sm)">{notes.length} characters</div>
 
 	<TextArea size="sm" rows={2} placeholder="Small, two rows" />
 	<TextArea size="lg" rows={2} placeholder="Large, two rows" />

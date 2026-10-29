@@ -17,9 +17,9 @@
 <div style="display: flex; flex-direction: column; gap: 12px">
 	<ContextMenu
 		{items}
-		style="height: 150px; align-items: center; justify-content: center; background-color: var(--ui-surface); border-width: 1px; border-color: var(--ui-border); border-radius: var(--ui-radius-lg)"
+		style="height: 150px; align-items: center; justify-content: center; background-color: var(--bg-surface); border-width: 1px; border-color: var(--border); border-radius: var(--radius-lg)"
 	>
-		<div style="font-size: var(--ui-text-md); color: var(--ui-ink)">Right-click anywhere in this panel</div>
+		<div style="font-size: var(--text-md); color: var(--text-primary)">Right-click anywhere in this panel</div>
 	</ContextMenu>
-	<div style="font-size: var(--ui-text-sm); color: var(--ui-ink-muted)">last action: {last}</div>
+	<div style="font-size: var(--text-sm); color: var(--text-secondary)">last action: {last}</div>
 </div>

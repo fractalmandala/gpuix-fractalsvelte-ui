@@ -2,8 +2,8 @@
 	import Stack from '../../src/components/Stack.svelte';
 	import Box from '../../src/components/Box.svelte';
 	import Button from '../../src/components/Button.svelte';
-	const chip = 'font-size: var(--ui-text-sm); color: var(--ui-ink)';
-	const caption = 'font-size: var(--ui-text-sm); color: var(--ui-ink-muted)';
+	const chip = 'font-size: var(--text-sm); color: var(--text-primary)';
+	const caption = 'font-size: var(--text-sm); color: var(--text-secondary)';
 	const tags = ['Design', 'Svelte', 'GPUI', 'Rust', 'Motion', 'Tokens', 'Docs'];
 	let justify = $state<'start' | 'center' | 'between'>('between');
 </script>
@@ -19,9 +19,9 @@
 	</div>
 	<div style="display: flex; flex-direction: column; gap: 8px">
 		<div style={caption}>Row, justify {justify} (click to cycle)</div>
-		<Stack direction="row" justify={justify} align="center" gap="sm" style="padding: 10px; background-color: var(--ui-surface); border-width: 1px; border-color: var(--ui-border); border-radius: var(--ui-radius-md)">
-			<div style="font-size: var(--ui-text-md); font-weight: 600; color: var(--ui-ink)">Toolbar</div>
-			<Button label="Cycle" variant="outline" tone="neutral" size="sm" onclick={() => (justify = justify === 'between' ? 'center' : justify === 'center' ? 'start' : 'between')} />
+		<Stack direction="row" justify={justify} align="center" gap="sm" style="padding: 10px; background-color: var(--bg-surface); border-width: 1px; border-color: var(--border); border-radius: var(--radius-md)">
+			<div style="font-size: var(--text-md); font-weight: 600; color: var(--text-primary)">Toolbar</div>
+			<Button label="Cycle" variant="outline" size="h-md" onclick={() => (justify = justify === 'between' ? 'center' : justify === 'center' ? 'start' : 'between')} />
 		</Stack>
 	</div>
 	<div style="display: flex; flex-direction: row; gap: 24px; align-items: start">

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { get_native, type GpuixEvent, type ShadowNode } from 'gpuix-fractalsvelte';
 	import Portal from 'gpuix-fractalsvelte/components/Portal.svelte';
-	import type { Size } from '../types.ts';
 
 	let {
 		value,
@@ -9,7 +8,7 @@
 		min = 0,
 		max = 100,
 		step = 1,
-		size = 'md',
+		size = 'h-md',
 		disabled = false,
 		style = null,
 		testid = null
@@ -20,7 +19,8 @@
 		max?: number;
 		/** Values snap to `min + n * step`. */
 		step?: number;
-		size?: Size;
+		/** Fractalstyler's height steps for the control. */
+		size?: 'h-sm' | 'h-md' | 'h-bs';
 		disabled?: boolean;
 		style?: string | null;
 		testid?: string | null;
@@ -84,8 +84,8 @@
 	{style}
 	testId={testid}
 >
-	<div class="track {size}" {@attach (node: ShadowNode) => (track = node)} testId={testid && `${testid}-track`}>
-		<div class="fill {size}" style:width="{fraction * 100}%">
+	<div class="track" {@attach (node: ShadowNode) => (track = node)} testId={testid && `${testid}-track`}>
+		<div class="fill" style:width="{fraction * 100}%">
 			<div class="thumb {size}" class:focused testId={testid && `${testid}-thumb`}></div>
 		</div>
 	</div>
@@ -106,40 +106,38 @@
 		min-width: 120px;
 		user-select: none;
 	}
-	.root.sm { height: 18px; }
-	.root.md { height: 22px; }
-	.root.lg { height: 26px; }
+	.root.h-sm { height: var(--height-sm); }
+	.root.h-md { height: var(--height-md); }
+	.root.h-bs { height: var(--height-bs); }
 	.root.on { cursor: pointer; }
 	.root.off { opacity: 0.5; cursor: not-allowed; }
 
 	.track {
 		flex-grow: 1;
+		height: 4px;
 		margin: 0 10px;
-		background-color: var(--ui-raised);
-		border-radius: var(--ui-radius-full);
+		background-color: var(--bg-raised);
+		border-radius: var(--radius-full);
 	}
-	.track.sm { height: 4px; }
-	.track.md { height: 4px; }
-	.track.lg { height: 6px; }
 
 	.fill {
 		position: relative;
 		height: 100%;
-		background-color: var(--ui-accent);
-		border-radius: var(--ui-radius-full);
+		background-color: var(--theme-color);
+		border-radius: var(--radius-full);
 	}
 
 	.thumb {
 		position: absolute;
 		border-width: 2px;
-		border-color: var(--ui-accent);
-		border-radius: var(--ui-radius-full);
-		background-color: var(--ui-surface);
+		border-color: var(--theme-color);
+		border-radius: var(--radius-full);
+		background-color: var(--bg-surface);
 	}
-	.thumb.sm { width: 12px; height: 12px; right: -6px; top: -4px; }
-	.thumb.md { width: 16px; height: 16px; right: -8px; top: -6px; }
-	.thumb.lg { width: 20px; height: 20px; right: -10px; top: -7px; }
-	.thumb.focused { border-color: var(--ui-ring); background-color: var(--ui-accent-soft); }
+	.thumb.h-sm { width: var(--height-sm); height: var(--height-sm); right: -8px; top: -6px; }
+	.thumb.h-md { width: var(--height-md); height: var(--height-md); right: -10px; top: -8px; }
+	.thumb.h-bs { width: var(--height-bs); height: var(--height-bs); right: -12px; top: -10px; }
+	.thumb.focused { border-color: var(--ring); background-color: var(--theme-color-sub); }
 
 	.cover { position: absolute; inset: 0; cursor: pointer; }
 </style>

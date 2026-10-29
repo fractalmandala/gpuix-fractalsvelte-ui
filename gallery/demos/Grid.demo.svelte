@@ -15,15 +15,15 @@
 	<Grid columns={3} gap="md">
 		{#each metrics as m (m.label)}
 			<Box bg="raised" padding="md" radius="md">
-				<div style="font-size: var(--ui-text-sm); color: var(--ui-ink-muted)">{m.label}</div>
-				<div style="font-size: var(--ui-text-xl); font-weight: 600; color: var(--ui-ink)">{m.value}</div>
+				<div style="font-size: var(--text-sm); color: var(--text-secondary)">{m.label}</div>
+				<div style="font-size: var(--text-xl); font-weight: 600; color: var(--text-primary)">{m.value}</div>
 			</Box>
 		{/each}
 	</Grid>
 	<Grid columns={2} gap="sm">
 		{#each ['Inbox', 'Drafts', 'Sent', 'Archive'] as name (name)}
 			<Box bg="surface" padding="sm" border radius="sm">
-				<div style="padding: 6px 8px; font-size: var(--ui-text-md); color: var(--ui-ink)">{name}</div>
+				<div style="padding: 6px 8px; font-size: var(--text-md); color: var(--text-primary)">{name}</div>
 			</Box>
 		{/each}
 	</Grid>

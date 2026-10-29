@@ -25,22 +25,53 @@ category: navigation
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `items` | `{ label: string; onclick?: () => void }[]` | — | Items with `onclick` are links. The last item is the current page. |
-| `separator` | `string` | `'/'` | Drawn between items. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Row heights 22 / 26 / 32 px. |
-| `style` | `string` | — | Inline CSS on the root. |
-| `testid` | `string` | — | Test id on the root. Each crumb gets `<testid>-<index>`. |
-
+| `items` | `{ label: string; onclick?: () => void }[]` | — | Ancestors with an `onclick` are links; the last item is the current page. |
+| `separator` | `string` | `'/'` |   |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Fractalstyler's text sizes. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`ink`, `ink-muted`, `ink-faint`, `raised`, `ring`, `radius-sm`, `text-sm/md/lg`.
-
+`bg-raised`, `radius-sm`, `ring`, `text-lg`, `text-md`, `text-muted`, `text-primary`, `text-secondary`, `text-sm`
 ## Keyboard
 
 | Key | Action |
 | --- | --- |
 | Tab | Moves between links |
 | Enter, Space | Runs the focused link's `onclick` |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Breadcrumbs from 'gpuix-fractalsvelte-ui/Breadcrumbs.svelte';
+	let visited = $state('none');
+	const go = (name: string) => () => (visited = name);
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px; align-items: start">
+	<Breadcrumbs
+		items={[
+			{ label: 'Workspace', onclick: go('Workspace') },
+			{ label: 'Projects', onclick: go('Projects') },
+			{ label: 'Fractal UI' }
+		]}
+	/>
+	<Breadcrumbs
+		size="sm"
+		separator="›"
+		items={[{ label: 'Settings', onclick: go('Settings') }, { label: 'Keyboard' }]}
+	/>
+	<Breadcrumbs
+		size="lg"
+		separator="→"
+		items={[{ label: 'Docs', onclick: go('Docs') }, { label: 'Components' }]}
+	/>
+	<div style="color: var(--text-secondary)">last visited: {visited}</div>
+</div>
+```
 
 ## GPUI notes
 

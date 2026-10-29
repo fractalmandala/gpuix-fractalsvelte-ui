@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, click_test_id, focus, press, find_text, find_test_id, bounds, all_text, screenshot, check, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './ButtonGroup.harness.svelte';
 
@@ -20,6 +21,9 @@ check('attached child buttons fire', state().includes('picks:4'));
 check('attached children render', !!find_text('Centre') && !!find_text('Right'));
 const box = (id: string) => bounds(find_test_id(id)!)!;
 const [l, c, r] = [box('left'), box('centre'), box('right')];
-check('attached buttons overlap their borders by 1px', [c.x, r.x], [l.x + l.width - 1, c.x + c.width - 1]);
+// Bounds are the border box: the buttons carry a 1px border outside their layout box.
+const layout_left = (b: typeof l) => b.x + 1;
+const layout_right = (b: typeof l) => b.x + b.width - 1;
+check('attached buttons overlap their borders by 1px', [layout_left(c), layout_left(r)], [layout_right(l) - 1, layout_right(c) - 1]);
 screenshot('/tmp/gpuix-ui-buttongroup.png');
 finish('ButtonGroup', 8);

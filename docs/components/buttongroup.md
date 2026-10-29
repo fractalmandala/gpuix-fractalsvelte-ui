@@ -23,8 +23,8 @@ category: actions
 />
 
 <ButtonGroup>
-  <Button variant="outline" tone="neutral" label="Left" />
-  <Button variant="outline" tone="neutral" label="Right" />
+  <Button variant="outline" label="Left" />
+  <Button variant="outline" label="Right" />
 </ButtonGroup>
 ```
 
@@ -32,19 +32,17 @@ category: actions
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `options` | `{ value: string, label: string, disabled?: boolean }[]` | — | Segmented mode. The value type follows the options. |
-| `value` | `string \| null` | `null` | The selected option's value. |
-| `onchange` | `(value) => void` | — | Called with the picked value, never with the current one. |
-| `children` | `Snippet` | — | Attached mode: the buttons to join. |
-| `tone` | `'accent' \| 'neutral' \| 'success' \| 'warn' \| 'danger'` | `'accent'` | Colour of the selected segment. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Segment heights 20 / 26 / 34 px. |
-| `style` | `string` | — | Inline CSS for the group. |
-| `testid` | `string` | — | Test id on the group. Segments get `<testid>-<value>`. |
-
+| `children` | `Snippet` | — | Attached mode: the child buttons laid out edge to edge. |
+| `options` | `Option[]` | — | Segmented mode: one selectable segment per option. Use instead of `children`. |
+| `value` | `T \| null` | — |   |
+| `onchange` | `(value: T) => void` | — |   |
+| `variant` | `'primary' \| 'secondary' \| 'themed' \| 'outline' \| 'ghost' \| 'link' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'primary'` | Fractalstyler's variant for the selected segment. |
+| `size` | `'h-sm' \| 'h-md' \| 'h-bs' \| 'h-lg' \| 'h-xl'` | `'h-bs'` | Fractalstyler's size axis. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`accent`, `accent-ink`, the same for `success`, `warn` and `danger`, `surface`, `raised`, `border`, `ink`, `ink-muted`, `ring`, `radius-sm/md`, `text-sm/md/lg`.
-
+`bg-raised`, `border`, `radius-md`, `radius-sm`, `ring`, `text-secondary`
 ## Keyboard
 
 | Key | Action |
@@ -52,6 +50,64 @@ category: actions
 | Tab | Moves focus to the segmented group (one stop) |
 | Left, Up | Select the previous enabled option, wrapping |
 | Right, Down | Select the next enabled option, wrapping |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Button from 'gpuix-fractalsvelte-ui/Button.svelte';
+	import ButtonGroup from 'gpuix-fractalsvelte-ui/ButtonGroup.svelte';
+	type Range = 'day' | 'week' | 'month' | 'year';
+	let range = $state<Range>('week');
+	let view = $state('list');
+	let align = $state('left');
+	const views = [
+		{ value: 'list', label: 'List' },
+		{ value: 'board', label: 'Board' },
+		{ value: 'graph', label: 'Graph' }
+	];
+	const aligns = [
+		{ value: 'left', label: 'Left' },
+		{ value: 'centre', label: 'Centre' },
+		{ value: 'right', label: 'Right' }
+	];
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+	<div style="display: flex; flex-direction: row; gap: 12px; align-items: center">
+		<ButtonGroup
+			options={[
+				{ value: 'day', label: 'Day' },
+				{ value: 'week', label: 'Week' },
+				{ value: 'month', label: 'Month' },
+				{ value: 'year', label: 'Year', disabled: true }
+			]}
+			value={range}
+			onchange={(v: Range) => (range = v)}
+		/>
+		<div style="color: var(--text-secondary)">range: {range}</div>
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 12px; align-items: center">
+		<ButtonGroup options={views} value={view} onchange={(v) => (view = v)} variant="secondary" size="h-md" />
+		<ButtonGroup options={views} value={view} onchange={(v) => (view = v)} variant="success" size="h-lg" />
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 12px; align-items: center">
+		<ButtonGroup options={aligns} value={align} onchange={(v) => (align = v)} variant="warning" />
+		<ButtonGroup options={aligns} value={align} onchange={(v) => (align = v)} variant="danger" />
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 0">
+		<ButtonGroup>
+			{#snippet children()}
+				<Button variant="outline" size="h-md" label="Undo" />
+				<Button variant="outline" size="h-md" label="Redo" />
+				<Button variant="outline" size="h-md" label="Reset" />
+			{/snippet}
+		</ButtonGroup>
+	</div>
+</div>
+```
 
 ## GPUI notes
 

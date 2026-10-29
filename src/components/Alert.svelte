@@ -1,18 +1,18 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { Tone } from '../types.ts';
 	import type { GpuixEvent } from 'gpuix-fractalsvelte';
 
 	let {
 		title = '',
-		tone = 'accent',
+		variant = 'info',
 		children = undefined,
 		onclose = undefined,
 		style = null,
 		testid = null
 	}: {
 		title?: string;
-		tone?: Tone;
+		/** Fractalstyler's status names. */
+		variant?: 'info' | 'secondary' | 'success' | 'warning' | 'danger';
 		/** Body content under the title. */
 		children?: Snippet;
 		/** Shows a dismiss button; the parent removes the alert. */
@@ -28,8 +28,8 @@
 	}
 </script>
 
-<div class="alert {tone}" {style} testId={testid}>
-	<div class="dot {tone}"></div>
+<div class="alert {variant}" {style} testId={testid}>
+	<div class="dot {variant}"></div>
 	<div class="text">
 		{#if title}<div class="title">{title}</div>{/if}
 		{#if children}<div class="body">{@render children()}</div>{/if}
@@ -56,24 +56,24 @@
 		gap: 10px;
 		padding: 12px 14px;
 		border-width: 1px;
-		border-radius: var(--ui-radius-md);
+		border-radius: var(--radius-md);
 	}
-	.alert.accent { background-color: var(--ui-accent-soft); border-color: var(--ui-accent); }
-	.alert.neutral { background-color: var(--ui-raised); border-color: var(--ui-border-strong); }
-	.alert.success { background-color: var(--ui-success-soft); border-color: var(--ui-success); }
-	.alert.warn { background-color: var(--ui-warn-soft); border-color: var(--ui-warn); }
-	.alert.danger { background-color: var(--ui-danger-soft); border-color: var(--ui-danger); }
+	.alert.info { background-color: var(--info-soft); border-color: var(--info); }
+	.alert.secondary { background-color: var(--bg-raised); border-color: var(--border-strong); }
+	.alert.success { background-color: var(--success-soft); border-color: var(--success); }
+	.alert.warning { background-color: var(--warning-soft); border-color: var(--warning); }
+	.alert.danger { background-color: var(--danger-soft); border-color: var(--danger); }
 
-	.dot { width: 8px; height: 8px; margin-top: 5px; border-radius: var(--ui-radius-full); }
-	.dot.accent { background-color: var(--ui-accent); }
-	.dot.neutral { background-color: var(--ui-ink-muted); }
-	.dot.success { background-color: var(--ui-success); }
-	.dot.warn { background-color: var(--ui-warn); }
-	.dot.danger { background-color: var(--ui-danger); }
+	.dot { width: 8px; height: 8px; margin-top: 5px; border-radius: var(--radius-full); }
+	.dot.info { background-color: var(--info); }
+	.dot.secondary { background-color: var(--text-secondary); }
+	.dot.success { background-color: var(--success); }
+	.dot.warning { background-color: var(--warning); }
+	.dot.danger { background-color: var(--danger); }
 
 	.text { display: flex; flex-direction: column; flex-grow: 1; gap: 2px; }
-	.title { color: var(--ui-ink); font-size: var(--ui-text-sm); font-weight: 600; line-height: 18px; }
-	.body { color: var(--ui-ink-muted); font-size: var(--ui-text-sm); line-height: 18px; }
+	.title { color: var(--text-primary); font-size: var(--text-sm); font-weight: 600; line-height: 18px; }
+	.body { color: var(--text-secondary); font-size: var(--text-sm); line-height: 18px; }
 
 	.close {
 		display: flex;
@@ -83,11 +83,11 @@
 		height: 22px;
 		border-width: 1px;
 		border-color: #00000000;
-		border-radius: var(--ui-radius-sm);
-		color: var(--ui-ink-muted);
+		border-radius: var(--radius-sm);
+		color: var(--text-secondary);
 		font-size: 11px;
 		cursor: pointer;
 	}
-	.close:hover { background-color: var(--ui-raised); color: var(--ui-ink); }
-	.close.focused { border-color: var(--ui-ring); }
+	.close:hover { background-color: var(--bg-raised); color: var(--text-primary); }
+	.close.focused { border-color: var(--ring); }
 </style>

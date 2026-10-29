@@ -1,4 +1,5 @@
-import { mount_headless, click_test_id, press, find_text, all_text, screenshot, check, finish } from 'gpuix-fractalsvelte/test';
+import 'gpuix-fractalsvelte';
+import { mount_headless, click_test_id, press, find_text, find_test_id, bounds, all_text, screenshot, check, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './Popover.harness.svelte';
 
 mount_headless(Harness, { width: 600, height: 400 });
@@ -24,4 +25,8 @@ click_test_id('trigger');
 press('escape');
 check('escape closes it', !find_text('Rename'));
 
-finish('Popover', 6);
+click_test_id('point');
+const pinned = bounds(find_test_id('at-content')!)!;
+// The panel's own padding, border and the default 4px gap sit between the point and its content.
+check('position hangs the panel at the given window point', pinned.x - 250 >= 0 && pinned.x - 250 <= 8 && pinned.y - 120 >= 0 && pinned.y - 120 <= 12);
+finish('Popover', 7);

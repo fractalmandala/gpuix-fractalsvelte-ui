@@ -22,20 +22,18 @@ category: inputs
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `checked` | `boolean` | `false` | Tick shown while true. |
-| `indeterminate` | `boolean` | `false` | Shows a dash instead of the tick. The parent decides what a click means and clears it. |
-| `onchange` | `(checked: boolean) => void` | — | Called with the next checked state on box or label click, or Space. |
-| `label` | `string` | `''` | Plain-text label. Ignored when `children` is given. |
-| `children` | `Snippet` | — | Rich label. |
-| `disabled` | `boolean` | `false` | Dims to half opacity, ignores clicks and leaves the tab order. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Box 14 / 16 / 20 px. |
-| `style` | `string \| null` | `null` | Inline CSS on the root. |
-| `testid` | `string \| null` | `null` | Test id on the root; the box gets `${testid}-box`. |
-
+| `checked` | `boolean` | `false` |   |
+| `indeterminate` | `boolean` | `false` | Shows a dash in place of the tick. The parent decides what a click means, and clears it. |
+| `onchange` | `(checked: boolean) => void` | — | Called with the next checked state when the box or label is clicked, or Space is pressed. |
+| `label` | `string` | `''` | Plain-text label, ignored when `children` is given. |
+| `children` | `Snippet` | — |   |
+| `disabled` | `boolean` | `false` |   |
+| `size` | `'h-sm' \| 'h-md' \| 'h-bs'` | `'h-sm'` | Fractalstyler's height steps; the box is that height square. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`surface`, `border-strong`, `accent`, `accent-ink`, `ring`, `ink`, `text-sm`, `text-md`, `text-lg`.
-
+`bg-surface`, `border-strong`, `radius-sm`, `ring`, `text-md`, `text-primary`, `text-theme`, `theme-color`
 ## Keyboard
 
 | Key | Action |
@@ -43,6 +41,46 @@ category: inputs
 | Space | Toggle while focused |
 
 Enter is not handled.
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Checkbox from 'gpuix-fractalsvelte-ui/Checkbox.svelte';
+
+	let items = $state([true, false, true]);
+	const all = $derived(items.every(Boolean));
+	const some = $derived(items.some(Boolean) && !all);
+	let terms = $state(false);
+</script>
+
+<div style="display: flex; flex-direction: row; gap: 48px">
+	<div style="display: flex; flex-direction: column; gap: 12px">
+		<Checkbox label="Small" size="h-sm" checked />
+		<Checkbox label="Medium" size="h-md" checked={terms} onchange={(v) => (terms = v)} />
+		<Checkbox label="Large" size="h-bs" checked />
+		<Checkbox label="Indeterminate" indeterminate />
+		<Checkbox label="Disabled" disabled />
+		<Checkbox label="Disabled checked" disabled checked />
+	</div>
+
+	<div style="display: flex; flex-direction: column; gap: 12px">
+		<Checkbox
+			label="Select all"
+			checked={all}
+			indeterminate={some}
+			onchange={(v) => (items = items.map(() => v))}
+		/>
+		{#each items as on, i (i)}
+			<div style="padding-left: 24px">
+				<Checkbox label="Item {i + 1}" checked={on} onchange={(v) => (items[i] = v)} />
+			</div>
+		{/each}
+	</div>
+</div>
+```
 
 ## GPUI notes
 

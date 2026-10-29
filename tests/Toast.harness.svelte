@@ -7,10 +7,10 @@
 
 <ThemeProvider>
 	<div style="display: flex; flex-direction: row; gap: 8px; padding: 16px">
-		<Button label="Info" variant="outline" tone="neutral" testid="info" onclick={() => toast('Project saved', { title: 'Saved' })} />
-		<Button label="Error" tone="danger" testid="err" onclick={() => toast('Upload failed', { title: 'Error', tone: 'danger', duration: 0 })} />
+		<Button label="Info" variant="outline" testid="info" onclick={() => toast('Project saved', { title: 'Saved' })} />
+		<Button label="Error" variant="danger" testid="err" onclick={() => toast('Upload failed', { title: 'Error', variant: 'danger', duration: 0 })} />
 		<Button label="Short" testid="short" onclick={() => toast('Gone soon', { duration: 100 })} />
-		<Button label="Sticky" testid="sticky" onclick={() => toast('Stays put', { tone: 'success', duration: 0 })} />
+		<Button label="Sticky" testid="sticky" onclick={() => toast('Stays put', { variant: 'success', duration: 0 })} />
 	</div>
 	<div testId="count">toasts:{toasts.length}</div>
 	<Toast testid="toaster" />

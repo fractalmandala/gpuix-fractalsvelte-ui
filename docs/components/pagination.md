@@ -13,7 +13,7 @@ category: navigation
 </script>
 
 <Pagination {page} total={24} onchange={(p) => (page = p)} />
-<Pagination {page} total={5} siblings={2} size="sm" onchange={(p) => (page = p)} />
+<Pagination {page} total={5} siblings={2} size="h-sm" onchange={(p) => (page = p)} />
 ```
 
 ## Props
@@ -21,23 +21,42 @@ category: navigation
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
 | `page` | `number` | — | The current page, from 1. |
-| `total` | `number` | — | The number of pages. |
-| `siblings` | `number` | `1` | Pages shown on each side of the current one. The first and last page are always shown. |
-| `onchange` | `(page: number) => void` | — | Called with the new page; not called for the current page or past either end. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Control heights 26 / 32 / 40 px. |
-| `style` | `string` | — | Inline CSS on the root. |
-| `testid` | `string` | — | Test id on the root. Parts get `<testid>-prev`, `<testid>-next` and `<testid>-<page>`. |
-
+| `total` | `number` | — |   |
+| `siblings` | `number` | `1` | Pages shown either side of the current one. |
+| `onchange` | `(page: number) => void` | — |   |
+| `size` | `'h-sm' \| 'h-md' \| 'h-bs' \| 'h-lg' \| 'h-xl'` | `'h-md'` | Fractalstyler's height steps for the buttons. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-Via `Button`: `accent`, `accent-ink`, `raised`, `ink`, `ink-muted`, `ink-faint`, `radius-sm/md`, `text-sm/md/lg`.
-
+`text-muted`
 ## Keyboard
 
 | Key | Action |
 | --- | --- |
 | Tab | Moves between the controls |
 | Enter, Space | Goes to the focused page, or to previous or next |
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Pagination from 'gpuix-fractalsvelte-ui/Pagination.svelte';
+	let page = $state(1);
+	let wide = $state(7);
+	let small = $state(2);
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px; align-items: start">
+	<Pagination {page} total={24} onchange={(p) => (page = p)} />
+	<Pagination page={wide} total={24} siblings={2} onchange={(p) => (wide = p)} />
+	<Pagination page={small} total={5} size="h-sm" onchange={(p) => (small = p)} />
+	<Pagination page={3} total={3} size="h-lg" />
+	<div style="color: var(--text-secondary)">page {page}</div>
+</div>
+```
 
 ## GPUI notes
 

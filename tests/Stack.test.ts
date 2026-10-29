@@ -1,3 +1,4 @@
+import 'gpuix-fractalsvelte';
 import { mount_headless, click_test_id, find_test_id, bounds, check, screenshot, finish } from 'gpuix-fractalsvelte/test';
 import Harness from './Stack.harness.svelte';
 
@@ -10,7 +11,7 @@ const box = (id: string) => {
 
 let a = box('a');
 let b = box('b');
-check('row: items sit side by side with an 8px gap', b.x - a.x - a.w === 8 && a.y === b.y);
+check('row: items sit side by side with a 12px gap', b.x - a.x - a.w === 12 && a.y === b.y);
 
 click_test_id('flip');
 a = box('a');
@@ -18,9 +19,9 @@ b = box('b');
 const s = box('stack');
 const frame = box('frame');
 const row = box('row');
-check('column: items stack with an 8px gap', b.y - a.y - a.h === 8 && a.x === b.x);
+check('column: items stack with a 12px gap', b.y - a.y - a.h === 12 && a.x === b.x);
 // bounds() reports a padded or bordered element's content origin, so padding is measured from unbordered neighbours.
-check('padding md insets the first item by 8px', a.x - frame.x === 8 && a.y - (row.y + row.h + 12) === 8);
+check('padding md insets the first item by 12px', a.x - frame.x === 12 && a.y - (row.y + row.h + 12) === 12);
 
 click_test_id('flip');
 click_test_id('center');

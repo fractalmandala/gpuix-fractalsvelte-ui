@@ -8,7 +8,7 @@
 	<div style="display: flex; flex-direction: row; gap: 24px; padding: 60px 16px 16px 16px">
 		<Tooltip content="Save (cmd-s)" delay={50} side="bottom" testid="save">
 			{#snippet children(hover)}
-				<div {...hover} onclick={() => clicks++} testId="trigger" style="padding: 6px 12px; border-radius: var(--ui-radius-sm); background-color: var(--ui-raised); color: var(--ui-ink)">Save</div>
+				<div {...hover} onclick={() => clicks++} testId="trigger" style="padding: 6px 12px; border-radius: var(--radius-sm); background-color: var(--bg-raised); color: var(--text-primary)">Save</div>
 			{/snippet}
 		</Tooltip>
 	</div>

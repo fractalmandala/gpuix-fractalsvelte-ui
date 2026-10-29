@@ -8,9 +8,9 @@
 
 <div style="display: flex; flex-direction: column; gap: 16px; width: 360px">
 	<div style="display: flex; flex-direction: row; gap: 8px; align-items: flex-end">
-		<TextInput size="sm" placeholder="Small" style="flex-grow: 1; flex-basis: 0; min-width: 0" />
-		<TextInput size="md" placeholder="Medium" style="flex-grow: 1; flex-basis: 0; min-width: 0" />
-		<TextInput size="lg" placeholder="Large" style="flex-grow: 1; flex-basis: 0; min-width: 0" />
+		<TextInput size="h-md" placeholder="Small" style="flex-grow: 1; flex-basis: 0; min-width: 0" />
+		<TextInput size="h-lg" placeholder="Medium" style="flex-grow: 1; flex-basis: 0; min-width: 0" />
+		<TextInput size="h-xl" placeholder="Large" style="flex-grow: 1; flex-basis: 0; min-width: 0" />
 	</div>
 
 	<TextInput
@@ -21,7 +21,7 @@
 		onchange={(v) => (name = v)}
 		onsubmit={(v) => (submitted = v)}
 	/>
-	<div style="color: var(--ui-ink-muted); font-size: var(--ui-text-sm)">submitted: {submitted || '—'}</div>
+	<div style="color: var(--text-secondary); font-size: var(--text-sm)">submitted: {submitted || '—'}</div>
 
 	<TextInput label="Website" placeholder="example.com" value={site} onchange={(v) => (site = v)}>
 		{#snippet leading()}<div>https://</div>{/snippet}
@@ -32,7 +32,7 @@
 		value={query}
 		onchange={(v) => (query = v)}
 	>
-		{#snippet trailing()}<div style="font-size: var(--ui-text-xs)">esc</div>{/snippet}
+		{#snippet trailing()}<div style="font-size: var(--text-xs)">esc</div>{/snippet}
 	</TextInput>
 
 	<TextInput label="Email" value="ada@" error="Enter a valid email address" />

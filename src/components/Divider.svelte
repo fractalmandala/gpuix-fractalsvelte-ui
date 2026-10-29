@@ -26,10 +26,10 @@
 {/if}
 
 <style>
-	.rule { background-color: var(--ui-border); align-self: stretch; }
+	.rule { background-color: var(--border); align-self: stretch; }
 	.rule.horizontal { height: 1px; }
 	.rule.vertical { width: 1px; }
 	.labelled { display: flex; flex-direction: row; align-items: center; gap: 8px; align-self: stretch; }
-	.line { flex-grow: 1; height: 1px; background-color: var(--ui-border); }
-	.label { font-size: var(--ui-text-sm); color: var(--ui-ink-faint); }
+	.line { flex-grow: 1; height: 1px; background-color: var(--border); }
+	.label { font-size: var(--text-sm); color: var(--text-muted); }
 </style>

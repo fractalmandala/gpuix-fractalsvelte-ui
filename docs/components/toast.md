@@ -13,8 +13,8 @@ category: overlays
   import { toast } from 'gpuix-fractalsvelte-ui/toast.svelte.ts';
 </script>
 
-<Button label="Save" onclick={() => toast('Project saved', { title: 'Saved', tone: 'success' })} />
-<Button label="Upload" tone="danger" onclick={() => toast('Upload failed', { tone: 'danger', duration: 0 })} />
+<Button label="Save" onclick={() => toast('Project saved', { title: 'Saved', variant: 'success' })} />
+<Button label="Upload" variant="danger" onclick={() => toast('Upload failed', { variant: 'danger', duration: 0 })} />
 
 <Toast />
 ```
@@ -23,9 +23,8 @@ category: overlays
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `style` | `string \| null` | `null` | Inline CSS on the stack, which sits bottom-right by default. |
-| `testid` | `string \| null` | `null` | Test id on the stack. Each toast gets `${testid}-${id}` and its close button `${testid}-close-${id}`. |
-
+| `style` | `string \| null` | — | Inline CSS for the stack, which sits bottom-right by default. |
+| `testid` | `string \| null` | — |   |
 ## toast()
 
 `toast(message, options)` adds a toast and returns its numeric id. `dismiss(id)` removes one early. Both come from `gpuix-fractalsvelte-ui/toast.svelte.ts`, not `Toast.svelte`.
@@ -34,7 +33,7 @@ category: overlays
 | --- | --- | --- | --- |
 | `message` | `string` | — | Required. Body text. |
 | `title` | `string` | `''` | Bold line above the message. Omitted when empty. |
-| `tone` | `'accent' \| 'neutral' \| 'success' \| 'warn' \| 'danger'` | `'neutral'` | Colour of the left bar. |
+| `variant` | `'secondary' \| 'themed' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'secondary'` | Colour of the left bar. |
 | `duration` | `number` | `4000` | Milliseconds until it dismisses itself. `0` keeps it until closed. |
 
 `dismiss(id: number)` clears the toast's timer and removes it. Closing a toast from its ✕ button does the same.
@@ -43,11 +42,37 @@ category: overlays
 
 ## Tokens
 
-`overlay`, `ink`, `ink-muted`, `border`, `border-strong`, `raised`, `radius-sm`, `radius-md`, `text-sm`, `text-md`, `accent`, `success`, `warn`, `danger`.
-
+`bg-raised`, `bg-sunken`, `border`, `border-strong`, `danger`, `info`, `radius-md`, `radius-sm`, `success`, `text-md`, `text-primary`, `text-secondary`, `text-sm`, `theme-color`, `warning`
 ## Keyboard
 
 None. The ✕ button is a pointer target only.
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Button from 'gpuix-fractalsvelte-ui/Button.svelte';
+	import Toast from 'gpuix-fractalsvelte-ui/Toast.svelte';
+	import { toast, toasts, dismiss } from 'gpuix-fractalsvelte-ui/toast.svelte.ts';
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		<Button label="Accent" variant="themed" onclick={() => toast('A new version is ready to install.', { title: 'Update', variant: 'themed' })} />
+		<Button label="Neutral" variant="secondary" onclick={() => toast('Changes are saved to this device.', { title: 'Saved' })} />
+		<Button label="Success" variant="success" onclick={() => toast('Your export finished in 4 seconds.', { title: 'Export complete', variant: 'success' })} />
+		<Button label="Warn" variant="warning" onclick={() => toast('Storage is 90% full.', { title: 'Heads up', variant: 'warning' })} />
+		<Button label="Danger" variant="danger" onclick={() => toast('The upload stopped. Check your connection.', { title: 'Upload failed', variant: 'danger', duration: 0 })} />
+	</div>
+	<div style="display: flex; flex-direction: row; gap: 8px; align-items: center">
+		<Button label="Clear all" variant="ghost" size="h-md" onclick={() => toasts.forEach((t) => dismiss(t.id))} />
+		<div style="font-size: var(--text-sm); color: var(--text-secondary)">{toasts.length} showing · the danger toast stays until closed</div>
+	</div>
+	<Toast />
+</div>
+```
 
 ## GPUI notes
 

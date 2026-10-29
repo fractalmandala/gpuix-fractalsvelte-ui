@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { set_css_vars } from 'gpuix-fractalsvelte';
+	import { set_css_vars, set_fractalstyler_mode } from 'gpuix-fractalsvelte';
 	import type { Snippet } from 'svelte';
 	import { light, to_vars, type Theme, type Tokens } from './tokens.ts';
 
@@ -21,8 +21,9 @@
 
 	$effect(() => {
 		const t = { ...theme.tokens, ...tokens };
+		set_fractalstyler_mode(theme.dark ? 'dark' : 'light');
 		// The base package's Scroller reads its own vars; feed them from the theme.
-		set_css_vars({ ...to_vars(t), 'scroller-thumb': t['ink-faint'], 'scroller-thumb-hover': t['ink-muted'] });
+		set_css_vars({ ...to_vars(t), 'scroller-thumb': t['text-muted'], 'scroller-thumb-hover': t['text-secondary'] });
 	});
 </script>
 
@@ -34,9 +35,9 @@
 		flex-direction: column;
 		width: 100%;
 		height: 100%;
-		background-color: var(--ui-bg, #f6f6f7);
-		color: var(--ui-ink, #1b1d24);
-		font-family: var(--ui-font, Inter);
-		font-size: var(--ui-text-md, 14px);
+		background-color: var(--bg, #f6f6f7);
+		color: var(--text-primary, #1b1d24);
+		font-family: var(--font-sans, Inter);
+		font-size: var(--text-md, 14px);
 	}
 </style>

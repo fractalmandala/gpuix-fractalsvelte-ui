@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { GpuixEvent } from 'gpuix-fractalsvelte';
-	import type { Size } from '../types.ts';
 
 	const CHECK =
 		'<svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -14,7 +13,7 @@
 		label = '',
 		children = undefined,
 		disabled = false,
-		size = 'md',
+		size = 'h-sm',
 		style = null,
 		testid = null
 	}: {
@@ -27,7 +26,8 @@
 		label?: string;
 		children?: Snippet;
 		disabled?: boolean;
-		size?: Size;
+		/** Fractalstyler's height steps; the box is that height square. */
+		size?: 'h-sm' | 'h-md' | 'h-bs';
 		style?: string | null;
 		testid?: string | null;
 	} = $props();
@@ -60,13 +60,13 @@
 	{style}
 	testId={testid}
 >
-	<div class="box {size}" class:lit class:focused testId={testid && `${testid}-box`}>
-		{#if mark}<svg source={mark} class="mark {size}"></svg>{/if}
+	<div class="box box-{size}" class:lit class:focused testId={testid && `${testid}-box`}>
+		{#if mark}<svg source={mark} class="mark"></svg>{/if}
 	</div>
 	{#if children}
-		<div class="text {size}">{@render children()}</div>
+		<div class="text">{@render children()}</div>
 	{:else if label}
-		<div class="text {size}">{label}</div>
+		<div class="text">{label}</div>
 	{/if}
 </div>
 
@@ -77,7 +77,6 @@
 		align-items: center;
 		gap: 8px;
 	}
-	.row.sm { gap: 6px; }
 	.row.on { cursor: pointer; }
 	.row.off { cursor: not-allowed; opacity: 0.5; }
 	.box {
@@ -85,21 +84,13 @@
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		width: 16px;
-		height: 16px;
 		border-width: 1px;
-		border-color: var(--ui-border-strong);
-		border-radius: 4px;
-		background-color: var(--ui-surface);
+		border-color: var(--border-strong);
+		border-radius: var(--radius-sm);
+		background-color: var(--bg-surface);
 	}
-	.box.sm { width: 14px; height: 14px; border-radius: 3px; }
-	.box.lg { width: 20px; height: 20px; border-radius: 5px; }
-	.box.lit { background-color: var(--ui-accent); border-color: var(--ui-accent); }
-	.box.focused { border-color: var(--ui-ring); }
-	.mark { width: 12px; height: 12px; color: var(--ui-accent-ink); }
-	.mark.sm { width: 10px; height: 10px; }
-	.mark.lg { width: 14px; height: 14px; }
-	.text { font-size: var(--ui-text-md); color: var(--ui-ink); }
-	.text.sm { font-size: var(--ui-text-sm); }
-	.text.lg { font-size: var(--ui-text-lg); }
+	.box.lit { background-color: var(--theme-color); border-color: var(--theme-color); }
+	.box.focused { border-color: var(--ring); }
+	.mark { width: 12px; height: 12px; color: var(--text-theme); }
+	.text { font-size: var(--text-md); color: var(--text-primary); }
 </style>

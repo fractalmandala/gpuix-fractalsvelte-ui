@@ -20,26 +20,24 @@ category: navigation
 <Tabs {items} {value} onchange={(id) => (value = id)}>
   {#snippet children(id)}<div>Showing {id}</div>{/snippet}
 </Tabs>
-<Tabs {items} {value} variant="pill" size="sm" onchange={(id) => (value = id)} />
+<Tabs {items} {value} variant="pill" size="h-md" onchange={(id) => (value = id)} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Notes |
 | --- | --- | --- | --- |
-| `items` | `{ id: string; label: string; disabled?: boolean }[]` | — | Tabs in order. Disabled tabs are skipped by the arrow keys. |
-| `value` | `string` | — | The active tab's `id`. |
-| `onchange` | `(id: string) => void` | — | Called with the new id, on click or arrow key. |
+| `items` | `{ id: string; label: string; disabled?: boolean }[]` | — |   |
+| `value` | `string` | — | The active tab's id. |
+| `onchange` | `(id: string) => void` | — |   |
 | `variant` | `'line' \| 'pill'` | `'line'` | `line` underlines the active tab; `pill` is a segmented control. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Tab heights 26 / 32 / 40 px. |
-| `children` | `Snippet<[string]>` | — | The panel, given the active id. |
-| `style` | `string` | — | Inline CSS on the root. |
-| `testid` | `string` | — | Test id on the root. Each tab gets `<testid>-<id>`. |
-
+| `size` | `'h-sm' \| 'h-md' \| 'h-bs' \| 'h-lg' \| 'h-xl'` | `'h-bs'` | Fractalstyler's height steps for each tab. |
+| `children` | `Snippet<[string]>` | — | The panel under the tabs, given the active id. |
+| `style` | `string \| null` | — |   |
+| `testid` | `string \| null` | — |   |
 ## Tokens
 
-`ink`, `ink-muted`, `ink-faint`, `accent`, `accent-soft`, `surface`, `raised`, `border`, `ring`, `radius-sm/md`, `text-sm/md/lg`.
-
+`bg-raised`, `bg-surface`, `border`, `radius-md`, `ring`, `text-primary`, `text-secondary`, `theme-color`
 ## Keyboard
 
 | Key | Action |
@@ -48,6 +46,40 @@ category: navigation
 | Enter, Space | Select the focused tab |
 
 Only the active tab is in the tab order, so Tab moves past the whole row.
+
+## Examples
+
+Every variant, size and state, exactly as the gallery's Demo view renders them.
+
+```svelte
+<script lang="ts">
+	import Tabs from 'gpuix-fractalsvelte-ui/Tabs.svelte';
+	let line = $state('overview');
+	let pill = $state('day');
+	let small = $state('code');
+	const items = [
+		{ id: 'overview', label: 'Overview' },
+		{ id: 'activity', label: 'Activity' },
+		{ id: 'billing', label: 'Billing', disabled: true },
+		{ id: 'settings', label: 'Settings' }
+	];
+	const periods = [
+		{ id: 'day', label: 'Day' },
+		{ id: 'week', label: 'Week' },
+		{ id: 'month', label: 'Month' }
+	];
+</script>
+
+<div style="display: flex; flex-direction: column; gap: 24px; width: 420px">
+	<Tabs {items} value={line} onchange={(id) => (line = id)}>
+		{#snippet children(id)}<div style="color: var(--text-secondary)">Showing {id}.</div>{/snippet}
+	</Tabs>
+	<div style="display: flex; flex-direction: row; gap: 16px; align-items: center">
+		<Tabs items={periods} value={pill} variant="pill" onchange={(id) => (pill = id)} />
+		<Tabs items={periods} value={small} variant="pill" size="h-md" onchange={(id) => (small = id)} />
+	</div>
+</div>
+```
 
 ## GPUI notes
 
