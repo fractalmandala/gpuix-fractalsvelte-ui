@@ -105,6 +105,27 @@ Read [Theming](docs/theming.md) for tokens and custom themes.
 | [Progress](docs/components/progress.md) | Horizontal progress bar for a known percentage, or an indeterminate sweep. |
 | [Spinner](docs/components/spinner.md) | Indeterminate loading indicator drawn as a ring of fading dots. |
 
+## Add components with jsrepo
+
+The package is also a [jsrepo](https://www.jsrepo.dev) registry, so you can copy components into your own source instead of depending on the package. Each component brings the shared pieces it imports (`theme`, `types`, `group`), plus its doc page and demo if you ask for them. jsrepo rewrites the imports to match your folder layout.
+
+```sh
+npx jsrepo init <registry>
+npx jsrepo add button modal toast
+npx jsrepo add button --with doc example   # also copy the doc page and gallery demo
+npx jsrepo update                          # pull upstream changes, with a diff
+```
+
+Choose where each kind of item goes in your `jsrepo.config.ts`:
+
+```ts
+paths: { component: './src/ui', theme: './src/theme', lib: './src/lib' }
+```
+
+Your app still needs `gpuix-fractalsvelte`, and one `ThemeProvider` at the root.
+
+After changing a component, run `bun run registry` to rebuild `registry.json`, then commit it.
+
 ## Develop
 
 ```sh
@@ -121,3 +142,7 @@ New components follow [CONVENTIONS.md](CONVENTIONS.md): a component file, a doc 
 ## Known limits
 
 - GPUI has no shadows, transforms or transitions, so elevation is shown with borders and surface colours, and focus with a border colour.
+
+## License
+
+[License](./LICENSE)

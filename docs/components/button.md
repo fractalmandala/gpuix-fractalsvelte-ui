@@ -1,6 +1,6 @@
 ---
 title: Button
-description: Clickable action with variants, tones, sizes, loading and icon slots.
+description: Clickable action with variants, tones, sizes, shapes, loading and icon slots.
 category: actions
 ---
 

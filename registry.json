@@ -1,0 +1,2778 @@
+{
+	"name": "gpuix-fractalsvelte-ui",
+	"description": "Themed Svelte 5 components that render natively in GPUI through gpuix-fractalsvelte.",
+	"type": "repository",
+	"items": [
+		{
+			"name": "theme",
+			"title": "Theme",
+			"description": "ThemeProvider, the --ui-* token contract and the built-in themes.",
+			"type": "theme",
+			"add": "on-init",
+			"registryDependencies": [],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "theme",
+					"role": "file",
+					"path": "tokens.ts",
+					"relativePath": "src/theme/tokens.ts",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "theme",
+					"role": "file",
+					"path": "index.ts",
+					"relativePath": "src/theme/index.ts",
+					"_imports_": [
+						{
+							"import": "./tokens.ts",
+							"item": "theme",
+							"file": {
+								"type": "theme",
+								"path": "tokens.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "theme",
+					"role": "file",
+					"path": "ThemeProvider.svelte",
+					"relativePath": "src/theme/ThemeProvider.svelte",
+					"_imports_": [
+						{
+							"import": "./tokens.ts",
+							"item": "theme",
+							"file": {
+								"type": "theme",
+								"path": "tokens.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "theme",
+					"role": "doc",
+					"path": "theming.md",
+					"relativePath": "docs/theming.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			]
+		},
+		{
+			"name": "types",
+			"type": "lib",
+			"add": "when-needed",
+			"registryDependencies": [],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "lib",
+					"role": "file",
+					"path": "types.ts",
+					"relativePath": "src/types.ts",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			]
+		},
+		{
+			"name": "group",
+			"type": "lib",
+			"add": "when-needed",
+			"registryDependencies": [],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "lib",
+					"role": "file",
+					"path": "group.svelte.ts",
+					"relativePath": "src/group.svelte.ts",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			]
+		},
+		{
+			"name": "alert",
+			"title": "Alert",
+			"description": "Inline status message with a tone, optional title and a dismiss control.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Alert.svelte",
+					"relativePath": "src/components/Alert.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "alert.md",
+					"relativePath": "docs/components/alert.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Alert.demo.svelte",
+					"relativePath": "gallery/demos/Alert.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Alert.svelte",
+							"item": "alert",
+							"file": {
+								"type": "component",
+								"path": "Alert.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"feedback"
+			]
+		},
+		{
+			"name": "avatar",
+			"title": "Avatar",
+			"description": "Circle or square user image, falling back to initials from a name.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Avatar.svelte",
+					"relativePath": "src/components/Avatar.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "avatar.md",
+					"relativePath": "docs/components/avatar.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Avatar.demo.svelte",
+					"relativePath": "gallery/demos/Avatar.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Avatar.svelte",
+							"item": "avatar",
+							"file": {
+								"type": "component",
+								"path": "Avatar.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"feedback"
+			]
+		},
+		{
+			"name": "badge",
+			"title": "Badge",
+			"description": "Small pill label for counts, statuses and tags, in five tones and three variants.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Badge.svelte",
+					"relativePath": "src/components/Badge.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "badge.md",
+					"relativePath": "docs/components/badge.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Badge.demo.svelte",
+					"relativePath": "gallery/demos/Badge.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Badge.svelte",
+							"item": "badge",
+							"file": {
+								"type": "component",
+								"path": "Badge.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"feedback"
+			]
+		},
+		{
+			"name": "box",
+			"title": "Box",
+			"description": "Plain flex column with optional padding, background, border and corner radius.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Box.svelte",
+					"relativePath": "src/components/Box.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "box.md",
+					"relativePath": "docs/components/box.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Box.demo.svelte",
+					"relativePath": "gallery/demos/Box.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Box.svelte",
+							"item": "box",
+							"file": {
+								"type": "component",
+								"path": "Box.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"layout"
+			]
+		},
+		{
+			"name": "breadcrumbs",
+			"title": "Breadcrumbs",
+			"description": "Trail of ancestor pages, with the last item marked as the current page.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Breadcrumbs.svelte",
+					"relativePath": "src/components/Breadcrumbs.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "breadcrumbs.md",
+					"relativePath": "docs/components/breadcrumbs.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Breadcrumbs.demo.svelte",
+					"relativePath": "gallery/demos/Breadcrumbs.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Breadcrumbs.svelte",
+							"item": "breadcrumbs",
+							"file": {
+								"type": "component",
+								"path": "Breadcrumbs.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"navigation"
+			]
+		},
+		{
+			"name": "button",
+			"title": "Button",
+			"description": "Clickable action with variants, tones, sizes, shapes, loading and icon slots.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"group",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Button.svelte",
+					"relativePath": "src/components/Button.svelte",
+					"_imports_": [
+						{
+							"import": "../group.svelte.ts",
+							"item": "group",
+							"file": {
+								"type": "lib",
+								"path": "group.svelte.ts"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "button.md",
+					"relativePath": "docs/components/button.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Button.demo.svelte",
+					"relativePath": "gallery/demos/Button.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"actions"
+			]
+		},
+		{
+			"name": "buttongroup",
+			"title": "ButtonGroup",
+			"description": "Row of attached buttons, or a segmented single-select control driven by options and value.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"group",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "ButtonGroup.svelte",
+					"relativePath": "src/components/ButtonGroup.svelte",
+					"_imports_": [
+						{
+							"import": "../group.svelte.ts",
+							"item": "group",
+							"file": {
+								"type": "lib",
+								"path": "group.svelte.ts"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "buttongroup.md",
+					"relativePath": "docs/components/buttongroup.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "ButtonGroup.demo.svelte",
+					"relativePath": "gallery/demos/ButtonGroup.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/ButtonGroup.svelte",
+							"item": "buttongroup",
+							"file": {
+								"type": "component",
+								"path": "ButtonGroup.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"actions"
+			]
+		},
+		{
+			"name": "card",
+			"title": "Card",
+			"description": "Surface with a header, body and footer, optionally clickable as a whole.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Card.svelte",
+					"relativePath": "src/components/Card.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "card.md",
+					"relativePath": "docs/components/card.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Card.demo.svelte",
+					"relativePath": "gallery/demos/Card.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Card.svelte",
+							"item": "card",
+							"file": {
+								"type": "component",
+								"path": "Card.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"layout"
+			]
+		},
+		{
+			"name": "checkbox",
+			"title": "Checkbox",
+			"description": "Boolean or indeterminate check with a label, in three sizes, controlled by the parent.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Checkbox.svelte",
+					"relativePath": "src/components/Checkbox.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "checkbox.md",
+					"relativePath": "docs/components/checkbox.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Checkbox.demo.svelte",
+					"relativePath": "gallery/demos/Checkbox.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Checkbox.svelte",
+							"item": "checkbox",
+							"file": {
+								"type": "component",
+								"path": "Checkbox.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"inputs"
+			]
+		},
+		{
+			"name": "contextmenu",
+			"title": "ContextMenu",
+			"description": "Wraps a region and opens a menu of actions on right click or ctrl+click.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "ContextMenu.svelte",
+					"relativePath": "src/components/ContextMenu.svelte",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "contextmenu.md",
+					"relativePath": "docs/components/contextmenu.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "ContextMenu.demo.svelte",
+					"relativePath": "gallery/demos/ContextMenu.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/ContextMenu.svelte",
+							"item": "contextmenu",
+							"file": {
+								"type": "component",
+								"path": "ContextMenu.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"overlays"
+			]
+		},
+		{
+			"name": "divider",
+			"title": "Divider",
+			"description": "Hairline rule, horizontal or vertical, with an optional centred label.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Divider.svelte",
+					"relativePath": "src/components/Divider.svelte",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "divider.md",
+					"relativePath": "docs/components/divider.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Divider.demo.svelte",
+					"relativePath": "gallery/demos/Divider.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Divider.svelte",
+							"item": "divider",
+							"file": {
+								"type": "component",
+								"path": "Divider.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"layout"
+			]
+		},
+		{
+			"name": "drawer",
+			"title": "Drawer",
+			"description": "Panel that slides in from the left, right or bottom over a scrim, with title, body and footer.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Drawer.svelte",
+					"relativePath": "src/components/Drawer.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "drawer.md",
+					"relativePath": "docs/components/drawer.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Drawer.demo.svelte",
+					"relativePath": "gallery/demos/Drawer.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Drawer.svelte",
+							"item": "drawer",
+							"file": {
+								"type": "component",
+								"path": "Drawer.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"overlays"
+			]
+		},
+		{
+			"name": "grid",
+			"title": "Grid",
+			"description": "Equal-width column grid with a spacing gap between cells.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Grid.svelte",
+					"relativePath": "src/components/Grid.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "grid.md",
+					"relativePath": "docs/components/grid.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Grid.demo.svelte",
+					"relativePath": "gallery/demos/Grid.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Grid.svelte",
+							"item": "grid",
+							"file": {
+								"type": "component",
+								"path": "Grid.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Box.svelte",
+							"item": "box",
+							"file": {
+								"type": "component",
+								"path": "Box.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"box"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"layout"
+			]
+		},
+		{
+			"name": "iconbutton",
+			"title": "IconButton",
+			"description": "Square icon-only action with a hover tooltip, sharing Button's variants, tones and sizes.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"group",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "IconButton.svelte",
+					"relativePath": "src/components/IconButton.svelte",
+					"_imports_": [
+						{
+							"import": "../group.svelte.ts",
+							"item": "group",
+							"file": {
+								"type": "lib",
+								"path": "group.svelte.ts"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "iconbutton.md",
+					"relativePath": "docs/components/iconbutton.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "IconButton.demo.svelte",
+					"relativePath": "gallery/demos/IconButton.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/IconButton.svelte",
+							"item": "iconbutton",
+							"file": {
+								"type": "component",
+								"path": "IconButton.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"actions"
+			]
+		},
+		{
+			"name": "kbd",
+			"title": "Kbd",
+			"description": "Keyboard shortcut caps for a chord such as cmd+k, drawn with macOS glyphs.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Kbd.svelte",
+					"relativePath": "src/components/Kbd.svelte",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "kbd.md",
+					"relativePath": "docs/components/kbd.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Kbd.demo.svelte",
+					"relativePath": "gallery/demos/Kbd.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Kbd.svelte",
+							"item": "kbd",
+							"file": {
+								"type": "component",
+								"path": "Kbd.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"feedback"
+			]
+		},
+		{
+			"name": "link",
+			"title": "Link",
+			"description": "Inline text action with tones, underlined on hover.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Link.svelte",
+					"relativePath": "src/components/Link.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "link.md",
+					"relativePath": "docs/components/link.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Link.demo.svelte",
+					"relativePath": "gallery/demos/Link.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Link.svelte",
+							"item": "link",
+							"file": {
+								"type": "component",
+								"path": "Link.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"actions"
+			]
+		},
+		{
+			"name": "menu",
+			"title": "Menu",
+			"description": "Dropdown of actions anchored to a trigger, with shortcuts, tones, disabled items and separators.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Menu.svelte",
+					"relativePath": "src/components/Menu.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "menu.md",
+					"relativePath": "docs/components/menu.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Menu.demo.svelte",
+					"relativePath": "gallery/demos/Menu.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Menu.svelte",
+							"item": "menu",
+							"file": {
+								"type": "component",
+								"path": "Menu.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"navigation"
+			]
+		},
+		{
+			"name": "modal",
+			"title": "Modal",
+			"description": "Centred dialog over a scrim, with title, body and footer actions.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Modal.svelte",
+					"relativePath": "src/components/Modal.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "modal.md",
+					"relativePath": "docs/components/modal.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Modal.demo.svelte",
+					"relativePath": "gallery/demos/Modal.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Modal.svelte",
+							"item": "modal",
+							"file": {
+								"type": "component",
+								"path": "Modal.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"overlays"
+			]
+		},
+		{
+			"name": "navlist",
+			"title": "NavList",
+			"description": "Vertical sidebar list with section headings, optional icons and badges.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "NavList.svelte",
+					"relativePath": "src/components/NavList.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "navlist.md",
+					"relativePath": "docs/components/navlist.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "NavList.demo.svelte",
+					"relativePath": "gallery/demos/NavList.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/NavList.svelte",
+							"item": "navlist",
+							"file": {
+								"type": "component",
+								"path": "NavList.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"navigation"
+			]
+		},
+		{
+			"name": "pagination",
+			"title": "Pagination",
+			"description": "Page controls with previous and next buttons and a windowed run of page numbers around the current page.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"button",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Pagination.svelte",
+					"relativePath": "src/components/Pagination.svelte",
+					"_imports_": [
+						{
+							"import": "./Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "pagination.md",
+					"relativePath": "docs/components/pagination.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Pagination.demo.svelte",
+					"relativePath": "gallery/demos/Pagination.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Pagination.svelte",
+							"item": "pagination",
+							"file": {
+								"type": "component",
+								"path": "Pagination.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"navigation"
+			]
+		},
+		{
+			"name": "popover",
+			"title": "Popover",
+			"description": "Floating panel anchored to a trigger, or to window coordinates, that closes on outside press or Escape.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Popover.svelte",
+					"relativePath": "src/components/Popover.svelte",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "popover.md",
+					"relativePath": "docs/components/popover.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Popover.demo.svelte",
+					"relativePath": "gallery/demos/Popover.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Popover.svelte",
+							"item": "popover",
+							"file": {
+								"type": "component",
+								"path": "Popover.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"overlays"
+			]
+		},
+		{
+			"name": "progress",
+			"title": "Progress",
+			"description": "Horizontal progress bar for a known percentage, or an indeterminate sweep.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Progress.svelte",
+					"relativePath": "src/components/Progress.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "progress.md",
+					"relativePath": "docs/components/progress.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Progress.demo.svelte",
+					"relativePath": "gallery/demos/Progress.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Progress.svelte",
+							"item": "progress",
+							"file": {
+								"type": "component",
+								"path": "Progress.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"feedback"
+			]
+		},
+		{
+			"name": "radiogroup",
+			"title": "RadioGroup",
+			"description": "Pick one of a few options, in a column or a row, with arrow-key navigation.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "RadioGroup.svelte",
+					"relativePath": "src/components/RadioGroup.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "radiogroup.md",
+					"relativePath": "docs/components/radiogroup.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "RadioGroup.demo.svelte",
+					"relativePath": "gallery/demos/RadioGroup.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/RadioGroup.svelte",
+							"item": "radiogroup",
+							"file": {
+								"type": "component",
+								"path": "RadioGroup.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"inputs"
+			]
+		},
+		{
+			"name": "scrollarea",
+			"title": "ScrollArea",
+			"description": "Vertically scrolling column with a fixed height or a height cap, and a drawn scroll thumb.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "ScrollArea.svelte",
+					"relativePath": "src/components/ScrollArea.svelte",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "scrollarea.md",
+					"relativePath": "docs/components/scrollarea.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "ScrollArea.demo.svelte",
+					"relativePath": "gallery/demos/ScrollArea.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/ScrollArea.svelte",
+							"item": "scrollarea",
+							"file": {
+								"type": "component",
+								"path": "ScrollArea.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"layout"
+			]
+		},
+		{
+			"name": "select",
+			"title": "Select",
+			"description": "Dropdown that picks one option from a list, with keyboard navigation and a scrolling list for long option sets.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Select.svelte",
+					"relativePath": "src/components/Select.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "select.md",
+					"relativePath": "docs/components/select.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Select.demo.svelte",
+					"relativePath": "gallery/demos/Select.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Select.svelte",
+							"item": "select",
+							"file": {
+								"type": "component",
+								"path": "Select.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"inputs"
+			]
+		},
+		{
+			"name": "slider",
+			"title": "Slider",
+			"description": "Pick a number in a range by dragging the thumb, clicking the track or using the arrow keys.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Slider.svelte",
+					"relativePath": "src/components/Slider.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "slider.md",
+					"relativePath": "docs/components/slider.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Slider.demo.svelte",
+					"relativePath": "gallery/demos/Slider.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Slider.svelte",
+							"item": "slider",
+							"file": {
+								"type": "component",
+								"path": "Slider.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"inputs"
+			]
+		},
+		{
+			"name": "spacer",
+			"title": "Spacer",
+			"description": "Flexible empty box that takes up the free space in a row or column.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Spacer.svelte",
+					"relativePath": "src/components/Spacer.svelte",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "spacer.md",
+					"relativePath": "docs/components/spacer.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Spacer.demo.svelte",
+					"relativePath": "gallery/demos/Spacer.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Spacer.svelte",
+							"item": "spacer",
+							"file": {
+								"type": "component",
+								"path": "Spacer.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Box.svelte",
+							"item": "box",
+							"file": {
+								"type": "component",
+								"path": "Box.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"box",
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"layout"
+			]
+		},
+		{
+			"name": "spinner",
+			"title": "Spinner",
+			"description": "Indeterminate loading indicator drawn as a ring of fading dots.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Spinner.svelte",
+					"relativePath": "src/components/Spinner.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "spinner.md",
+					"relativePath": "docs/components/spinner.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Spinner.demo.svelte",
+					"relativePath": "gallery/demos/Spinner.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Spinner.svelte",
+							"item": "spinner",
+							"file": {
+								"type": "component",
+								"path": "Spinner.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"feedback"
+			]
+		},
+		{
+			"name": "splitpane",
+			"title": "SplitPane",
+			"description": "Two panes divided by a draggable, keyboard-nudgeable grip, side by side or stacked.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "SplitPane.svelte",
+					"relativePath": "src/components/SplitPane.svelte",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "splitpane.md",
+					"relativePath": "docs/components/splitpane.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "SplitPane.demo.svelte",
+					"relativePath": "gallery/demos/SplitPane.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/SplitPane.svelte",
+							"item": "splitpane",
+							"file": {
+								"type": "component",
+								"path": "SplitPane.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"layout"
+			]
+		},
+		{
+			"name": "stack",
+			"title": "Stack",
+			"description": "Flex row or column with spacing, alignment, justification and optional wrapping.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Stack.svelte",
+					"relativePath": "src/components/Stack.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "stack.md",
+					"relativePath": "docs/components/stack.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Stack.demo.svelte",
+					"relativePath": "gallery/demos/Stack.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Stack.svelte",
+							"item": "stack",
+							"file": {
+								"type": "component",
+								"path": "Stack.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Box.svelte",
+							"item": "box",
+							"file": {
+								"type": "component",
+								"path": "Box.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"box",
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"layout"
+			]
+		},
+		{
+			"name": "switch",
+			"title": "Switch",
+			"description": "On/off toggle with a track and thumb, optional label, and three sizes.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Switch.svelte",
+					"relativePath": "src/components/Switch.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "switch.md",
+					"relativePath": "docs/components/switch.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Switch.demo.svelte",
+					"relativePath": "gallery/demos/Switch.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Switch.svelte",
+							"item": "switch",
+							"file": {
+								"type": "component",
+								"path": "Switch.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"inputs"
+			]
+		},
+		{
+			"name": "tabs",
+			"title": "Tabs",
+			"description": "Switch between sibling views with an underline or a segmented pill control.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Tabs.svelte",
+					"relativePath": "src/components/Tabs.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "tabs.md",
+					"relativePath": "docs/components/tabs.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Tabs.demo.svelte",
+					"relativePath": "gallery/demos/Tabs.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Tabs.svelte",
+							"item": "tabs",
+							"file": {
+								"type": "component",
+								"path": "Tabs.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"navigation"
+			]
+		},
+		{
+			"name": "textarea",
+			"title": "TextArea",
+			"description": "Multi-line text field with label, hint or error text, and a height that grows with its content.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "TextArea.svelte",
+					"relativePath": "src/components/TextArea.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "textarea.md",
+					"relativePath": "docs/components/textarea.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "TextArea.demo.svelte",
+					"relativePath": "gallery/demos/TextArea.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/TextArea.svelte",
+							"item": "textarea",
+							"file": {
+								"type": "component",
+								"path": "TextArea.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"inputs"
+			]
+		},
+		{
+			"name": "textinput",
+			"title": "TextInput",
+			"description": "Single-line text field with label, hint or error text, leading and trailing slots, and three sizes.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "TextInput.svelte",
+					"relativePath": "src/components/TextInput.svelte",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "textinput.md",
+					"relativePath": "docs/components/textinput.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "TextInput.demo.svelte",
+					"relativePath": "gallery/demos/TextInput.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/TextInput.svelte",
+							"item": "textinput",
+							"file": {
+								"type": "component",
+								"path": "TextInput.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"inputs"
+			]
+		},
+		{
+			"name": "toast",
+			"title": "Toast",
+			"description": "Stacked notifications shown bottom-right, raised with the toast() function and dismissed by timer or close button.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Toast.svelte",
+					"relativePath": "src/components/Toast.svelte",
+					"_imports_": [
+						{
+							"import": "./toast.svelte.ts",
+							"item": "toast",
+							"file": {
+								"type": "component",
+								"path": "toast.svelte.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "file",
+					"path": "toast.svelte.ts",
+					"relativePath": "src/components/toast.svelte.ts",
+					"_imports_": [
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "toast.md",
+					"relativePath": "docs/components/toast.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Toast.demo.svelte",
+					"relativePath": "gallery/demos/Toast.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Button.svelte",
+							"item": "button",
+							"file": {
+								"type": "component",
+								"path": "Button.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/Toast.svelte",
+							"item": "toast",
+							"file": {
+								"type": "component",
+								"path": "Toast.svelte"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../../src/components/toast.svelte.ts",
+							"item": "toast",
+							"file": {
+								"type": "component",
+								"path": "toast.svelte.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [
+						"button"
+					],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"overlays"
+			]
+		},
+		{
+			"name": "toggle",
+			"title": "Toggle",
+			"description": "Button that holds a pressed or unpressed state, with a tone for the pressed look.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme",
+				"group",
+				"types"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Toggle.svelte",
+					"relativePath": "src/components/Toggle.svelte",
+					"_imports_": [
+						{
+							"import": "../group.svelte.ts",
+							"item": "group",
+							"file": {
+								"type": "lib",
+								"path": "group.svelte.ts"
+							},
+							"meta": {}
+						},
+						{
+							"import": "../types.ts",
+							"item": "types",
+							"file": {
+								"type": "lib",
+								"path": "types.ts"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "toggle.md",
+					"relativePath": "docs/components/toggle.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Toggle.demo.svelte",
+					"relativePath": "gallery/demos/Toggle.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Toggle.svelte",
+							"item": "toggle",
+							"file": {
+								"type": "component",
+								"path": "Toggle.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"actions"
+			]
+		},
+		{
+			"name": "tooltip",
+			"title": "Tooltip",
+			"description": "Short hover hint beside a trigger, shown after a delay and hidden when the pointer leaves.",
+			"type": "component",
+			"add": "when-added",
+			"registryDependencies": [
+				"theme"
+			],
+			"dependencies": [],
+			"devDependencies": [],
+			"files": [
+				{
+					"type": "component",
+					"role": "file",
+					"path": "Tooltip.svelte",
+					"relativePath": "src/components/Tooltip.svelte",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "doc",
+					"path": "tooltip.md",
+					"relativePath": "docs/components/tooltip.md",
+					"_imports_": [],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				},
+				{
+					"type": "component",
+					"role": "example",
+					"path": "Tooltip.demo.svelte",
+					"relativePath": "gallery/demos/Tooltip.demo.svelte",
+					"_imports_": [
+						{
+							"import": "../../src/components/Tooltip.svelte",
+							"item": "tooltip",
+							"file": {
+								"type": "component",
+								"path": "Tooltip.svelte"
+							},
+							"meta": {}
+						}
+					],
+					"registryDependencies": [],
+					"dependencies": [],
+					"devDependencies": []
+				}
+			],
+			"categories": [
+				"overlays"
+			]
+		}
+	]
+}
