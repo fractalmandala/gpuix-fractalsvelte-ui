@@ -18,14 +18,12 @@
 		"gallery": "gpuix-fractalsvelte gallery/app.ts",
 		"test": "bun scripts/test-all.ts",
 		"test:one": "gpuix-fractalsvelte",
-		"typecheck": "tsc --noEmit && svelte-check --diagnostic-sources js,svelte --fail-on-warnings",
-		"registry": "bun scripts/gen.ts && jsrepo build"
+		"typecheck": "tsc --noEmit && svelte-check --diagnostic-sources js,svelte --fail-on-warnings"
 	},
 	"devDependencies": {
 		"@types/bun": "^1.4.3",
 		"@types/node": "^26.6.5",
 		"gpuix-fractalsvelte": "file:../gpuix-fractalsvelte",
-		"jsrepo": "^3.8.2",
 		"svelte": "file:../gpuix-fractalsvelte/vendor/svelte-5.57.2-694f791.tgz",
 		"svelte-check": "^4.7.6",
 		"typescript": "^5.9.3"
